@@ -1,0 +1,123 @@
+ÿÝ     db "MZ"
+     dw 80h   ;Stub size
+     dw 1     ;no relocations
+     dw 0
+     dw 4     ; 4-para header
+     dw 10h   ; 16 extra para for stack
+     dw -1    ; maximum extra paras: LOTS
+     dw 0,100h ; SS:SP = 0000:0100
+     dw 0     ; no checksum
+     dw 0,0   ; CS:IP = 0:0, start at beginning
+     dw 40h   ; reloc table beyond hdr
+     dw 0     ; overlay number
+     dw 0,0,0,0 ; reserved
+     dw 0,0   ; OEM id and OEM info
+     dw 10 dup (0) ; reserved
+     dd 80h   ; offset PE header
+     db 0eh,1fh,0bah,0eh,0,0b4h,09h,0cdh,21h,0b8h,1,4ch,0cdh,21h
+     db 'Este programa no funciona desde modo DOS.',0Dh,0Ah,24h,0,0,0,0,0,0
+
+   PE_Stub:
+     db "PE",0,0
+     dw 014Ch  ; 386-compatible
+     dw 3      ; number of sections
+     dd 0      ; Time and date when the file was created
+     dd 0      ; PointerToSymbolTable
+     dd 0      ; NumberOfSymbols
+     dw 0E0h   ; SizeOfOptionalHeader
+     dw 010Fh  ;Characteristics
+     ; IMAGE_FILE_RELOCS_STRIPPED           0x0001  // Relocation info stripped from file.
+     ; IMAGE_FILE_EXECUTABLE_IMAGE          0x0002  // File is executable  (i.e. no unresolved externel references).
+     ; IMAGE_FILE_LINE_NUMS_STRIPPED        0x0004  // Line nunbers stripped from file.
+     ; IMAGE_FILE_LOCAL_SYMS_STRIPPED       0x0008  // Local symbols stripped from file.
+     ; IMAGE_FILE_32BIT_MACHINE             0x0100  // 32 bit word machine.
+
+     dw 010Bh  ;Magic for a normal executable/DLL.
+     db 1      ;MajorLinkerVersion;
+     db 43h    ;MinorLinkerVersion;
+     dd 0      ;SizeOfCode;
+     dd 0      ;SizeOfInitializedData;
+     dd 0      ;SizeOfUninitializedData;
+     dd 2000h  ;RVA AddressOfEntryPoint;
+     dd 0      ;BaseOfCode;
+     dd 0      ;BaseOfData;
+     dd 400000h ;ImageBase;
+     dd 1000h  ;SectionAlignment;
+     dd 200h   ;FileAlignment;
+     dw 1      ;MajorOperatingSystemVersion;
+     dw 0      ;MinorOperatingSystemVersion;
+     dw 0      ;MajorImageVersion;
+     dw 0      ;MinorImageVersion;
+     dw 4      ;MajorSubsystemVersion;
+     dw 0      ;MinorSubsystemVersion;
+     dd 0      ;Win32VersionValue;
+     dd 4000h  ;SizeOfImage;
+     dd 200h   ;SizeOfHeaders;
+     dd 0      ;CheckSum;
+     dw 2      ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
+     dw 0      ;DllCharacteristics;
+     dd 1000h  ;SizeOfStackReserve;
+     dd 1000h  ;SizeOfStackCommit;
+     dd 10000h ;SizeOfHeapReserve;
+     dd 0      ;SizeOfHeapCommit;
+     dd 0      ;LoaderFlags;
+     dd 16     ;NumberOfRvaAndSizes;
+     dd 0,0         ;Directory1 edata RVa, Size
+     dd 3000h,0d2h  ;Directory2 idata RVa, Size
+     dd 0,0    ; Directory 3
+     dd 0,0    ; Directory 4
+     dd 0,0    ; Directory 5
+     dd 0,0    ; Directory 6
+     dd 0,0    ; Directory 7
+     dd 0,0    ; Directory 8
+     dd 0,0    ; Directory 9
+     dd 0,0    ; Directory 10
+     dd 0,0    ; Directory 11
+     dd 0,0    ; Directory 12
+     dd 0,0    ; Directory 13
+     dd 0,0    ; Directory 14
+     dd 0,0    ; Directory 15
+     dd 0,0    ; Directory 16
+
+     ;.data section
+     db '.data',0,0,0
+     dd data_size ; VirtualSize;
+     dd 200h      ; VirtualAddress;
+     dd data_size + data_size % 0200h ; SizeOfRawData; Size aligned to FileAlign
+     dd 200h      ; PointerToRawData;
+     dd 0         ; PointerToRelocations;
+     dd 0         ; PointerToLinenumbers;
+     dw 0         ; NumberOfRelocations;
+     dw 0         ; NumberOfLinenumbers;
+     dd 0C0000040h ; Characteristics;
+     ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+     ;IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
+     ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.
+
+     db '.code',0,0,0
+     dd code_size
+     dd 200h      ; VirtualAddress;
+     dd code_size + code_size % 0200h ; SizeOfRawData; Size aligned to FileAlign
+     dd 200h      ; PointerToRawData;
+     dd 0         ; PointerToRelocations;
+     dd 0         ; PointerToLinenumbers;
+     dw 0         ; NumberOfRelocations;
+     dw 0         ; NumberOfLinenumbers;
+     dd 060000020h ; Characteristics;
+     ;IMAGE_SCN_CNT_CODE                   0x00000020  // Section contains code.
+     ;IMAGE_SCN_MEM_EXECUTE                0x20000000  // Section is executable.
+     ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+
+     db '.idata',0,0
+     dd idata_size
+     dd 200h      ; VirtualAddress;
+     dd data_size + data_size % 0200h ; SizeOfRawData; Size aligned to FileAlign
+     dd 200h      ; PointerToRawData;
+     dd 0         ; PointerToRelocations;
+     dd 0         ; PointerToLinenumbers;
+     dw 0         ; NumberOfRelocations;
+     dw 0         ; NumberOfLinenumbers;
+     dd 0C0000040h ; Characteristics;
+     ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+     ;IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
+     ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.

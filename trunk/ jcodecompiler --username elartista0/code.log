@@ -1,0 +1,2247 @@
+¬comment {} = forward reference
+¬comment [] = char list, ^ negative
+¬comment () = block
+¬comment \ = escape char, \01, \02... forward reference
+¬comment ¬linedef cmp dword [ebp*],*
+¬comment ¬db &H81,&H7D  ¬comment cmp [ebp+x],y
+¬comment ¬db \01
+¬comment ¬dd \02
+¬comment ¬
+¬comment begin file
+¬comment define $ImageBase &H400000
+00000000: ¬define $ImageBase 4194304    ¬comment &H00400000 = &H400000
+¬comment define $RVABase 0
+00000000: ¬define $RVABase 0    ¬comment &H00000000 = 0
+¬comment $image_start:
+00000000: ¬define $image_start 4194304    ¬comment &H00400000 = ¬curpos + $ImageBase + $RVABase
+¬comment db "MZ"
+00000000: ¬db 'MZ'
+¬comment dw &H80 ;Stub size
+¬comment dw &H80
+00000002: ¬dw &H80
+¬comment dw 1  ;no relocations
+¬comment dw 1
+00000004: ¬dw 1
+¬comment dw 0
+00000006: ¬dw 0
+¬comment dw 4  ; 4-para header
+¬comment dw 4
+00000008: ¬dw 4
+¬comment dw &H10 ; 16 extra para for stack
+¬comment dw &H10
+0000000A: ¬dw &H10
+¬comment dw -1 ; maximum extra paras: LOTS
+¬comment dw -1
+0000000C: ¬dw -1
+¬comment dw 0,&H140 ; SS:SP = 0000:0140
+¬comment dw 0,&H140
+0000000E: ¬dw 0
+00000010: ¬dw &H140
+¬comment dw 0  ; no checksum
+¬comment dw 0
+00000012: ¬dw 0
+¬comment dw 0,0 ; CS:IP = 0:0, start at beginning
+¬comment dw 0,0
+00000014: ¬dw 0
+00000016: ¬dw 0
+¬comment dw &H40 ; reloc table beyond hdr
+¬comment dw &H40
+00000018: ¬dw &H40
+¬comment dw 0  ; overlay number
+¬comment dw 0
+0000001A: ¬dw 0
+¬comment dw 0,0,0,0 ; reserved
+¬comment dw 0,0,0,0
+0000001C: ¬dw 0
+0000001E: ¬dw 0
+00000020: ¬dw 0
+00000022: ¬dw 0
+¬comment dw 0,0 ; OEM id and OEM info
+¬comment dw 0,0
+00000024: ¬dw 0
+00000026: ¬dw 0
+¬comment dw 0,0,0,0,0,0,0,0,0,0 ; reserved
+¬comment dw 0,0,0,0,0,0,0,0,0,0
+00000028: ¬dw 0
+0000002A: ¬dw 0
+0000002C: ¬dw 0
+0000002E: ¬dw 0
+00000030: ¬dw 0
+00000032: ¬dw 0
+00000034: ¬dw 0
+00000036: ¬dw 0
+00000038: ¬dw 0
+0000003A: ¬dw 0
+¬comment dd &H80 ; offset PE header
+¬comment dd &H80
+0000003C: ¬dd &H80
+¬comment db &H0E,&H1F,&HBA,&HE,0,&HB4,&H09,&HCD,&H21,&HB8,1,&H4C,&HCD,&H21
+00000040: ¬db &H0E
+00000041: ¬db &H1F
+00000042: ¬db &HBA
+00000043: ¬db &HE
+00000044: ¬db 0
+00000045: ¬db &HB4
+00000046: ¬db &H09
+00000047: ¬db &HCD
+00000048: ¬db &H21
+00000049: ¬db &HB8
+0000004A: ¬db 1
+0000004B: ¬db &H4C
+0000004C: ¬db &HCD
+0000004D: ¬db &H21
+¬comment ;db 'This program cannot be run in DOS mode.',0Dh,0Ah,24h
+¬comment db 'Este programa no funciona desde modo DOS.',&H0D,&H0A,&H24
+0000004E: ¬db 'Este programa no funciona desde modo DOS.'
+00000077: ¬db &H0D
+00000078: ¬db &H0A
+00000079: ¬db &H24
+¬comment align &H80
+0000007A: ¬align &H80
+¬comment PE_Stub:
+00000080: ¬define PE_Stub 4194432    ¬comment &H00400080 = ¬curpos + $ImageBase + $RVABase
+¬comment db "PE",0,0
+00000080: ¬db 'PE'
+00000082: ¬db 0
+00000083: ¬db 0
+¬comment dw &H014C ; 386-compatible
+¬comment dw &H014C
+00000084: ¬dw &H014C
+¬comment dw 4 ; number of sections
+¬comment dw 4
+00000086: ¬dw 4
+¬comment dd &H11223344 ; Time and date when the file was created
+¬comment dd &H11223344
+00000088: ¬dd &H11223344
+¬comment dd 0 ; PointerToSymbolTable
+¬comment dd 0
+0000008C: ¬dd 0
+¬comment dd 0 ; NumberOfSymbols
+¬comment dd 0
+00000090: ¬dd 0
+¬comment dw &HE0 ; SizeOfOptionalHeader
+¬comment dw &HE0
+00000094: ¬dw &HE0
+¬comment dw &H10E ;Characteristics
+¬comment dw &H10E
+00000096: ¬dw &H10E
+¬comment ; IMAGE_FILE_RELOCS_STRIPPED   0x0001 // Relocation info stripped from file.
+¬comment ; IMAGE_FILE_EXECUTABLE_IMAGE  0x0002 // File is executable (i.e. no unresolved externel references).
+¬comment ; IMAGE_FILE_LINE_NUMS_STRIPPED  0x0004 // Line nunbers stripped from file.
+¬comment ; IMAGE_FILE_LOCAL_SYMS_STRIPPED  0x0008 // Local symbols stripped from file.
+¬comment ; IMAGE_FILE_32BIT_MACHINE   0x0100 // 32 bit word machine.
+¬comment dw &H10B ;Magic for a normal executable/DLL.
+¬comment dw &H10B
+00000098: ¬dw &H10B
+¬comment db 1 ;MajorLinkerVersion;
+¬comment db 1
+0000009A: ¬db 1
+¬comment db &H43 ;MinorLinkerVersion;
+¬comment db &H43
+0000009B: ¬db &H43
+¬comment dd 0 ;SizeOfCode;
+¬comment dd 0
+0000009C: ¬dd 0
+¬comment dd 0 ;SizeOfInitializedData;
+¬comment dd 0
+000000A0: ¬dd 0
+¬comment dd 0 ;SizeOfUninitializedData;
+¬comment dd 0
+000000A4: ¬dd 0
+¬comment dd $EntryPoint - $ImageBase ;RVA AddressOfEntryPoint;
+¬comment dd $EntryPoint - $ImageBase
+000000A8: ¬comment recall 168 $EntryPoint - 4194304
+000000A8: ¬dd $EntryPoint - 4194304
+¬comment dd $code_start ;BaseOfCode;
+¬comment dd $code_start
+000000AC: ¬comment recall 172 $code_start
+000000AC: ¬dd $code_start
+¬comment dd $data_start ;BaseOfData;
+¬comment dd $data_start
+000000B0: ¬comment recall 176 $data_start
+000000B0: ¬dd $data_start
+¬comment dd $ImageBase ;ImageBase;
+¬comment dd $ImageBase
+000000B4: ¬dd 4194304
+¬comment dd &H100000 ;SectionAlignment;
+¬comment dd &H100000
+000000B8: ¬dd &H100000
+¬comment dd &H200 ;FileAlignment;
+¬comment dd &H200
+000000BC: ¬dd &H200
+¬comment dw 1 ;MajorOperatingSystemVersion;
+¬comment dw 1
+000000C0: ¬dw 1
+¬comment dw 0 ;MinorOperatingSystemVersion;
+¬comment dw 0
+000000C2: ¬dw 0
+¬comment dw 0 ;MajorImageVersion;
+¬comment dw 0
+000000C4: ¬dw 0
+¬comment dw 0 ;MinorImageVersion;
+¬comment dw 0
+000000C6: ¬dw 0
+¬comment dw 4 ;MajorSubsystemVersion;
+¬comment dw 4
+000000C8: ¬dw 4
+¬comment dw 0 ;MinorSubsystemVersion;
+¬comment dw 0
+000000CA: ¬dw 0
+¬comment dd 0 ;Win32VersionValue;
+¬comment dd 0
+000000CC: ¬dd 0
+¬comment dd $image_end - $ImageBase ;SizeOfImage;
+¬comment dd $image_end - $ImageBase
+000000D0: ¬comment recall 208 $image_end - 4194304
+000000D0: ¬dd $image_end - 4194304
+¬comment dd $header_end - $image_start ;SizeOfHeaders;
+¬comment dd $header_end - $image_start
+000000D4: ¬comment recall 212 $header_end - 4194304
+000000D4: ¬dd $header_end - 4194304
+¬comment dd &H12345678 ;CheckSum;
+¬comment dd &H12345678
+000000D8: ¬dd &H12345678
+¬comment dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
+¬comment dw 2
+000000DC: ¬dw 2
+¬comment dw 0 ;DllCharacteristics;
+¬comment dw 0
+000000DE: ¬dw 0
+¬comment dd &H1000 ;SizeOfStackReserve;
+¬comment dd &H1000
+000000E0: ¬dd &H1000
+¬comment dd &H1000 ;SizeOfStackCommit;
+¬comment dd &H1000
+000000E4: ¬dd &H1000
+¬comment dd &H10000 ;SizeOfHeapReserve;
+¬comment dd &H10000
+000000E8: ¬dd &H10000
+¬comment dd 0 ;SizeOfHeapCommit;
+¬comment dd 0
+000000EC: ¬dd 0
+¬comment dd 0 ;LoaderFlags;
+¬comment dd 0
+000000F0: ¬dd 0
+¬comment dd 16  ;NumberOfRvaAndSizes;
+¬comment dd 16
+000000F4: ¬dd 16
+¬comment dd 0,0  ;Directory1 edata RVa, Size
+¬comment dd 0,0
+000000F8: ¬dd 0
+000000FC: ¬dd 0
+¬comment dd $idata_start - $ImageBase,$idata_end - $idata_start ;Directory2 idata RVa, Size
+¬comment dd $idata_start - $ImageBase,$idata_end - $idata_start
+00000100: ¬comment recall 256 $idata_start - 4194304
+00000100: ¬dd $idata_start - 4194304
+00000104: ¬comment recall 260 $idata_end - $idata_start
+00000104: ¬dd $idata_end - $idata_start
+¬comment dd $rsrc_start - $ImageBase,$rsrc_end - $rsrc_start ; Directory 3 .rsrc
+¬comment dd $rsrc_start - $ImageBase,$rsrc_end - $rsrc_start
+00000108: ¬comment recall 264 $rsrc_start - 4194304
+00000108: ¬dd $rsrc_start - 4194304
+0000010C: ¬comment recall 268 $rsrc_end - $rsrc_start
+0000010C: ¬dd $rsrc_end - $rsrc_start
+¬comment dd 0,0 ; Directory 4
+¬comment dd 0,0
+00000110: ¬dd 0
+00000114: ¬dd 0
+¬comment dd 0,0 ; Directory 5
+¬comment dd 0,0
+00000118: ¬dd 0
+0000011C: ¬dd 0
+¬comment dd 0,0 ; Directory 6
+¬comment dd 0,0
+00000120: ¬dd 0
+00000124: ¬dd 0
+¬comment dd 0,0 ; Directory 7
+¬comment dd 0,0
+00000128: ¬dd 0
+0000012C: ¬dd 0
+¬comment dd 0,0 ; Directory 8
+¬comment dd 0,0
+00000130: ¬dd 0
+00000134: ¬dd 0
+¬comment dd 0,0 ; Directory 9
+¬comment dd 0,0
+00000138: ¬dd 0
+0000013C: ¬dd 0
+¬comment dd 0,0 ; Directory 10
+¬comment dd 0,0
+00000140: ¬dd 0
+00000144: ¬dd 0
+¬comment dd 0,0 ; Directory 11
+¬comment dd 0,0
+00000148: ¬dd 0
+0000014C: ¬dd 0
+¬comment dd 0,0 ; Directory 12
+¬comment dd 0,0
+00000150: ¬dd 0
+00000154: ¬dd 0
+¬comment dd 0,0 ; Directory 13
+¬comment dd 0,0
+00000158: ¬dd 0
+0000015C: ¬dd 0
+¬comment dd 0,0 ; Directory 14
+¬comment dd 0,0
+00000160: ¬dd 0
+00000164: ¬dd 0
+¬comment dd 0,0 ; Directory 15
+¬comment dd 0,0
+00000168: ¬dd 0
+0000016C: ¬dd 0
+¬comment dd 0,0 ; Directory 16
+¬comment dd 0,0
+00000170: ¬dd 0
+00000174: ¬dd 0
+¬comment db '.idata',0,0
+00000178: ¬db '.idata'
+0000017E: ¬db 0
+0000017F: ¬db 0
+¬comment dd $idata_end - $idata_start
+00000180: ¬comment recall 384 $idata_end - $idata_start
+00000180: ¬dd $idata_end - $idata_start
+¬comment dd $idata_start - $ImageBase ; VirtualAddress;
+¬comment dd $idata_start - $ImageBase
+00000184: ¬comment recall 388 $idata_start - 4194304
+00000184: ¬dd $idata_start - 4194304
+¬comment dd $idata_end_aligned - $idata_start ; SizeOfRawData; Size aligned to FileAlign
+¬comment dd $idata_end_aligned - $idata_start
+00000188: ¬comment recall 392 $idata_end_aligned - $idata_start
+00000188: ¬dd $idata_end_aligned - $idata_start
+¬comment dd $idata_file_start ; PointerToRawData;
+¬comment dd $idata_file_start
+0000018C: ¬comment recall 396 $idata_file_start
+0000018C: ¬dd $idata_file_start
+¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0
+00000190: ¬dd 0
+¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0
+00000194: ¬dd 0
+¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0
+00000198: ¬dw 0
+¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0
+0000019A: ¬dw 0
+¬comment dd &HC0000040 ; Characteristics;
+¬comment dd &HC0000040
+0000019C: ¬dd &HC0000040
+¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment db '.text',0,0,0
+000001A0: ¬db '.text'
+000001A5: ¬db 0
+000001A6: ¬db 0
+000001A7: ¬db 0
+¬comment dd $code_end - $code_start
+000001A8: ¬comment recall 424 $code_end - $code_start
+000001A8: ¬dd $code_end - $code_start
+¬comment dd $code_start ; VirtualAddress;
+¬comment dd $code_start
+000001AC: ¬comment recall 428 $code_start
+000001AC: ¬dd $code_start
+¬comment dd $code_end_aligned - $code_start ; SizeOfRawData; Size aligned to FileAlign
+¬comment dd $code_end_aligned - $code_start
+000001B0: ¬comment recall 432 $code_end_aligned - $code_start
+000001B0: ¬dd $code_end_aligned - $code_start
+¬comment dd $code_file_start ; PointerToRawData;
+¬comment dd $code_file_start
+000001B4: ¬comment recall 436 $code_file_start
+000001B4: ¬dd $code_file_start
+¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0
+000001B8: ¬dd 0
+¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0
+000001BC: ¬dd 0
+¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0
+000001C0: ¬dw 0
+¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0
+000001C2: ¬dw 0
+¬comment dd &H60000020 ; Characteristics;
+¬comment dd &H60000020
+000001C4: ¬dd &H60000020
+¬comment ;IMAGE_SCN_CNT_CODE    0x00000020 // Section contains code.
+¬comment ;IMAGE_SCN_MEM_EXECUTE   0x20000000 // Section is executable.
+¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+¬comment ;.data section
+¬comment db '.data',0,0,0
+000001C8: ¬db '.data'
+000001CD: ¬db 0
+000001CE: ¬db 0
+000001CF: ¬db 0
+¬comment dd $data_end - $data_start ; VirtualSize;
+¬comment dd $data_end - $data_start
+000001D0: ¬comment recall 464 $data_end - $data_start
+000001D0: ¬dd $data_end - $data_start
+¬comment dd $data_start ; VirtualAddress;
+¬comment dd $data_start
+000001D4: ¬comment recall 468 $data_start
+000001D4: ¬dd $data_start
+¬comment dd $data_end_aligned - $data_start ; SizeOfRawData; Size aligned to FileAlign
+¬comment dd $data_end_aligned - $data_start
+000001D8: ¬comment recall 472 $data_end_aligned - $data_start
+000001D8: ¬dd $data_end_aligned - $data_start
+¬comment dd $data_file_start ; PointerToRawData;
+¬comment dd $data_file_start
+000001DC: ¬comment recall 476 $data_file_start
+000001DC: ¬dd $data_file_start
+¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0
+000001E0: ¬dd 0
+¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0
+000001E4: ¬dd 0
+¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0
+000001E8: ¬dw 0
+¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0
+000001EA: ¬dw 0
+¬comment dd &HC0000040 ; Characteristics;
+¬comment dd &HC0000040
+000001EC: ¬dd &HC0000040
+¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment db '.rsrc',0,0,0
+000001F0: ¬db '.rsrc'
+000001F5: ¬db 0
+000001F6: ¬db 0
+000001F7: ¬db 0
+¬comment dd $rsrc_end - $rsrc_start
+000001F8: ¬comment recall 504 $rsrc_end - $rsrc_start
+000001F8: ¬dd $rsrc_end - $rsrc_start
+¬comment dd $rsrc_start - $ImageBase ; VirtualAddress;
+¬comment dd $rsrc_start - $ImageBase
+000001FC: ¬comment recall 508 $rsrc_start - 4194304
+000001FC: ¬dd $rsrc_start - 4194304
+¬comment dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
+¬comment dd $rsrc_end_aligned - $rsrc_start
+00000200: ¬comment recall 512 $rsrc_end_aligned - $rsrc_start
+00000200: ¬dd $rsrc_end_aligned - $rsrc_start
+¬comment dd $rsrc_file_start ; PointerToRawData;
+¬comment dd $rsrc_file_start
+00000204: ¬comment recall 516 $rsrc_file_start
+00000204: ¬dd $rsrc_file_start
+¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0
+00000208: ¬dd 0
+¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0
+0000020C: ¬dd 0
+¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0
+00000210: ¬dw 0
+¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0
+00000212: ¬dw 0
+¬comment dd &H40000040 ; Characteristics;
+¬comment dd &H40000040
+00000214: ¬dd &H40000040
+¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment align &H200
+00000218: ¬align &H200
+¬comment $header_end:
+00000400: ¬define $header_end 4195328    ¬comment &H00400400 = ¬curpos + $ImageBase + $RVABase
+¬comment begin section .idata
+00000400: ¬define $RVABase 1047552    ¬comment &H000FFC00 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+00000400: ¬define $idata_file_start 1024    ¬comment &H00000400 = ¬curpos
+¬comment $idata_start:
+00000400: ¬define $idata_start 5242880    ¬comment &H00500000 = ¬curpos + $ImageBase + $RVABase
+¬comment library KERNEL32.DLL
+¬comment (*)
+¬comment import GetModuleHandleA
+¬comment import GetModuleHandleA as GetModuleHandleA
+¬comment (*)
+¬comment import ExitProcess
+¬comment import ExitProcess as ExitProcess
+¬comment library USER32.DLL
+¬comment import DialogBoxParamA
+¬comment import DialogBoxParamA as DialogBoxParamA
+¬comment (*,*,*,*)
+¬comment import MessageBoxA
+¬comment import MessageBoxA as MessageBoxA
+¬comment (*,*)
+¬comment import EndDialog
+¬comment import EndDialog as EndDialog
+¬comment end section .idata
+¬comment $idata_libraries
+00000400: ¬comment recall 1024 $OriginalFirstThunk1 - 4194304
+00000400: ¬dd $OriginalFirstThunk1 - 4194304
+00000404: ¬dd 0
+00000408: ¬dd 0
+0000040C: ¬comment recall 1036 $DLLName2 - 4194304
+0000040C: ¬dd $DLLName2 - 4194304
+00000410: ¬comment recall 1040 $FirstThunk3 - 4194304
+00000410: ¬dd $FirstThunk3 - 4194304
+00000414: ¬comment recall 1044 $OriginalFirstThunk9 - 4194304
+00000414: ¬dd $OriginalFirstThunk9 - 4194304
+00000418: ¬dd 0
+0000041C: ¬dd 0
+00000420: ¬comment recall 1056 $DLLName10 - 4194304
+00000420: ¬dd $DLLName10 - 4194304
+00000424: ¬comment recall 1060 $FirstThunk11 - 4194304
+00000424: ¬dd $FirstThunk11 - 4194304
+¬comment bloque vacio
+00000428: ¬dd 0
+0000042C: ¬dd 0
+00000430: ¬dd 0
+00000434: ¬dd 0
+00000438: ¬dd 0
+¬comment $idata_definitions
+0000043C: ¬define $DLLName2 5242940    ¬comment &H0050003C = ¬curpos + $ImageBase + $RVABase
+0000043C: ¬db 'KERNEL32.DLL'
+00000448: ¬db 0
+00000449: ¬db 0
+0000044A: ¬define $OriginalFirstThunk1 5242954    ¬comment &H0050004A = ¬curpos + $ImageBase + $RVABase
+¬comment $LibraryOriginalImports4
+0000044A: ¬comment recall 1098 $FNLib7 - 4194304
+0000044A: ¬dd $FNLib7 - 4194304
+0000044E: ¬comment recall 1102 $FNLib8 - 4194304
+0000044E: ¬dd $FNLib8 - 4194304
+00000452: ¬dd 0
+00000456: ¬define $FirstThunk3 5242966    ¬comment &H00500056 = ¬curpos + $ImageBase + $RVABase
+¬comment $LibraryThunkImports5
+00000456: ¬define GetModuleHandleA_ADDR 5242966    ¬comment &H00500056 = ¬curpos + $ImageBase + $RVABase
+00000456: ¬comment recall 1110 $FNLib7 - 4194304
+00000456: ¬dd $FNLib7 - 4194304
+0000045A: ¬define ExitProcess_ADDR 5242970    ¬comment &H0050005A = ¬curpos + $ImageBase + $RVABase
+0000045A: ¬comment recall 1114 $FNLib8 - 4194304
+0000045A: ¬dd $FNLib8 - 4194304
+0000045E: ¬dd 0
+¬comment $LibraryFunctionsImports6
+00000462: ¬define $FNLib7 5242978    ¬comment &H00500062 = ¬curpos + $ImageBase + $RVABase
+00000462: ¬db 0
+00000463: ¬db 0
+00000464: ¬db 'GetModuleHandleA'
+00000474: ¬db 0
+00000475: ¬define $FNLib8 5242997    ¬comment &H00500075 = ¬curpos + $ImageBase + $RVABase
+00000475: ¬db 0
+00000476: ¬db 0
+00000477: ¬db 'ExitProcess'
+00000482: ¬db 0
+00000483: ¬define $DLLName10 5243011    ¬comment &H00500083 = ¬curpos + $ImageBase + $RVABase
+00000483: ¬db 'USER32.DLL'
+0000048D: ¬db 0
+0000048E: ¬db 0
+0000048F: ¬define $OriginalFirstThunk9 5243023    ¬comment &H0050008F = ¬curpos + $ImageBase + $RVABase
+¬comment $LibraryOriginalImports12
+0000048F: ¬comment recall 1167 $FNLib15 - 4194304
+0000048F: ¬dd $FNLib15 - 4194304
+00000493: ¬comment recall 1171 $FNLib16 - 4194304
+00000493: ¬dd $FNLib16 - 4194304
+00000497: ¬comment recall 1175 $FNLib17 - 4194304
+00000497: ¬dd $FNLib17 - 4194304
+0000049B: ¬dd 0
+0000049F: ¬define $FirstThunk11 5243039    ¬comment &H0050009F = ¬curpos + $ImageBase + $RVABase
+¬comment $LibraryThunkImports13
+0000049F: ¬define DialogBoxParamA_ADDR 5243039    ¬comment &H0050009F = ¬curpos + $ImageBase + $RVABase
+0000049F: ¬comment recall 1183 $FNLib15 - 4194304
+0000049F: ¬dd $FNLib15 - 4194304
+000004A3: ¬define MessageBoxA_ADDR 5243043    ¬comment &H005000A3 = ¬curpos + $ImageBase + $RVABase
+000004A3: ¬comment recall 1187 $FNLib16 - 4194304
+000004A3: ¬dd $FNLib16 - 4194304
+000004A7: ¬define EndDialog_ADDR 5243047    ¬comment &H005000A7 = ¬curpos + $ImageBase + $RVABase
+000004A7: ¬comment recall 1191 $FNLib17 - 4194304
+000004A7: ¬dd $FNLib17 - 4194304
+000004AB: ¬dd 0
+¬comment $LibraryFunctionsImports14
+000004AF: ¬define $FNLib15 5243055    ¬comment &H005000AF = ¬curpos + $ImageBase + $RVABase
+000004AF: ¬db 0
+000004B0: ¬db 0
+000004B1: ¬db 'DialogBoxParamA'
+000004C0: ¬db 0
+000004C1: ¬define $FNLib16 5243073    ¬comment &H005000C1 = ¬curpos + $ImageBase + $RVABase
+000004C1: ¬db 0
+000004C2: ¬db 0
+000004C3: ¬db 'MessageBoxA'
+000004CE: ¬db 0
+000004CF: ¬define $FNLib17 5243087    ¬comment &H005000CF = ¬curpos + $ImageBase + $RVABase
+000004CF: ¬db 0
+000004D0: ¬db 0
+000004D1: ¬db 'EndDialog'
+000004DA: ¬db 0
+¬comment $idata_end:
+000004DB: ¬define $idata_end 5243099    ¬comment &H005000DB = ¬curpos + $ImageBase + $RVABase
+¬comment align &H200
+000004DB: ¬align &H200
+¬comment $idata_end_aligned:
+00000600: ¬define $idata_end_aligned 5243392    ¬comment &H00500200 = ¬curpos + $ImageBase + $RVABase
+¬comment begin section .code
+00000600: ¬define $RVABase 2095616    ¬comment &H001FFA00 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+00000600: ¬define $code_file_start 1536    ¬comment &H00000600 = ¬curpos
+00000600: ¬define $code_start 2097152    ¬comment &H00200000 = $RVABase + ¬curpos
+¬comment $EntryPoint:
+00000600: ¬define $EntryPoint 6291456    ¬comment &H00600000 = ¬curpos + $ImageBase + $RVABase
+¬comment function Main()
+¬comment Main_ADDR:
+00000600: ¬define Main_ADDR 6291456    ¬comment &H00600000 = ¬curpos + $ImageBase + $RVABase
+00000600: ¬define $loctotal 
+¬comment push ebp
+00000600: ¬db &H55
+¬comment mov ebp,esp
+00000601: ¬db &H89
+00000602: ¬db &HE5
+¬comment sub esp,locals &H81EC (DWORD) (byte)
+00000603: ¬db &H83
+00000604: ¬db &HEC
+00000605: ¬comment recall 1541 $loctotal
+00000605: ¬db $loctotal
+00000606: ¬define $parnumber 4    ¬comment &H00000004 = 4
+00000606: ¬define $locnumber 0    ¬comment &H00000000 = 0
+¬comment params
+¬comment local hMod as dword
+00000606: ¬define $temp18 0    ¬comment &H00000000 = -$locnumber
+00000606: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+¬comment hMod = GetModuleHandleA(0)
+¬comment = GetModuleHandleA(0)
+¬comment GetModuleHandleA(0)
+¬comment pushpar 0
+00000606: ¬db &H6A
+00000607: ¬db 0
+¬comment call [GetModuleHandleA_ADDR]
+00000608: ¬db &HFF
+00000609: ¬db &H15
+0000060A: ¬dd 5242966
+¬comment mov dword [ebp-x],eax
+0000060E: ¬db &H89
+0000060F: ¬db &H45
+00000610: ¬db 0
+00000611: ¬define $temp18_last 1553    ¬comment &H00000611 = ¬curpos
+¬comment if DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0) = 0 then
+¬comment jmpexpr DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0) = 0
+¬comment DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0)
+¬comment pushpar hMod,37,0,dword DialogProc_ADDR,0
+¬comment pushpar 37,0,dword DialogProc_ADDR,0
+¬comment pushpar 0,dword DialogProc_ADDR,0
+¬comment pushpar dword DialogProc_ADDR,0
+¬comment pushpar 0
+00000611: ¬db &H6A
+00000612: ¬db 0
+¬comment pushpar dword DialogProc_ADDR
+¬comment dword DialogProc_ADDR
+¬comment mov eax,x
+00000613: ¬db &HB8
+00000614: ¬comment recall 1556 DialogProc_ADDR
+00000614: ¬dd DialogProc_ADDR
+00000618: ¬db &H50
+¬comment pushpar 0
+00000619: ¬db &H6A
+0000061A: ¬db 0
+¬comment pushpar 37
+0000061B: ¬db &H68
+0000061C: ¬dd 37
+¬comment pushpar hMod
+¬comment hMod
+¬comment mov eax,dword [ebp-x]
+00000620: ¬db &H8B
+00000621: ¬db &H45
+00000622: ¬db 0
+00000623: ¬db &H50
+¬comment call [DialogBoxParamA_ADDR]
+00000624: ¬db &HFF
+00000625: ¬db &H15
+00000626: ¬dd 5243039
+¬comment cmp eax,0
+0000062A: ¬db &H83
+0000062B: ¬db &HF8
+0000062C: ¬db 0
+¬comment jne
+0000062D: ¬db &HF
+0000062E: ¬db &H85
+0000062F: ¬comment recall 1583 $elselbl19 - 1583 - 4 - 4194304 - 2095616
+0000062F: ¬dd $elselbl19 - 1583 - 4 - 4194304 - 2095616
+¬comment MessageBoxA(0,"Prueba","Cabecera",0)
+¬comment pushpar 0,"Prueba","Cabecera",0
+¬comment pushpar "Prueba","Cabecera",0
+¬comment pushpar "Cabecera",0
+¬comment pushpar 0
+00000633: ¬db &H6A
+00000634: ¬db 0
+¬comment pushpar "Cabecera"
+00000635: ¬db &H68
+00000636: ¬comment recall 1590 $temp21
+00000636: ¬dd $temp21
+¬comment pushpar "Prueba"
+0000063A: ¬db &H68
+0000063B: ¬comment recall 1595 $temp22
+0000063B: ¬dd $temp22
+¬comment pushpar 0
+0000063F: ¬db &H6A
+00000640: ¬db 0
+¬comment call [MessageBoxA_ADDR]
+00000641: ¬db &HFF
+00000642: ¬db &H15
+00000643: ¬dd 5243043
+¬comment end if
+00000647: ¬define $elselbl19 6291527    ¬comment &H00600047 = ¬curpos + $ImageBase + $RVABase
+¬comment ;mov eax,[$Info]
+¬comment ;push eax ; MB_OK
+¬comment ;push dword $Header
+¬comment ;pushstr ""
+¬comment ;push eax ; HWND_DESKTOP
+¬comment ;call [MessageBoxA]
+¬comment ;push dword 0 ; HWND_DESKTOP
+¬comment ;call [ExitProcess]
+¬comment ExitProcess(0)
+¬comment pushpar 0
+00000647: ¬db &H6A
+00000648: ¬db 0
+¬comment call [ExitProcess_ADDR]
+00000649: ¬db &HFF
+0000064A: ¬db &H15
+0000064B: ¬dd 5242970
+¬comment end function
+0000064F: ¬define $loctotal 4    ¬comment &H00000004 = $locnumber
+¬comment leave
+0000064F: ¬db &HC9
+¬comment retn <val>
+00000650: ¬db &HC2
+00000651: ¬dw 0
+¬comment const WM_INITDIALOG = &H0110
+00000653: ¬define WM_INITDIALOG 272    ¬comment &H00000110 = &H0110
+¬comment const WM_COMMAND = &H0111
+00000653: ¬define WM_COMMAND 273    ¬comment &H00000111 = &H0111
+¬comment const WM_CLOSE = &H0010
+00000653: ¬define WM_CLOSE 16    ¬comment &H00000010 = &H0010
+¬comment function DialogProc(hwnddlg as dword, msg as dword, wparam as dword, lparam as dword)
+¬comment DialogProc_ADDR:
+00000653: ¬define DialogProc_ADDR 6291539    ¬comment &H00600053 = ¬curpos + $ImageBase + $RVABase
+00000653: ¬define $loctotal 
+¬comment push ebp
+00000653: ¬db &H55
+¬comment mov ebp,esp
+00000654: ¬db &H89
+00000655: ¬db &HE5
+¬comment sub esp,locals &H81EC (DWORD) (byte)
+00000656: ¬db &H83
+00000657: ¬db &HEC
+00000658: ¬comment recall 1624 $loctotal
+00000658: ¬db $loctotal
+00000659: ¬define $parnumber 4    ¬comment &H00000004 = 4
+00000659: ¬define $locnumber 0    ¬comment &H00000000 = 0
+¬comment params hwnddlg as dword, msg as dword, wparam as dword, lparam as dword
+¬comment params hwnddlg as dword
+00000659: ¬define $parnumber 8    ¬comment &H00000008 = $parnumber + 4
+00000659: ¬define $temp23 8    ¬comment &H00000008 = $parnumber
+¬comment params  msg as dword, wparam as dword, lparam as dword
+¬comment params msg as dword
+00000659: ¬define $parnumber 12    ¬comment &H0000000C = $parnumber + 4
+00000659: ¬define $temp24 12    ¬comment &H0000000C = $parnumber
+¬comment params  wparam as dword, lparam as dword
+¬comment params wparam as dword
+00000659: ¬define $parnumber 16    ¬comment &H00000010 = $parnumber + 4
+00000659: ¬define $temp25 16    ¬comment &H00000010 = $parnumber
+¬comment params  lparam as dword
+00000659: ¬define $parnumber 20    ¬comment &H00000014 = $parnumber + 4
+00000659: ¬define $temp26 20    ¬comment &H00000014 = $parnumber
+¬comment local var1 as dword
+00000659: ¬define $temp27 0    ¬comment &H00000000 = -$locnumber
+00000659: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+¬comment local var2 as dword
+00000659: ¬define $temp28 -4    ¬comment &HFFFFFFFC = -$locnumber
+00000659: ¬define $locnumber 8    ¬comment &H00000008 = $locnumber + 4
+¬comment if msg = dword WM_CLOSE then
+¬comment jmpexpr msg = dword WM_CLOSE
+¬comment dword WM_CLOSE
+¬comment mov eax,x
+00000659: ¬db &HB8
+0000065A: ¬dd 16
+¬comment mov ebx,eax
+0000065E: ¬db &H89
+0000065F: ¬db &HC3
+¬comment msg
+¬comment mov eax,dword [ebp-x]
+00000660: ¬db &H8B
+00000661: ¬db &H45
+00000662: ¬db 12
+¬comment cmp eax,ebx
+00000663: ¬db &H39
+00000664: ¬db &HD8
+¬comment jne
+00000665: ¬db &HF
+00000666: ¬db &H85
+00000667: ¬comment recall 1639 $elselbl29 - 1639 - 4 - 4194304 - 2095616
+00000667: ¬dd $elselbl29 - 1639 - 4 - 4194304 - 2095616
+¬comment var1 = 10
+¬comment = 10
+¬comment 10
+¬comment mov eax,x
+0000066B: ¬db &HB8
+0000066C: ¬dd 10
+¬comment mov dword [ebp-x],eax
+00000670: ¬db &H89
+00000671: ¬db &H45
+00000672: ¬db 0
+00000673: ¬define $temp27_last 1651    ¬comment &H00000673 = ¬curpos
+¬comment var2 = 20
+¬comment = 20
+¬comment 20
+¬comment mov eax,x
+00000673: ¬db &HB8
+00000674: ¬dd 20
+¬comment mov dword [ebp-x],eax
+00000678: ¬db &H89
+00000679: ¬db &H45
+0000067A: ¬db -4
+0000067B: ¬define $temp28_last 1659    ¬comment &H0000067B = ¬curpos
+¬comment var1 = var1 - var2
+¬comment = var1 - var2
+¬comment = var2
+¬comment var2
+¬comment mov ebx,eax
+0000067B: ¬db &H89
+0000067C: ¬db &HC3
+¬comment = var1
+¬comment var1
+¬comment mov eax,dword [ebp-x]
+0000067D: ¬db &H8B
+0000067E: ¬db &H45
+0000067F: ¬db 0
+00000680: ¬db &H29
+00000681: ¬db &HD8
+¬comment mov dword [ebp-x],eax
+00000682: ¬db &H89
+00000683: ¬db &H45
+00000684: ¬db 0
+00000685: ¬define $temp27_last 1669    ¬comment &H00000685 = ¬curpos
+¬comment var2 = 0 - var1
+¬comment = 0 - var1
+¬comment = var1
+¬comment var1
+¬comment mov ebx,eax
+00000685: ¬db &H89
+00000686: ¬db &HC3
+¬comment = 0
+¬comment 0
+¬comment xor eax,eax
+00000687: ¬db &H31
+00000688: ¬db &HC0
+00000689: ¬db &H29
+0000068A: ¬db &HD8
+¬comment mov dword [ebp-x],eax
+0000068B: ¬db &H89
+0000068C: ¬db &H45
+0000068D: ¬db -4
+0000068E: ¬define $temp28_last 1678    ¬comment &H0000068E = ¬curpos
+¬comment EndDialog(hwnddlg,var2)
+¬comment pushpar hwnddlg,var2
+¬comment pushpar var2
+¬comment var2
+0000068E: ¬db &H50
+¬comment pushpar hwnddlg
+¬comment hwnddlg
+¬comment mov eax,dword [ebp-x]
+0000068F: ¬db &H8B
+00000690: ¬db &H45
+00000691: ¬db 8
+00000692: ¬db &H50
+¬comment call [EndDialog_ADDR]
+00000693: ¬db &HFF
+00000694: ¬db &H15
+00000695: ¬dd 5243047
+¬comment return 1
+¬comment 1
+¬comment mov eax,x
+00000699: ¬db &HB8
+0000069A: ¬dd 1
+¬comment leave
+0000069E: ¬db &HC9
+¬comment retn <val>
+0000069F: ¬db &HC2
+000006A0: ¬dw 16
+¬comment else
+¬comment jmp
+000006A2: ¬db 233
+000006A3: ¬comment recall 1699 $endiflbl30 - 1699 - 4 - 4194304 - 2095616
+000006A3: ¬dd $endiflbl30 - 1699 - 4 - 4194304 - 2095616
+000006A7: ¬define $elselbl29 6291623    ¬comment &H006000A7 = ¬curpos + $ImageBase + $RVABase
+¬comment return 0
+¬comment 0
+¬comment xor eax,eax
+000006A7: ¬db &H31
+000006A8: ¬db &HC0
+¬comment leave
+000006A9: ¬db &HC9
+¬comment retn <val>
+000006AA: ¬db &HC2
+000006AB: ¬dw 16
+¬comment end if
+000006AD: ¬define $endiflbl30 6291629    ¬comment &H006000AD = ¬curpos + $ImageBase + $RVABase
+¬comment end function
+000006AD: ¬define $loctotal 8    ¬comment &H00000008 = $locnumber
+¬comment leave
+000006AD: ¬db &HC9
+¬comment retn <val>
+000006AE: ¬db &HC2
+000006AF: ¬dw 16
+¬comment end section .code
+000006B1: ¬define $code_end 2097329    ¬comment &H002000B1 = $RVABase + ¬curpos
+¬comment align &H200
+000006B1: ¬align &H200
+00000800: ¬define $code_end_aligned 2097664    ¬comment &H00200200 = $RVABase + ¬curpos
+¬comment begin section .data
+00000800: ¬define $RVABase 3143680    ¬comment &H002FF800 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+00000800: ¬define $data_file_start 2048    ¬comment &H00000800 = ¬curpos
+00000800: ¬define $data_start 3145728    ¬comment &H00300000 = $RVABase + ¬curpos
+¬comment $bytes_count: dd &H12345678
+00000800: ¬define $bytes_count 7340032    ¬comment &H00700000 = ¬curpos + $ImageBase + $RVABase
+¬comment dd &H12345678
+00000800: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000804: ¬dd &H12345678
+00000808: ¬dd &H12345678
+0000080C: ¬dd &H12345678
+00000810: ¬dd &H12345678
+00000814: ¬dd &H12345678
+00000818: ¬dd &H12345678
+0000081C: ¬dd &H12345678
+00000820: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000824: ¬dd &H12345678
+00000828: ¬dd &H12345678
+0000082C: ¬dd &H12345678
+00000830: ¬dd &H12345678
+00000834: ¬dd &H12345678
+00000838: ¬dd &H12345678
+0000083C: ¬dd &H12345678
+00000840: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000844: ¬dd &H12345678
+00000848: ¬dd &H12345678
+0000084C: ¬dd &H12345678
+00000850: ¬dd &H12345678
+00000854: ¬dd &H12345678
+00000858: ¬dd &H12345678
+0000085C: ¬dd &H12345678
+00000860: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000864: ¬dd &H12345678
+00000868: ¬dd &H12345678
+0000086C: ¬dd &H12345678
+00000870: ¬dd &H12345678
+00000874: ¬dd &H12345678
+00000878: ¬dd &H12345678
+0000087C: ¬dd &H12345678
+00000880: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000884: ¬dd &H12345678
+00000888: ¬dd &H12345678
+0000088C: ¬dd &H12345678
+00000890: ¬dd &H12345678
+00000894: ¬dd &H12345678
+00000898: ¬dd &H12345678
+0000089C: ¬dd &H12345678
+000008A0: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+000008A4: ¬dd &H12345678
+000008A8: ¬dd &H12345678
+000008AC: ¬dd &H12345678
+000008B0: ¬dd &H12345678
+000008B4: ¬dd &H12345678
+000008B8: ¬dd &H12345678
+000008BC: ¬dd &H12345678
+000008C0: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+000008C4: ¬dd &H12345678
+000008C8: ¬dd &H12345678
+000008CC: ¬dd &H12345678
+000008D0: ¬dd &H12345678
+000008D4: ¬dd &H12345678
+000008D8: ¬dd &H12345678
+000008DC: ¬dd &H12345678
+000008E0: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+000008E4: ¬dd &H12345678
+000008E8: ¬dd &H12345678
+000008EC: ¬dd &H12345678
+000008F0: ¬dd &H12345678
+000008F4: ¬dd &H12345678
+000008F8: ¬dd &H12345678
+000008FC: ¬dd &H12345678
+00000900: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000904: ¬dd &H12345678
+00000908: ¬dd &H12345678
+0000090C: ¬dd &H12345678
+00000910: ¬dd &H12345678
+00000914: ¬dd &H12345678
+00000918: ¬dd &H12345678
+0000091C: ¬dd &H12345678
+00000920: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000924: ¬dd &H12345678
+00000928: ¬dd &H12345678
+0000092C: ¬dd &H12345678
+00000930: ¬dd &H12345678
+00000934: ¬dd &H12345678
+00000938: ¬dd &H12345678
+0000093C: ¬dd &H12345678
+00000940: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000944: ¬dd &H12345678
+00000948: ¬dd &H12345678
+0000094C: ¬dd &H12345678
+00000950: ¬dd &H12345678
+00000954: ¬dd &H12345678
+00000958: ¬dd &H12345678
+0000095C: ¬dd &H12345678
+00000960: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000964: ¬dd &H12345678
+00000968: ¬dd &H12345678
+0000096C: ¬dd &H12345678
+00000970: ¬dd &H12345678
+00000974: ¬dd &H12345678
+00000978: ¬dd &H12345678
+0000097C: ¬dd &H12345678
+00000980: ¬dd &H12345678
+¬comment dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+00000984: ¬dd &H12345678
+00000988: ¬dd &H12345678
+0000098C: ¬dd &H12345678
+00000990: ¬dd &H12345678
+00000994: ¬dd &H12345678
+00000998: ¬dd &H12345678
+0000099C: ¬dd &H12345678
+000009A0: ¬dd &H12345678
+¬comment $Info: dd 0
+000009A4: ¬define $Info 7340452    ¬comment &H007001A4 = ¬curpos + $ImageBase + $RVABase
+¬comment dd 0
+000009A4: ¬dd 0
+¬comment $Header: db "Cabecera",0
+000009A8: ¬define $Header 7340456    ¬comment &H007001A8 = ¬curpos + $ImageBase + $RVABase
+¬comment db "Cabecera",0
+000009A8: ¬db 'Cabecera'
+000009B0: ¬db 0
+¬comment end section .data
+¬comment $data_definitions
+¬comment $temp21: db "Cabecera",0
+000009B1: ¬define $temp21 7340465    ¬comment &H007001B1 = ¬curpos + $ImageBase + $RVABase
+¬comment db "Cabecera",0
+000009B1: ¬db 'Cabecera'
+000009B9: ¬db 0
+¬comment $temp22: db "Prueba",0
+000009BA: ¬define $temp22 7340474    ¬comment &H007001BA = ¬curpos + $ImageBase + $RVABase
+¬comment db "Prueba",0
+000009BA: ¬db 'Prueba'
+000009C0: ¬db 0
+000009C1: ¬define $data_end 3146177    ¬comment &H003001C1 = $RVABase + ¬curpos
+¬comment align &H200
+000009C1: ¬align &H200
+00000A00: ¬define $data_end_aligned 3146240    ¬comment &H00300200 = $RVABase + ¬curpos
+¬comment begin section .rsrc
+00000A00: ¬define $RVABase 4191744    ¬comment &H003FF600 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+00000A00: ¬define $rsrc_file_start 2560    ¬comment &H00000A00 = ¬curpos
+¬comment $rsrc_start:
+00000A00: ¬define $rsrc_start 8388608    ¬comment &H00800000 = ¬curpos + $ImageBase + $RVABase
+¬comment dd 0 ;Characteristics;
+¬comment dd 0
+00000A00: ¬dd 0
+¬comment dd 0 ;TimeDateStamp;
+¬comment dd 0
+00000A04: ¬dd 0
+¬comment dw 0 ;MajorVersion;
+¬comment dw 0
+00000A08: ¬dw 0
+¬comment dw 0 ;MinorVersion;
+¬comment dw 0
+00000A0A: ¬dw 0
+¬comment dw 0 ;NumberOfNamedEntries;
+¬comment dw 0
+00000A0C: ¬dw 0
+¬comment dw 1 ;NumberOfIdEntries;
+¬comment dw 1
+00000A0E: ¬dw 1
+¬comment dd 5 ;Type
+¬comment dd 5
+00000A10: ¬dd 5
+¬comment dd $direntry1 - $rsrc_start + &H80000000 ;Type
+¬comment dd $direntry1 - $rsrc_start + &H80000000
+00000A14: ¬comment recall 2580 $direntry1 - 8388608 + &H80000000
+00000A14: ¬dd $direntry1 - 8388608 + &H80000000
+¬comment $direntry1:
+00000A18: ¬define $direntry1 8388632    ¬comment &H00800018 = ¬curpos + $ImageBase + $RVABase
+¬comment dd 0 ;Characteristics;
+¬comment dd 0
+00000A18: ¬dd 0
+¬comment dd 0 ;TimeDateStamp;
+¬comment dd 0
+00000A1C: ¬dd 0
+¬comment dw 0 ;MajorVersion;
+¬comment dw 0
+00000A20: ¬dw 0
+¬comment dw 0 ;MinorVersion;
+¬comment dw 0
+00000A22: ¬dw 0
+¬comment dw 0 ;NumberOfNamedEntries;
+¬comment dw 0
+00000A24: ¬dw 0
+¬comment dw 1 ;NumberOfIdEntries;
+¬comment dw 1
+00000A26: ¬dw 1
+¬comment dd 37 ;ID_DIALOG1
+¬comment dd 37
+00000A28: ¬dd 37
+¬comment dd $direntry2 - $rsrc_start + &H80000000 ;Type
+¬comment dd $direntry2 - $rsrc_start + &H80000000
+00000A2C: ¬comment recall 2604 $direntry2 - 8388608 + &H80000000
+00000A2C: ¬dd $direntry2 - 8388608 + &H80000000
+¬comment $direntry2:
+00000A30: ¬define $direntry2 8388656    ¬comment &H00800030 = ¬curpos + $ImageBase + $RVABase
+¬comment dd 0 ;Characteristics;
+¬comment dd 0
+00000A30: ¬dd 0
+¬comment dd 0 ;TimeDateStamp;
+¬comment dd 0
+00000A34: ¬dd 0
+¬comment dw 0 ;MajorVersion;
+¬comment dw 0
+00000A38: ¬dw 0
+¬comment dw 0 ;MinorVersion;
+¬comment dw 0
+00000A3A: ¬dw 0
+¬comment dw 0 ;NumberOfNamedEntries;
+¬comment dw 0
+00000A3C: ¬dw 0
+¬comment dw 1 ;NumberOfIdEntries;
+¬comment dw 1
+00000A3E: ¬dw 1
+¬comment dd &H0409 ;Language
+¬comment dd &H0409
+00000A40: ¬dd &H0409
+¬comment dd $dialogs - $rsrc_start
+00000A44: ¬comment recall 2628 $dialogs - 8388608
+00000A44: ¬dd $dialogs - 8388608
+¬comment $dialogs:
+00000A48: ¬define $dialogs 8388680    ¬comment &H00800048 = ¬curpos + $ImageBase + $RVABase
+¬comment dd $dialog1 - $ImageBase ;DataPtr
+¬comment dd $dialog1 - $ImageBase
+00000A48: ¬comment recall 2632 $dialog1 - 4194304
+00000A48: ¬dd $dialog1 - 4194304
+¬comment dd $dialog1_end - $dialog1 ;Size
+¬comment dd $dialog1_end - $dialog1
+00000A4C: ¬comment recall 2636 $dialog1_end - $dialog1
+00000A4C: ¬dd $dialog1_end - $dialog1
+¬comment dd 0,0
+00000A50: ¬dd 0
+00000A54: ¬dd 0
+¬comment $dialog1:
+00000A58: ¬define $dialog1 8388696    ¬comment &H00800058 = ¬curpos + $ImageBase + $RVABase
+¬comment dd &H80C800C0 ;WS_CAPTION+WS_POPUP+WS_SYSMENU+DS_MODALFRAME+DS_SETFONT
+¬comment dd &H80C800C0
+00000A58: ¬dd &H80C800C0
+¬comment ;WS_CAPTION  0x00C00000L  /* WS_BORDER | WS_DLGFRAME */
+¬comment ;WS_POPUP  0x80000000L
+¬comment ;WS_SYSMENU  0x00080000L
+¬comment ;DS_MODALFRAME  0x80L /* Can be combined with WS_CAPTION */
+¬comment ;DS_SETFONT  0x40L /* User specified font for Dlg controls */
+¬comment dd 0 ;ExsStyle
+¬comment dd 0
+00000A5C: ¬dd 0
+¬comment dw 2 ;items,
+¬comment dw 2
+00000A60: ¬dw 2
+¬comment dw 70,70,190,175 ; x,y,cx,cy
+¬comment dw 70,70,190,175
+00000A62: ¬dw 70
+00000A64: ¬dw 70
+00000A66: ¬dw 190
+00000A68: ¬dw 175
+¬comment dw 0,0,"Primer dialogo",0
+00000A6A: ¬dw 0
+00000A6C: ¬dw 0
+00000A6E: ¬dw 'Primer dialogo'
+00000A8A: ¬dw 0
+¬comment dw 8,'MS Sans Serif',0 ;Fontsize, FontName
+¬comment dw 8,'MS Sans Serif',0
+00000A8C: ¬dw 8
+00000A8E: ¬dw 'MS Sans Serif'
+00000AA8: ¬dw 0
+¬comment align 4
+00000AAA: ¬align 4
+¬comment $static1:
+00000AAC: ¬define $static1 8388780    ¬comment &H008000AC = ¬curpos + $ImageBase + $RVABase
+¬comment dd &H50000000 ;WS_CHILD+WS_VISIBLE
+¬comment dd &H50000000
+00000AAC: ¬dd &H50000000
+¬comment dd 0 ;ExsStyle
+¬comment dd 0
+00000AB0: ¬dd 0
+¬comment dw 10,10,70,8 ; x,y,cx,cy
+¬comment dw 10,10,70,8
+00000AB4: ¬dw 10
+00000AB6: ¬dw 10
+00000AB8: ¬dw 70
+00000ABA: ¬dw 8
+¬comment dw -1 ;ID
+¬comment dw -1
+00000ABC: ¬dw -1
+¬comment dw -1, &H82 ;STATIC
+¬comment dw -1, &H82
+00000ABE: ¬dw -1
+00000AC0: ¬dw &H82
+¬comment dw "&Caption",0
+00000AC2: ¬dw '&Caption'
+00000AD2: ¬dw 0
+¬comment dw 0
+00000AD4: ¬dw 0
+¬comment align 4
+00000AD6: ¬align 4
+¬comment $static2:
+00000AD8: ¬define $static2 8388824    ¬comment &H008000D8 = ¬curpos + $ImageBase + $RVABase
+¬comment dd &H50000000 ;WS_CHILD+WS_VISIBLE
+¬comment dd &H50000000
+00000AD8: ¬dd &H50000000
+¬comment dd 0 ;ExsStyle
+¬comment dd 0
+00000ADC: ¬dd 0
+¬comment dw 10,20,70,8 ; x,y,cx,cy
+¬comment dw 10,20,70,8
+00000AE0: ¬dw 10
+00000AE2: ¬dw 20
+00000AE4: ¬dw 70
+00000AE6: ¬dw 8
+¬comment dw -1 ;ID
+¬comment dw -1
+00000AE8: ¬dw -1
+¬comment dw -1, &H82 ;STATIC
+¬comment dw -1, &H82
+00000AEA: ¬dw -1
+00000AEC: ¬dw &H82
+¬comment dw "Mas Informacion",0
+00000AEE: ¬dw 'Mas Informacion'
+00000B0C: ¬dw 0
+¬comment dw 0
+00000B0E: ¬dw 0
+¬comment align 4
+00000B10: ¬align 4
+¬comment $dialog1_end:
+00000B10: ¬define $dialog1_end 8388880    ¬comment &H00800110 = ¬curpos + $ImageBase + $RVABase
+¬comment ;WS_CHILD  0x40000000L
+¬comment ;WS_VISIBLE  0x10000000L
+¬comment ;Window Styles
+¬comment ; WS_OVERLAPPED  0x00000000L
+¬comment ; WS_CHILD  0x40000000L
+¬comment ; WS_MINIMIZE  0x20000000L
+¬comment ; WS_VISIBLE  0x10000000L
+¬comment ; WS_DISABLED  0x08000000L
+¬comment ; WS_CLIPSIBLINGS  0x04000000L
+¬comment ; WS_CLIPCHILDREN  0x02000000L
+¬comment ; WS_MAXIMIZE  0x01000000L
+¬comment ; WS_BORDER   0x00800000L
+¬comment ; WS_DLGFRAME  0x00400000L
+¬comment ; WS_VSCROLL  0x00200000L
+¬comment ; WS_HSCROLL  0x00100000L
+¬comment ; WS_THICKFRAME  0x00040000L
+¬comment ; WS_GROUP  0x00020000L
+¬comment ; WS_TABSTOP  0x00010000L
+¬comment ; WS_MINIMIZEBOX 0x00020000L
+¬comment ; WS_MAXIMIZEBOX 0x00010000L
+¬comment ;Dialog Styles
+¬comment ; DS_ABSALIGN  0x01L
+¬comment ; DS_SYSMODAL  0x02L
+¬comment ; DS_LOCALEDIT  0x20L /* Edit items get Local storage. */
+¬comment ; DS_SETFONT  0x40L /* User specified font for Dlg controls */
+¬comment ; DS_MODALFRAME  0x80L /* Can be combined with WS_CAPTION */
+¬comment ; DS_NOIDLEMSG  0x100L /* WM_ENTERIDLE message will not be sent */
+¬comment ; DS_SETFOREGROUND 0x200L /* not in win3.1 */
+¬comment end section .rsrc
+¬comment $rsrc_end:
+00000B10: ¬define $rsrc_end 8388880    ¬comment &H00800110 = ¬curpos + $ImageBase + $RVABase
+¬comment align &H200
+00000B10: ¬align &H200
+¬comment $rsrc_end_aligned:
+00000C00: ¬define $rsrc_end_aligned 8389120    ¬comment &H00800200 = ¬curpos + $ImageBase + $RVABase
+¬comment end file
+00000C00: ¬define $RVABase 5239808    ¬comment &H004FF400 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+00000C00: ¬define $CheckSum 
+¬comment $image_end:
+00000C00: ¬define $image_end 9437184    ¬comment &H00900000 = ¬curpos + $ImageBase + $RVABase
+
+¬define $ImageBase 4194304
+¬define $RVABase 5239808
+¬define $image_start 4194304
+¬define PE_Stub 4194432
+¬define $header_end 4195328
+¬define $idata_file_start 1024
+¬define $idata_start 5242880
+¬define $DLLName2 5242940
+¬define $OriginalFirstThunk1 5242954
+¬define $FirstThunk3 5242966
+¬define GetModuleHandleA_ADDR 5242966
+¬define ExitProcess_ADDR 5242970
+¬define $FNLib7 5242978
+¬define $FNLib8 5242997
+¬define $DLLName10 5243011
+¬define $OriginalFirstThunk9 5243023
+¬define $FirstThunk11 5243039
+¬define DialogBoxParamA_ADDR 5243039
+¬define MessageBoxA_ADDR 5243043
+¬define EndDialog_ADDR 5243047
+¬define $FNLib15 5243055
+¬define $FNLib16 5243073
+¬define $FNLib17 5243087
+¬define $idata_end 5243099
+¬define $idata_end_aligned 5243392
+¬define $code_file_start 1536
+¬define $code_start 2097152
+¬define $EntryPoint 6291456
+¬define Main_ADDR 6291456
+¬define $loctotal 8
+¬define $parnumber 20
+¬define $locnumber 8
+¬define $temp18 0
+¬define $temp18_last 1553
+¬define $elselbl19 6291527
+¬define WM_INITDIALOG 272
+¬define WM_COMMAND 273
+¬define WM_CLOSE 16
+¬define DialogProc_ADDR 6291539
+¬define $temp23 8
+¬define $temp24 12
+¬define $temp25 16
+¬define $temp26 20
+¬define $temp27 0
+¬define $temp28 -4
+¬define $temp27_last 1669
+¬define $temp28_last 1678
+¬define $elselbl29 6291623
+¬define $endiflbl30 6291629
+¬define $code_end 2097329
+¬define $code_end_aligned 2097664
+¬define $data_file_start 2048
+¬define $data_start 3145728
+¬define $bytes_count 7340032
+¬define $Info 7340452
+¬define $Header 7340456
+¬define $temp21 7340465
+¬define $temp22 7340474
+¬define $data_end 3146177
+¬define $data_end_aligned 3146240
+¬define $rsrc_file_start 2560
+¬define $rsrc_start 8388608
+¬define $direntry1 8388632
+¬define $direntry2 8388656
+¬define $dialogs 8388680
+¬define $dialog1 8388696
+¬define $static1 8388780
+¬define $static2 8388824
+¬define $dialog1_end 8388880
+¬define $rsrc_end 8388880
+¬define $rsrc_end_aligned 8389120
+¬define $CheckSum 
+¬define $image_end 9437184
+
+¬linedef *;*
+\01
+
+
+¬linedef *:*
+¬define \01 ¬curpos + $ImageBase + $RVABase
+\02
+
+
+¬linedef align *
+¬align \01
+
+
+¬linedef begin section .code
+¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+¬define $code_file_start ¬curpos
+¬define $code_start $RVABase + ¬curpos
+
+
+¬linedef end section .code
+¬define $code_end $RVABase + ¬curpos
+align &H200
+¬define $code_end_aligned $RVABase + ¬curpos
+
+
+¬linedef begin section .data
+¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+¬define $data_file_start ¬curpos
+¬define $data_start $RVABase + ¬curpos
+
+
+¬linedef end section .data
+$data_definitions
+¬define $data_end $RVABase + ¬curpos
+align &H200
+¬define $data_end_aligned $RVABase + ¬curpos
+
+
+¬linedef begin section .idata
+¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+¬define $idata_file_start ¬curpos
+$idata_start:
+
+
+¬linedef end section .idata
+$idata_libraries
+¬dd 0,0,0,0,0 ¬comment bloque vacio
+$idata_definitions
+$idata_end:
+align &H200
+$idata_end_aligned:
+
+
+¬linedef begin section .rsrc
+¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+¬define $rsrc_file_start ¬curpos
+$rsrc_start:
+
+
+¬linedef end section .rsrc
+$rsrc_end:
+align &H200
+$rsrc_end_aligned:
+
+
+¬linedef begin file
+define $ImageBase &H400000
+define $RVABase 0
+
+$image_start:
+db "MZ"
+dw &H80 ;Stub size
+dw 1  ;no relocations
+dw 0
+dw 4  ; 4-para header
+dw &H10 ; 16 extra para for stack
+dw -1 ; maximum extra paras: LOTS
+dw 0,&H140 ; SS:SP = 0000:0140
+dw 0  ; no checksum
+dw 0,0 ; CS:IP = 0:0, start at beginning
+dw &H40 ; reloc table beyond hdr
+dw 0  ; overlay number
+dw 0,0,0,0 ; reserved
+dw 0,0 ; OEM id and OEM info
+dw 0,0,0,0,0,0,0,0,0,0 ; reserved
+dd &H80 ; offset PE header
+db &H0E,&H1F,&HBA,&HE,0,&HB4,&H09,&HCD,&H21,&HB8,1,&H4C,&HCD,&H21
+;db 'This program cannot be run in DOS mode.',0Dh,0Ah,24h
+db 'Este programa no funciona desde modo DOS.',&H0D,&H0A,&H24
+
+align &H80
+
+PE_Stub:
+db "PE",0,0
+dw &H014C ; 386-compatible
+dw 4 ; number of sections
+dd &H11223344 ; Time and date when the file was created
+dd 0 ; PointerToSymbolTable
+dd 0 ; NumberOfSymbols
+dw &HE0 ; SizeOfOptionalHeader
+dw &H10E ;Characteristics
+; IMAGE_FILE_RELOCS_STRIPPED   0x0001 // Relocation info stripped from file.
+; IMAGE_FILE_EXECUTABLE_IMAGE  0x0002 // File is executable (i.e. no unresolved externel references).
+; IMAGE_FILE_LINE_NUMS_STRIPPED  0x0004 // Line nunbers stripped from file.
+; IMAGE_FILE_LOCAL_SYMS_STRIPPED  0x0008 // Local symbols stripped from file.
+; IMAGE_FILE_32BIT_MACHINE   0x0100 // 32 bit word machine.
+
+dw &H10B ;Magic for a normal executable/DLL.
+db 1 ;MajorLinkerVersion;
+db &H43 ;MinorLinkerVersion;
+dd 0 ;SizeOfCode;
+dd 0 ;SizeOfInitializedData;
+dd 0 ;SizeOfUninitializedData;
+dd $EntryPoint - $ImageBase ;RVA AddressOfEntryPoint;
+dd $code_start ;BaseOfCode;
+dd $data_start ;BaseOfData;
+dd $ImageBase ;ImageBase;
+dd &H100000 ;SectionAlignment;
+dd &H200 ;FileAlignment;
+dw 1 ;MajorOperatingSystemVersion;
+dw 0 ;MinorOperatingSystemVersion;
+dw 0 ;MajorImageVersion;
+dw 0 ;MinorImageVersion;
+dw 4 ;MajorSubsystemVersion;
+dw 0 ;MinorSubsystemVersion;
+dd 0 ;Win32VersionValue;
+dd $image_end - $ImageBase ;SizeOfImage;
+dd $header_end - $image_start ;SizeOfHeaders;
+dd &H12345678 ;CheckSum;
+dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
+dw 0 ;DllCharacteristics;
+dd &H1000 ;SizeOfStackReserve;
+dd &H1000 ;SizeOfStackCommit;
+dd &H10000 ;SizeOfHeapReserve;
+dd 0 ;SizeOfHeapCommit;
+dd 0 ;LoaderFlags;
+dd 16  ;NumberOfRvaAndSizes;
+dd 0,0  ;Directory1 edata RVa, Size
+dd $idata_start - $ImageBase,$idata_end - $idata_start ;Directory2 idata RVa, Size
+dd $rsrc_start - $ImageBase,$rsrc_end - $rsrc_start ; Directory 3 .rsrc
+dd 0,0 ; Directory 4
+dd 0,0 ; Directory 5
+dd 0,0 ; Directory 6
+dd 0,0 ; Directory 7
+dd 0,0 ; Directory 8
+dd 0,0 ; Directory 9
+dd 0,0 ; Directory 10
+dd 0,0 ; Directory 11
+dd 0,0 ; Directory 12
+dd 0,0 ; Directory 13
+dd 0,0 ; Directory 14
+dd 0,0 ; Directory 15
+dd 0,0 ; Directory 16
+
+db '.idata',0,0
+dd $idata_end - $idata_start
+dd $idata_start - $ImageBase ; VirtualAddress;
+dd $idata_end_aligned - $idata_start ; SizeOfRawData; Size aligned to FileAlign
+dd $idata_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &HC0000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+db '.text',0,0,0
+dd $code_end - $code_start
+dd $code_start ; VirtualAddress;
+dd $code_end_aligned - $code_start ; SizeOfRawData; Size aligned to FileAlign
+dd $code_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &H60000020 ; Characteristics;
+;IMAGE_SCN_CNT_CODE    0x00000020 // Section contains code.
+;IMAGE_SCN_MEM_EXECUTE   0x20000000 // Section is executable.
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+
+;.data section
+db '.data',0,0,0
+dd $data_end - $data_start ; VirtualSize;
+dd $data_start ; VirtualAddress;
+dd $data_end_aligned - $data_start ; SizeOfRawData; Size aligned to FileAlign
+dd $data_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &HC0000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+db '.rsrc',0,0,0
+dd $rsrc_end - $rsrc_start
+dd $rsrc_start - $ImageBase ; VirtualAddress;
+dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
+dd $rsrc_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &H40000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+align &H200
+$header_end:
+
+
+¬linedef end file
+¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
+¬define $CheckSum ¬checksum
+$image_end:
+
+
+¬linedef db *
+¬db \01
+
+
+¬linedef dw *
+¬dw \01
+
+
+¬linedef dd *
+¬dd \01
+
+
+¬linedef push eax
+¬db &H50
+
+
+¬linedef push 0
+¬db &H6A,0
+
+
+¬linedef push dword 0
+¬db &H6A,0
+
+
+¬linedef push word 0
+¬db &H66,&H6A,0
+
+
+¬linedef push dword [*]
+¬db &HFF,&H35
+¬dd \01
+
+
+¬linedef push word [*]
+¬db &H66,&HFF,&H35
+¬dd \01
+
+
+¬linedef push dword *
+¬db &H68
+¬dd \01
+
+
+¬linedef push word *
+¬db &H66,&H68
+¬dd \01
+
+
+¬linedef push *
+¬db &H68
+¬dd \01
+
+
+¬linedef pushstr *
+¬local $temp
+call $temp
+¬db \01,0
+$temp:
+
+
+¬linedef pop eax
+¬db &H58
+
+
+¬linedef pop dword [*]
+¬db &H8F,&H05
+¬dd \01
+
+
+¬linedef pop word [*]
+¬db &H66,&H8F,&H05
+¬dd \01
+
+
+¬linedef define * *
+¬define \01 \02
+
+
+¬linedef call [*]
+¬db &HFF,&H15
+¬dd \01
+
+
+¬linedef call *
+¬db &HE8
+¬dd \01 - ¬curpos - 4 - $ImageBase - $RVABase
+
+
+¬linedef xor eax,eax
+¬db &H31,&HC0
+
+
+¬linedef mov eax,[ebp*]
+¬db &H8B,&H45
+¬db \01
+
+
+¬linedef mov eax,[*]
+¬db &HA1
+¬dd \01
+
+
+¬linedef mov eax,*
+¬db &HB8
+¬dd \01
+
+
+¬linedef function *(*)
+\01_ADDR:
+¬define $loctotal
+¬db &H55   ¬comment push ebp
+¬db &H89,&HE5  ¬comment mov ebp,esp
+¬db &H83,&HEC  ¬comment sub esp,locals &H81EC (DWORD) (byte)
+¬db $loctotal
+¬define $parnumber 4
+¬define $locnumber 0
+params \02
+¬linedef \01(*)
+pushpar \¬01
+call [\01_ADDR]
+¬
+
+
+¬linedef params
+
+
+¬linedef params *,*
+params \01
+params \02
+
+
+¬linedef params * as dword
+¬local $temp
+¬define $parnumber $parnumber + 4
+¬define $temp $parnumber
+¬linedef \01 = *
+= \¬01
+¬db &H89,&H45,$temp ¬comment mov dword [ebp-x],eax
+¬define $temp_last ¬curpos
+¬
+¬linedef \01
+¬if $temp_last <> ¬curpos
+¬db &H8B,&H45,$temp ¬comment mov eax,dword [ebp-x]
+¬
+¬
+
+
+¬linedef const * = *
+¬define \01 \02
+
+
+¬linedef global * as dword
+¬local $temp
+¬linedef $data_definitions
+¬expand $data_definitions
+\01: dd 0
+¬
+¬linedef \01 = *
+= \¬01
+¬db &HA3,$temp ¬comment mov dword [x],eax
+¬
+¬linedef \01
+¬db &HA1,$temp ¬comment mov eax,dword [x]
+¬
+
+
+¬linedef local * as dword
+¬local $temp
+¬define $temp -$locnumber
+¬linedef \01 = *
+= \¬01
+¬db &H89,&H45,$temp ¬comment mov dword [ebp-x],eax
+¬define $temp_last ¬curpos
+¬
+¬linedef \01
+¬if $temp_last <> ¬curpos
+¬db &H8B,&H45,$temp ¬comment mov eax,dword [ebp-x]
+¬
+¬
+¬define $locnumber $locnumber + 4
+
+
+¬linedef end function
+¬define $loctotal $locnumber
+¬db &HC9  ¬comment leave
+¬db &HC2  ¬comment retn <val>
+¬dw $parnumber - 4
+
+
+¬linedef return *
+\01
+¬db &HC9  ¬comment leave
+¬db &HC2  ¬comment retn <val>
+¬dw $parnumber - 4
+
+
+¬linedef dword *
+¬db &HB8  ¬comment mov eax,x
+¬dd \01
+
+
+¬linedef 0
+xor eax,eax
+
+
+¬linedef 1*
+¬db &HB8  ¬comment mov eax,x
+¬dd 1\01
+
+
+¬linedef 2*
+¬db &HB8  ¬comment mov eax,x
+¬dd 2\01
+
+
+¬linedef 3*
+¬db &HB8  ¬comment mov eax,x
+¬dd 3\01
+
+
+¬linedef 4*
+¬db &HB8  ¬comment mov eax,x
+¬dd 4\01
+
+
+¬linedef 5*
+¬db &HB8  ¬comment mov eax,x
+¬dd 5\01
+
+
+¬linedef 6*
+¬db &HB8  ¬comment mov eax,x
+¬dd 6\01
+
+
+¬linedef 7*
+¬db &HB8  ¬comment mov eax,x
+¬dd 7\01
+
+
+¬linedef 8*
+¬db &HB8  ¬comment mov eax,x
+¬dd 8\01
+
+
+¬linedef 9*
+¬db &HB8  ¬comment mov eax,x
+¬dd 9\01
+
+
+¬linedef "*
+¬local $temp
+¬linedef $data_definitions
+¬expand $data_definitions
+$temp: db "\01,0
+¬
+¬db &HB8  ¬comment mov eax,x
+¬dd $temp
+
+
+¬linedef = * + *
+= \02
+¬db &H89,&HC3  ¬comment mov ebx,eax
+= \01
+¬db &H01,&HD8
+
+
+¬linedef = * - *
+= \02
+¬db &H89,&HC3  ¬comment mov ebx,eax
+= \01
+¬db &H29,&HD8
+
+
+¬linedef = * % *
+= \01
+¬db &H89,&HC3  ¬comment mov ebx,eax
+= \02
+¬db &HF7,&HEB  ¬comment imul ebx
+
+
+¬linedef = * / *
+= \02
+¬db &H89,&HC3  ¬comment mov ebx,eax
+= \01
+¬db &HF7,&HFB  ¬comment idiv ebx
+
+
+¬linedef = *
+\01
+
+
+¬linedef jmpexpr * = 0
+\01
+¬db &H83,&HF8,0  ¬comment cmp eax,0
+¬db &HF,&H85  ¬comment jne
+
+
+¬linedef jmpexpr * = *
+\02
+¬db &H89,&HC3  ¬comment mov ebx,eax
+\01
+¬db &H39,&HD8  ¬comment cmp eax,ebx
+¬db &HF,&H85  ¬comment jne
+
+
+¬linedef if * then
+¬local $elselbl, $endiflbl
+jmpexpr \01
+¬dd $elselbl - ¬curpos - 4 - $ImageBase - $RVABase
+¬pushdef else
+¬db Chr$(&HE9) ¬comment jmp
+¬dd $endiflbl - ¬curpos - 4 - $ImageBase - $RVABase
+¬define $elselbl ¬curpos + $ImageBase + $RVABase
+¬linedef end if
+¬popdef else
+¬popdef end if
+¬define $endiflbl ¬curpos + $ImageBase + $RVABase
+¬
+¬
+¬pushdef end if
+¬popdef else
+¬popdef end if
+¬define $elselbl ¬curpos + $ImageBase + $RVABase
+¬
+
+
+¬linedef library *.DLL
+¬local $OriginalFirstThunk, $DLLName, $FirstThunk, $LibraryOriginalImports, $LibraryThunkImports, $LibraryFunctionsImports
+¬linedef $idata_libraries
+¬expand $idata_libraries
+¬dd $OriginalFirstThunk - $ImageBase
+¬dd 0
+¬dd 0
+¬dd $DLLName - $ImageBase
+¬dd $FirstThunk - $ImageBase
+¬
+¬linedef $idata_definitions
+¬expand $idata_definitions
+¬define $DLLName ¬curpos + $ImageBase + $RVABase
+¬db "\01.DLL",0,0
+¬define $OriginalFirstThunk ¬curpos + $ImageBase + $RVABase
+$LibraryOriginalImports
+¬dd 0
+¬define $FirstThunk ¬curpos + $ImageBase + $RVABase
+$LibraryThunkImports
+¬dd 0
+$LibraryFunctionsImports
+¬
+¬linedef import * as *
+¬local $FNLib
+¬linedef \¬02(*)
+pushpar \¬¬01
+call [\¬02_ADDR]
+¬
+¬linedef $LibraryOriginalImports
+¬expand $LibraryOriginalImports
+¬dd $FNLib - $ImageBase
+¬
+¬linedef $LibraryThunkImports
+¬expand $LibraryThunkImports
+¬define \¬02_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib - $ImageBase
+¬
+¬linedef $LibraryFunctionsImports
+¬expand $LibraryFunctionsImports
+¬define $FNLib ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'\¬01',0
+¬
+¬
+¬linedef import *
+import \¬01 as \¬01
+¬
+
+
+¬linedef pushpar *,*
+pushpar \02
+pushpar \01
+
+
+¬linedef pushpar 0
+¬db &H6A,0
+
+
+¬linedef pushpar 1*
+¬db &H68
+¬dd 1\01
+
+
+¬linedef pushpar 2*
+¬db &H68
+¬dd 2\01
+
+
+¬linedef pushpar 3*
+¬db &H68
+¬dd 3\01
+
+
+¬linedef pushpar 4*
+¬db &H68
+¬dd 4\01
+
+
+¬linedef pushpar 5*
+¬db &H68
+¬dd 5\01
+
+
+¬linedef pushpar 6*
+¬db &H68
+¬dd 6\01
+
+
+¬linedef pushpar 7*
+¬db &H68
+¬dd 7\01
+
+
+¬linedef pushpar 8*
+¬db &H68
+¬dd 8\01
+
+
+¬linedef pushpar 9*
+¬db &H68
+¬dd 9\01
+
+
+¬linedef pushpar "*
+¬local $temp
+¬linedef $data_definitions
+¬expand $data_definitions
+$temp: db "\01,0
+¬
+¬db &H68
+¬dd $temp
+
+
+¬linedef pushpar *
+\01
+¬db &H50
+
+
+¬linedef library '*.DLL'
+library \01.DLL
+
+
+¬linedef library "*.DLL"
+library \01.DLL
+
+
+¬linedef $idata_libraries
+¬dd $OriginalFirstThunk1 - $ImageBase
+¬dd 0
+¬dd 0
+¬dd $DLLName2 - $ImageBase
+¬dd $FirstThunk3 - $ImageBase
+¬dd $OriginalFirstThunk9 - $ImageBase
+¬dd 0
+¬dd 0
+¬dd $DLLName10 - $ImageBase
+¬dd $FirstThunk11 - $ImageBase
+
+
+¬linedef $idata_definitions
+¬define $DLLName2 ¬curpos + $ImageBase + $RVABase
+¬db "KERNEL32.DLL",0,0
+¬define $OriginalFirstThunk1 ¬curpos + $ImageBase + $RVABase
+$LibraryOriginalImports4
+¬dd 0
+¬define $FirstThunk3 ¬curpos + $ImageBase + $RVABase
+$LibraryThunkImports5
+¬dd 0
+$LibraryFunctionsImports6
+¬define $DLLName10 ¬curpos + $ImageBase + $RVABase
+¬db "USER32.DLL",0,0
+¬define $OriginalFirstThunk9 ¬curpos + $ImageBase + $RVABase
+$LibraryOriginalImports12
+¬dd 0
+¬define $FirstThunk11 ¬curpos + $ImageBase + $RVABase
+$LibraryThunkImports13
+¬dd 0
+$LibraryFunctionsImports14
+
+
+¬linedef import * as *
+¬local $FNLib
+¬linedef \02(*)
+pushpar \¬01
+call [\02_ADDR]
+¬
+¬linedef $LibraryOriginalImports12
+¬expand $LibraryOriginalImports12
+¬dd $FNLib - $ImageBase
+¬
+¬linedef $LibraryThunkImports13
+¬expand $LibraryThunkImports13
+¬define \02_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib - $ImageBase
+¬
+¬linedef $LibraryFunctionsImports14
+¬expand $LibraryFunctionsImports14
+¬define $FNLib ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'\01',0
+¬
+
+
+¬linedef import *
+import \01 as \01
+
+
+¬linedef GetModuleHandleA(*)
+pushpar \01
+call [GetModuleHandleA_ADDR]
+
+
+¬linedef $LibraryOriginalImports4
+¬dd $FNLib7 - $ImageBase
+¬dd $FNLib8 - $ImageBase
+
+
+¬linedef $LibraryThunkImports5
+¬define GetModuleHandleA_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib7 - $ImageBase
+¬define ExitProcess_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib8 - $ImageBase
+
+
+¬linedef $LibraryFunctionsImports6
+¬define $FNLib7 ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'GetModuleHandleA',0
+¬define $FNLib8 ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'ExitProcess',0
+
+
+¬linedef ExitProcess(*)
+pushpar \01
+call [ExitProcess_ADDR]
+
+
+¬linedef DialogBoxParamA(*)
+pushpar \01
+call [DialogBoxParamA_ADDR]
+
+
+¬linedef $LibraryOriginalImports12
+¬dd $FNLib15 - $ImageBase
+¬dd $FNLib16 - $ImageBase
+¬dd $FNLib17 - $ImageBase
+
+
+¬linedef $LibraryThunkImports13
+¬define DialogBoxParamA_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib15 - $ImageBase
+¬define MessageBoxA_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib16 - $ImageBase
+¬define EndDialog_ADDR ¬curpos + $ImageBase + $RVABase
+¬dd $FNLib17 - $ImageBase
+
+
+¬linedef $LibraryFunctionsImports14
+¬define $FNLib15 ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'DialogBoxParamA',0
+¬define $FNLib16 ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'MessageBoxA',0
+¬define $FNLib17 ¬curpos + $ImageBase + $RVABase
+¬db 0,0,'EndDialog',0
+
+
+¬linedef MessageBoxA(*)
+pushpar \01
+call [MessageBoxA_ADDR]
+
+
+¬linedef EndDialog(*)
+pushpar \01
+call [EndDialog_ADDR]
+
+
+¬linedef Main(*)
+pushpar \01
+call [Main_ADDR]
+
+
+¬linedef hMod = *
+= \01
+¬db &H89,&H45,$temp18 ¬comment mov dword [ebp-x],eax
+¬define $temp18_last ¬curpos
+
+
+¬linedef hMod
+¬if $temp18_last <> ¬curpos
+¬db &H8B,&H45,$temp18 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef else
+
+
+¬linedef end if
+
+
+¬linedef $data_definitions
+$temp21: db "Cabecera",0
+$temp22: db "Prueba",0
+
+
+¬linedef hwnddlg = *
+= \01
+¬db &H89,&H45,$temp23 ¬comment mov dword [ebp-x],eax
+¬define $temp23_last ¬curpos
+
+
+¬linedef hwnddlg
+¬if $temp23_last <> ¬curpos
+¬db &H8B,&H45,$temp23 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef msg = *
+= \01
+¬db &H89,&H45,$temp24 ¬comment mov dword [ebp-x],eax
+¬define $temp24_last ¬curpos
+
+
+¬linedef msg
+¬if $temp24_last <> ¬curpos
+¬db &H8B,&H45,$temp24 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef wparam = *
+= \01
+¬db &H89,&H45,$temp25 ¬comment mov dword [ebp-x],eax
+¬define $temp25_last ¬curpos
+
+
+¬linedef wparam
+¬if $temp25_last <> ¬curpos
+¬db &H8B,&H45,$temp25 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef lparam = *
+= \01
+¬db &H89,&H45,$temp26 ¬comment mov dword [ebp-x],eax
+¬define $temp26_last ¬curpos
+
+
+¬linedef lparam
+¬if $temp26_last <> ¬curpos
+¬db &H8B,&H45,$temp26 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef DialogProc(*)
+pushpar \01
+call [DialogProc_ADDR]
+
+
+¬linedef var1 = *
+= \01
+¬db &H89,&H45,$temp27 ¬comment mov dword [ebp-x],eax
+¬define $temp27_last ¬curpos
+
+
+¬linedef var1
+¬if $temp27_last <> ¬curpos
+¬db &H8B,&H45,$temp27 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+¬linedef var2 = *
+= \01
+¬db &H89,&H45,$temp28 ¬comment mov dword [ebp-x],eax
+¬define $temp28_last ¬curpos
+
+
+¬linedef var2
+¬if $temp28_last <> ¬curpos
+¬db &H8B,&H45,$temp28 ¬comment mov eax,dword [ebp-x]
+¬
+
+
+
