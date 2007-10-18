@@ -548,8 +548,8 @@ Private Function cEval(ByVal cRes As String, ByVal cFormula As String) As String
          If Len(cVariable) > 0 Then
             If cVariable = "¬curpos" Then
                cVariable = Len(cRes)
-            ElseIf cVariable = "¬checksum" Then
-               cVariable = cCalcularCheckSum(cRes)
+            ElseIf cVariable = "¬timestamp" Then
+               cVariable = DateDiff("s", #1/1/1970#, Now)
             Else
                On Error Resume Next
                If cLabelDirs(cVariable) = "" Then
@@ -762,11 +762,13 @@ End Sub
 Private Function cCalcularCheckSum(ByRef cRes As String) As String
    Dim lPos As Long
    Dim lSum As Long
-   For lPos = 1 To Len(cRes)
-      lSum = lSum + Asc(Mid$(cRes, lPos, 1)) + 256& * Asc(Mid$(cRes, lPos, 1))
-      lSum = lSum And &HFFFF&
+   lSum = 0
+   For lPos = 1 To Len(cRes) Step 2
+      lSum = lSum + Asc(Mid$(cRes, lPos, 1)) + &H100& * Asc(Mid$(cRes, lPos + 1, 1))
+      lSum = (lSum And &HFFFF&) + (lSum And &H10000) / &H10000
    Next
-   Stop
+   lSum = lSum + Len(cRes)
+   cCalcularCheckSum = lSum
 End Function
 
 Private Sub ProcesarLINEDEF(ByRef cCodigo As String, ByRef cRes As String, ByVal cVals As String)
@@ -965,6 +967,8 @@ Private Sub Form_Load()
       cLog = cLog & "¬linedef " & cLineDefs(lIndice) & vbCrLf
       cLog = cLog & cLineDefsSubst(lIndice) & vbCrLf & vbCrLf
    Next
+   
+   Mid$(cResultado, &HD9, 4) = MKL(cCalcularCheckSum(cResultado))
    
    Open "code.exe" For Output As 1
    Print #1, cResultado;
