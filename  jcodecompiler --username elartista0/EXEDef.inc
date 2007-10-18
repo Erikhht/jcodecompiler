@@ -93,13 +93,13 @@
      ;db 'This program cannot be run in DOS mode.',0Dh,0Ah,24h
      db 'Este programa no funciona desde modo DOS.',&H0D,&H0A,&H24
    
-       align &H80
+     align &H80
 
    PE_Stub:
      db "PE",0,0
      dw &H014C  ; 386-compatible
      dw 4      ; number of sections
-     dd &H11223344 ; Time and date when the file was created
+     dd ¬timestamp ; Time and date when the file was created
      dd 0      ; PointerToSymbolTable
      dd 0      ; NumberOfSymbols
      dw &HE0   ; SizeOfOptionalHeader
@@ -131,7 +131,7 @@
      dd 0      ;Win32VersionValue;
      dd $image_end - $ImageBase ;SizeOfImage;
      dd $header_end - $image_start ;SizeOfHeaders;
-     dd &H12345678      ;CheckSum;
+     dd 0      ;CheckSum;
      dw 2      ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
      dw 0      ;DllCharacteristics;
      dd &H1000  ;SizeOfStackReserve;
@@ -219,7 +219,6 @@
 
 ¬linedef end file
    ¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
-   ¬define $CheckSum ¬checksum
    $image_end:
 ¬
 
