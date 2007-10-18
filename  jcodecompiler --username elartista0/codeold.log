@@ -1,0 +1,954 @@
+柚omment {} = forward reference
+柚omment [] = char list, ^ negative
+柚omment () = block
+柚omment \ = escape char, \01, \02... forward reference
+00000000: 查efine $ImageBase 4194304    柚omment &H00400000 = &H400000
+00000000: 查efine $RVABase 0    柚omment &H00000000 = 0
+00000000: 查efine $image_start 4194304    柚omment &H00400000 = 柚urpos + $ImageBase + $RVABase
+00000000: 查b 'MZ'
+00000002: 查w &H80
+00000004: 查w 1
+00000006: 查w 0
+00000008: 查w 4
+0000000A: 查w &H10
+0000000C: 查w -1
+0000000E: 查w 0
+00000010: 查w &H140
+00000012: 查w 0
+00000014: 查w 0
+00000016: 查w 0
+00000018: 查w &H40
+0000001A: 查w 0
+0000001C: 查w 0
+0000001E: 查w 0
+00000020: 查w 0
+00000022: 查w 0
+00000024: 查w 0
+00000026: 查w 0
+00000028: 查w 0
+0000002A: 查w 0
+0000002C: 查w 0
+0000002E: 查w 0
+00000030: 查w 0
+00000032: 查w 0
+00000034: 查w 0
+00000036: 查w 0
+00000038: 查w 0
+0000003A: 查w 0
+0000003C: 查d &H80
+00000040: 查b &H0E
+00000041: 查b &H1F
+00000042: 查b &HBA
+00000043: 查b &HE
+00000044: 查b 0
+00000045: 查b &HB4
+00000046: 查b &H09
+00000047: 查b &HCD
+00000048: 查b &H21
+00000049: 查b &HB8
+0000004A: 查b 1
+0000004B: 查b &H4C
+0000004C: 查b &HCD
+0000004D: 查b &H21
+0000004E: 查b 'Este programa no funciona desde modo DOS.'
+00000077: 查b &H0D
+00000078: 查b &H0A
+00000079: 查b &H24
+0000007A: 柑lign &H80
+00000080: 查efine PE_Stub 4194432    柚omment &H00400080 = 柚urpos + $ImageBase + $RVABase
+00000080: 查b 'PE'
+00000082: 查b 0
+00000083: 查b 0
+00000084: 查w &H014C
+00000086: 查w 4
+00000088: 查d &H11223344
+0000008C: 查d 0
+00000090: 查d 0
+00000094: 查w &HE0
+00000096: 查w &H10E
+00000098: 查w &H10B
+0000009A: 查b 1
+0000009B: 查b &H43
+0000009C: 查d 0
+000000A0: 查d 0
+000000A4: 查d 0
+000000A8: 柚omment recall 168 ($EntryPoint)-4194304
+000000A8: 查d ($EntryPoint)-4194304
+000000AC: 柚omment recall 172 ($code_start)-4194304
+000000AC: 查d ($code_start)-4194304
+000000B0: 柚omment recall 176 ($data_start)-4194304
+000000B0: 查d ($data_start)-4194304
+000000B4: 查d 4194304
+000000B8: 查d &H100000
+000000BC: 查d &H200
+000000C0: 查w 1
+000000C2: 查w 0
+000000C4: 查w 0
+000000C6: 查w 0
+000000C8: 查w 4
+000000CA: 查w 0
+000000CC: 查d 0
+000000D0: 柚omment recall 208 ($image_end)-4194304
+000000D0: 查d ($image_end)-4194304
+000000D4: 柚omment recall 212 ($header_end)-4194304
+000000D4: 查d ($header_end)-4194304
+000000D8: 查d &H12345678
+000000DC: 查w 2
+000000DE: 查w 0
+000000E0: 查d &H1000
+000000E4: 查d &H1000
+000000E8: 查d &H10000
+000000EC: 查d 0
+000000F0: 查d 0
+000000F4: 查d 16
+000000F8: 查d 0
+000000FC: 查d 0
+00000100: 柚omment recall 256 ($idata_start)-4194304
+00000100: 查d ($idata_start)-4194304
+00000104: 柚omment recall 260 ($idata_end)-($idata_start)
+00000104: 查d ($idata_end)-($idata_start)
+00000108: 柚omment recall 264 ($rsrc_start)-4194304
+00000108: 查d ($rsrc_start)-4194304
+0000010C: 柚omment recall 268 ($rsrc_end)-($rsrc_start)
+0000010C: 查d ($rsrc_end)-($rsrc_start)
+00000110: 查d 0
+00000114: 查d 0
+00000118: 查d 0
+0000011C: 查d 0
+00000120: 查d 0
+00000124: 查d 0
+00000128: 查d 0
+0000012C: 查d 0
+00000130: 查d 0
+00000134: 查d 0
+00000138: 查d 0
+0000013C: 查d 0
+00000140: 查d 0
+00000144: 查d 0
+00000148: 查d 0
+0000014C: 查d 0
+00000150: 查d 0
+00000154: 查d 0
+00000158: 查d 0
+0000015C: 查d 0
+00000160: 查d 0
+00000164: 查d 0
+00000168: 查d 0
+0000016C: 查d 0
+00000170: 查d 0
+00000174: 查d 0
+00000178: 查b '.text'
+0000017D: 查b 0
+0000017E: 查b 0
+0000017F: 查b 0
+00000180: 柚omment recall 384 ($code_end)-($code_start)
+00000180: 查d ($code_end)-($code_start)
+00000184: 柚omment recall 388 ($code_start)-4194304
+00000184: 查d ($code_start)-4194304
+00000188: 柚omment recall 392 ($code_end_aligned)-($code_start)
+00000188: 查d ($code_end_aligned)-($code_start)
+0000018C: 柚omment recall 396 ($code_file_start)
+0000018C: 查d ($code_file_start)
+00000190: 查d 0
+00000194: 查d 0
+00000198: 查w 0
+0000019A: 查w 0
+0000019C: 查d &H60000020
+000001A0: 查b '.data'
+000001A5: 查b 0
+000001A6: 查b 0
+000001A7: 查b 0
+000001A8: 柚omment recall 424 ($data_end)-($data_start)
+000001A8: 查d ($data_end)-($data_start)
+000001AC: 柚omment recall 428 ($data_start)-4194304
+000001AC: 查d ($data_start)-4194304
+000001B0: 柚omment recall 432 ($data_end_aligned)-($data_start)
+000001B0: 查d ($data_end_aligned)-($data_start)
+000001B4: 柚omment recall 436 ($data_file_start)
+000001B4: 查d ($data_file_start)
+000001B8: 查d 0
+000001BC: 查d 0
+000001C0: 查w 0
+000001C2: 查w 0
+000001C4: 查d &HC0000040
+000001C8: 查b '.idata'
+000001CE: 查b 0
+000001CF: 查b 0
+000001D0: 柚omment recall 464 ($idata_end)-($idata_start)
+000001D0: 查d ($idata_end)-($idata_start)
+000001D4: 柚omment recall 468 ($idata_start)-4194304
+000001D4: 查d ($idata_start)-4194304
+000001D8: 柚omment recall 472 ($idata_end_aligned)-($idata_start)
+000001D8: 查d ($idata_end_aligned)-($idata_start)
+000001DC: 柚omment recall 476 ($idata_file_start)
+000001DC: 查d ($idata_file_start)
+000001E0: 查d 0
+000001E4: 查d 0
+000001E8: 查w 0
+000001EA: 查w 0
+000001EC: 查d &HC0000040
+000001F0: 查b '.rsrc'
+000001F5: 查b 0
+000001F6: 查b 0
+000001F7: 查b 0
+000001F8: 柚omment recall 504 ($rsrc_end)-($rsrc_start)
+000001F8: 查d ($rsrc_end)-($rsrc_start)
+000001FC: 柚omment recall 508 ($rsrc_start)-4194304
+000001FC: 查d ($rsrc_start)-4194304
+00000200: 柚omment recall 512 ($rsrc_end_aligned)-($rsrc_start)
+00000200: 查d ($rsrc_end_aligned)-($rsrc_start)
+00000204: 柚omment recall 516 ($rsrc_file_start)
+00000204: 查d ($rsrc_file_start)
+00000208: 查d 0
+0000020C: 查d 0
+00000210: 查w 0
+00000212: 查w 0
+00000214: 查d &H40000040
+00000218: 柑lign &H200
+00000400: 查efine $header_end 4195328    柚omment &H00400400 = 柚urpos + $ImageBase + $RVABase
+00000400: 查efine $RVABase 1047552    柚omment &H000FFC00 = $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+00000400: 查efine $code_file_start 1024    柚omment &H00000400 = 柚urpos
+00000400: 查efine $code_start 5242880    柚omment &H00500000 = 柚urpos + $ImageBase + $RVABase
+00000400: 查efine $EntryPoint 5242880    柚omment &H00500000 = 柚urpos + $ImageBase + $RVABase
+00000400: 查b &H6A
+00000401: 查b 0
+00000402: 查b &HFF
+00000403: 查b &H15
+00000404: 柚omment recall 1028 ($GetModuleHandleA)
+00000404: 查d ($GetModuleHandleA)
+00000408: 查b &H6A
+00000409: 查b 0
+0000040A: 查b &H68
+0000040B: 柚omment recall 1035 ($DialogProc)
+0000040B: 查d ($DialogProc)
+0000040F: 查b &H6A
+00000410: 查b 0
+00000411: 查b &H68
+00000412: 查d 37
+00000416: 查b &H50
+00000417: 查b &HFF
+00000418: 查b &H15
+00000419: 柚omment recall 1049 ($DialogBoxParamA)
+00000419: 查d ($DialogBoxParamA)
+0000041D: 查b &HA1
+0000041E: 柚omment recall 1054 ($Info)
+0000041E: 查d ($Info)
+00000422: 查b &H50
+00000423: 查b &H68
+00000424: 柚omment recall 1060 ($Header)
+00000424: 查d ($Header)
+00000428: 查b &HE8
+00000429: 查efine $temp2 5242921    柚omment &H00500029 = 柚urpos + $ImageBase + $RVABase
+00000429: 柚omment recall 1065 ($temp1)-5242921-4
+00000429: 查d ($temp1)-5242921-4
+0000042D: 查b ''
+0000042D: 查b 0
+0000042E: 查efine $temp1 5242926    柚omment &H0050002E = 柚urpos + $ImageBase + $RVABase
+0000042E: 查b &H50
+0000042F: 查b &HFF
+00000430: 查b &H15
+00000431: 柚omment recall 1073 ($MessageBoxA)
+00000431: 查d ($MessageBoxA)
+00000435: 查b &H6A
+00000436: 查b 0
+00000437: 查b &HFF
+00000438: 查b &H15
+00000439: 柚omment recall 1081 ($ExitProcess)
+00000439: 查d ($ExitProcess)
+0000043D: 查b &HE8
+0000043E: 查efine $temp3 5242942    柚omment &H0050003E = 柚urpos + $ImageBase + $RVABase
+0000043E: 柚omment recall 1086 (Prueba2)-5242942-4
+0000043E: 查d (Prueba2)-5242942-4
+00000442: 查b &HB8
+00000443: 查d 0
+00000447: 查efine Prueba2 5242951    柚omment &H00500047 = 柚urpos + $ImageBase + $RVABase
+00000447: 查b &HB8
+00000448: 查d &H12345678
+0000044C: 查efine $DialogProc 5242956    柚omment &H0050004C = 柚urpos + $ImageBase + $RVABase
+柚omment push ebp
+0000044C: 查b &H55
+柚omment mov ebp,esp
+0000044D: 查b &H89
+0000044E: 查b &HE5
+0000044F: 查b &HB8
+00000450: 查d 0
+柚omment leave
+00000454: 查b &HC9
+柚omment retn <val>
+00000455: 查b &HC2
+00000456: 查w 16
+00000458: 查efine $code_end 5242968    柚omment &H00500058 = 柚urpos + $ImageBase + $RVABase
+00000458: 柑lign &H200
+00000600: 查efine $code_end_aligned 5243392    柚omment &H00500200 = 柚urpos + $ImageBase + $RVABase
+00000600: 查efine $RVABase 2095616    柚omment &H001FFA00 = $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+00000600: 查efine $data_file_start 1536    柚omment &H00000600 = 柚urpos
+00000600: 查efine $data_start 6291456    柚omment &H00600000 = 柚urpos + $ImageBase + $RVABase
+00000600: 查efine $bytes_count 6291456    柚omment &H00600000 = 柚urpos + $ImageBase + $RVABase
+00000600: 查d 12345678h
+00000604: 查d 12345678h
+00000608: 查d 12345678h
+0000060C: 查d 12345678h
+00000610: 查d 12345678h
+00000614: 查d 12345678h
+00000618: 查d 12345678h
+0000061C: 查d 12345678h
+00000620: 查d 12345678h
+00000624: 查d 12345678h
+00000628: 查d 12345678h
+0000062C: 查d 12345678h
+00000630: 查d 12345678h
+00000634: 查d 12345678h
+00000638: 查d 12345678h
+0000063C: 查d 12345678h
+00000640: 查d 12345678h
+00000644: 查d 12345678h
+00000648: 查d 12345678h
+0000064C: 查d 12345678h
+00000650: 查d 12345678h
+00000654: 查d 12345678h
+00000658: 查d 12345678h
+0000065C: 查d 12345678h
+00000660: 查d 12345678h
+00000664: 查d 12345678h
+00000668: 查d 12345678h
+0000066C: 查d 12345678h
+00000670: 查d 12345678h
+00000674: 查d 12345678h
+00000678: 查d 12345678h
+0000067C: 查d 12345678h
+00000680: 查d 12345678h
+00000684: 查d 12345678h
+00000688: 查d 12345678h
+0000068C: 查d 12345678h
+00000690: 查d 12345678h
+00000694: 查d 12345678h
+00000698: 查d 12345678h
+0000069C: 查d 12345678h
+000006A0: 查d 12345678h
+000006A4: 查d 12345678h
+000006A8: 查d 12345678h
+000006AC: 查d 12345678h
+000006B0: 查d 12345678h
+000006B4: 查d 12345678h
+000006B8: 查d 12345678h
+000006BC: 查d 12345678h
+000006C0: 查d 12345678h
+000006C4: 查d 12345678h
+000006C8: 查d 12345678h
+000006CC: 查d 12345678h
+000006D0: 查d 12345678h
+000006D4: 查d 12345678h
+000006D8: 查d 12345678h
+000006DC: 查d 12345678h
+000006E0: 查d 12345678h
+000006E4: 查d 12345678h
+000006E8: 查d 12345678h
+000006EC: 查d 12345678h
+000006F0: 查d 12345678h
+000006F4: 查d 12345678h
+000006F8: 查d 12345678h
+000006FC: 查d 12345678h
+00000700: 查d 12345678h
+00000704: 查d 12345678h
+00000708: 查d 12345678h
+0000070C: 查d 12345678h
+00000710: 查d 12345678h
+00000714: 查d 12345678h
+00000718: 查d 12345678h
+0000071C: 查d 12345678h
+00000720: 查d 12345678h
+00000724: 查d 12345678h
+00000728: 查d 12345678h
+0000072C: 查d 12345678h
+00000730: 查d 12345678h
+00000734: 查d 12345678h
+00000738: 查d 12345678h
+0000073C: 查d 12345678h
+00000740: 查d 12345678h
+00000744: 查d 12345678h
+00000748: 查d 12345678h
+0000074C: 查d 12345678h
+00000750: 查d 12345678h
+00000754: 查d 12345678h
+00000758: 查d 12345678h
+0000075C: 查d 12345678h
+00000760: 查d 12345678h
+00000764: 查d 12345678h
+00000768: 查d 12345678h
+0000076C: 查d 12345678h
+00000770: 查d 12345678h
+00000774: 查d 12345678h
+00000778: 查d 12345678h
+0000077C: 查d 12345678h
+00000780: 查d 12345678h
+00000784: 查d 12345678h
+00000788: 查d 12345678h
+0000078C: 查d 12345678h
+00000790: 查d 12345678h
+00000794: 查d 12345678h
+00000798: 查d 12345678h
+0000079C: 查d 12345678h
+000007A0: 查d 12345678h
+000007A4: 查efine $Info 6291876    柚omment &H006001A4 = 柚urpos + $ImageBase + $RVABase
+000007A4: 查d 0
+000007A8: 查efine $Header 6291880    柚omment &H006001A8 = 柚urpos + $ImageBase + $RVABase
+000007A8: 查b 'Cabecera'
+000007B0: 查b 0
+000007B1: 查efine $data_end 6291889    柚omment &H006001B1 = 柚urpos + $ImageBase + $RVABase
+000007B1: 柑lign &H200
+00000800: 查efine $data_end_aligned 6291968    柚omment &H00600200 = 柚urpos + $ImageBase + $RVABase
+00000800: 查efine $RVABase 3143680    柚omment &H002FF800 = $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+00000800: 查efine $idata_file_start 2048    柚omment &H00000800 = 柚urpos
+00000800: 查efine $idata_start 7340032    柚omment &H00700000 = 柚urpos + $ImageBase + $RVABase
+00000800: 柚omment recall 2048 ($OriginalFirstThunkKERNEL32)-4194304
+00000800: 查d ($OriginalFirstThunkKERNEL32)-4194304
+00000804: 查d 0
+00000808: 查d 0
+0000080C: 柚omment recall 2060 ($DLLNameKERNEL32)-4194304
+0000080C: 查d ($DLLNameKERNEL32)-4194304
+00000810: 柚omment recall 2064 ($FirstThunkKERNEL32)-4194304
+00000810: 查d ($FirstThunkKERNEL32)-4194304
+00000814: 柚omment recall 2068 ($OriginalFirstThunkUSER32)-4194304
+00000814: 查d ($OriginalFirstThunkUSER32)-4194304
+00000818: 查d 0
+0000081C: 查d 0
+00000820: 柚omment recall 2080 ($DLLNameUSER32)-4194304
+00000820: 查d ($DLLNameUSER32)-4194304
+00000824: 柚omment recall 2084 ($FirstThunkUSER32)-4194304
+00000824: 查d ($FirstThunkUSER32)-4194304
+00000828: 查d 0
+0000082C: 查d 0
+00000830: 查d 0
+00000834: 查d 0
+00000838: 查d 0
+0000083C: 查efine $DLLNameKERNEL32 7340092    柚omment &H0070003C = 柚urpos + $ImageBase + $RVABase
+0000083C: 查b 'KERNEL32.DLL'
+00000848: 查b 0
+00000849: 查b 0
+0000084A: 查efine $OriginalFirstThunkKERNEL32 7340106    柚omment &H0070004A = 柚urpos + $ImageBase + $RVABase
+0000084A: 柚omment recall 2122 ($FN_GetModuleHandleA)-4194304
+0000084A: 查d ($FN_GetModuleHandleA)-4194304
+0000084E: 柚omment recall 2126 ($FN_ExitProcess)-4194304
+0000084E: 查d ($FN_ExitProcess)-4194304
+00000852: 查d 0
+00000856: 查efine $FirstThunkKERNEL32 7340118    柚omment &H00700056 = 柚urpos + $ImageBase + $RVABase
+00000856: 查efine $GetModuleHandleA 7340118    柚omment &H00700056 = 柚urpos + $ImageBase + $RVABase
+00000856: 柚omment recall 2134 ($FN_GetModuleHandleA)-4194304
+00000856: 查d ($FN_GetModuleHandleA)-4194304
+0000085A: 查efine $ExitProcess 7340122    柚omment &H0070005A = 柚urpos + $ImageBase + $RVABase
+0000085A: 柚omment recall 2138 ($FN_ExitProcess)-4194304
+0000085A: 查d ($FN_ExitProcess)-4194304
+0000085E: 查d 0
+00000862: 查efine $FN_GetModuleHandleA 7340130    柚omment &H00700062 = 柚urpos + $ImageBase + $RVABase
+00000862: 查b 0
+00000863: 查b 0
+00000864: 查b 'GetModuleHandleA'
+00000874: 查b 0
+00000875: 查efine $FN_ExitProcess 7340149    柚omment &H00700075 = 柚urpos + $ImageBase + $RVABase
+00000875: 查b 0
+00000876: 查b 0
+00000877: 查b 'ExitProcess'
+00000882: 查b 0
+00000883: 查efine $DLLNameUSER32 7340163    柚omment &H00700083 = 柚urpos + $ImageBase + $RVABase
+00000883: 查b 'USER32.DLL'
+0000088D: 查b 0
+0000088E: 查b 0
+0000088F: 查efine $OriginalFirstThunkUSER32 7340175    柚omment &H0070008F = 柚urpos + $ImageBase + $RVABase
+0000088F: 柚omment recall 2191 ($FN_DialogBoxParamA)-4194304
+0000088F: 查d ($FN_DialogBoxParamA)-4194304
+00000893: 柚omment recall 2195 ($FN_MessageBoxA)-4194304
+00000893: 查d ($FN_MessageBoxA)-4194304
+00000897: 柚omment recall 2199 ($FN_EndDialog)-4194304
+00000897: 查d ($FN_EndDialog)-4194304
+0000089B: 查d 0
+0000089F: 查efine $FirstThunkUSER32 7340191    柚omment &H0070009F = 柚urpos + $ImageBase + $RVABase
+0000089F: 查efine $DialogBoxParamA 7340191    柚omment &H0070009F = 柚urpos + $ImageBase + $RVABase
+0000089F: 柚omment recall 2207 ($FN_DialogBoxParamA)-4194304
+0000089F: 查d ($FN_DialogBoxParamA)-4194304
+000008A3: 查efine $MessageBoxA 7340195    柚omment &H007000A3 = 柚urpos + $ImageBase + $RVABase
+000008A3: 柚omment recall 2211 ($FN_MessageBoxA)-4194304
+000008A3: 查d ($FN_MessageBoxA)-4194304
+000008A7: 查efine $EndDialog 7340199    柚omment &H007000A7 = 柚urpos + $ImageBase + $RVABase
+000008A7: 柚omment recall 2215 ($FN_EndDialog)-4194304
+000008A7: 查d ($FN_EndDialog)-4194304
+000008AB: 查d 0
+000008AF: 查efine $FN_DialogBoxParamA 7340207    柚omment &H007000AF = 柚urpos + $ImageBase + $RVABase
+000008AF: 查b 0
+000008B0: 查b 0
+000008B1: 查b 'DialogBoxParamA'
+000008C0: 查b 0
+000008C1: 查efine $FN_MessageBoxA 7340225    柚omment &H007000C1 = 柚urpos + $ImageBase + $RVABase
+000008C1: 查b 0
+000008C2: 查b 0
+000008C3: 查b 'MessageBoxA'
+000008CE: 查b 0
+000008CF: 查efine $FN_EndDialog 7340239    柚omment &H007000CF = 柚urpos + $ImageBase + $RVABase
+000008CF: 查b 0
+000008D0: 查b 0
+000008D1: 查b 'EndDialog'
+000008DA: 查b 0
+000008DB: 查efine $idata_end 7340251    柚omment &H007000DB = 柚urpos + $ImageBase + $RVABase
+000008DB: 柑lign &H200
+00000A00: 查efine $idata_end_aligned 7340544    柚omment &H00700200 = 柚urpos + $ImageBase + $RVABase
+00000A00: 查efine $RVABase 4191744    柚omment &H003FF600 = $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+00000A00: 查efine $rsrc_file_start 2560    柚omment &H00000A00 = 柚urpos
+00000A00: 查efine $rsrc_start 8388608    柚omment &H00800000 = 柚urpos + $ImageBase + $RVABase
+00000A00: 查d 0
+00000A04: 查d 0
+00000A08: 查w 0
+00000A0A: 查w 0
+00000A0C: 查w 0
+00000A0E: 查w 1
+00000A10: 查d 5
+00000A14: 柚omment recall 2580 ($direntry1)-8388608+&H80000000
+00000A14: 查d ($direntry1)-8388608+&H80000000
+00000A18: 查efine $direntry1 8388632    柚omment &H00800018 = 柚urpos + $ImageBase + $RVABase
+00000A18: 查d 0
+00000A1C: 查d 0
+00000A20: 查w 0
+00000A22: 查w 0
+00000A24: 查w 0
+00000A26: 查w 1
+00000A28: 查d 37
+00000A2C: 柚omment recall 2604 ($direntry2)-8388608+&H80000000
+00000A2C: 查d ($direntry2)-8388608+&H80000000
+00000A30: 查efine $direntry2 8388656    柚omment &H00800030 = 柚urpos + $ImageBase + $RVABase
+00000A30: 查d 0
+00000A34: 查d 0
+00000A38: 查w 0
+00000A3A: 查w 0
+00000A3C: 查w 0
+00000A3E: 查w 1
+00000A40: 查d &H0409
+00000A44: 柚omment recall 2628 ($dialogs)-8388608
+00000A44: 查d ($dialogs)-8388608
+00000A48: 查efine $dialogs 8388680    柚omment &H00800048 = 柚urpos + $ImageBase + $RVABase
+00000A48: 柚omment recall 2632 ($dialog1)-4194304
+00000A48: 查d ($dialog1)-4194304
+00000A4C: 柚omment recall 2636 ($dialog1_end)-($dialog1)
+00000A4C: 查d ($dialog1_end)-($dialog1)
+00000A50: 查d 0
+00000A54: 查d 0
+00000A58: 查efine $dialog1 8388696    柚omment &H00800058 = 柚urpos + $ImageBase + $RVABase
+00000A58: 查d &H80C800C0
+00000A5C: 查d 0
+00000A60: 查w 2
+00000A62: 查w 70
+00000A64: 查w 70
+00000A66: 查w 190
+00000A68: 查w 175
+00000A6A: 查w 0
+00000A6C: 查w 0
+00000A6E: 查w 'Primer dialogo'
+00000A8A: 查w 0
+00000A8C: 查w 8
+00000A8E: 查w 'MS Sans Serif'
+00000AA8: 查w 0
+00000AAA: 柑lign 4
+00000AAC: 查efine $static1 8388780    柚omment &H008000AC = 柚urpos + $ImageBase + $RVABase
+00000AAC: 查d &H50000000
+00000AB0: 查d 0
+00000AB4: 查w 10
+00000AB6: 查w 10
+00000AB8: 查w 70
+00000ABA: 查w 8
+00000ABC: 查w -1
+00000ABE: 查w -1
+00000AC0: 查w &H82
+00000AC2: 查w '&Caption'
+00000AD2: 查w 0
+00000AD4: 查w 0
+00000AD6: 柑lign 4
+00000AD8: 查efine $static2 8388824    柚omment &H008000D8 = 柚urpos + $ImageBase + $RVABase
+00000AD8: 查d &H50000000
+00000ADC: 查d 0
+00000AE0: 查w 10
+00000AE2: 查w 20
+00000AE4: 查w 70
+00000AE6: 查w 8
+00000AE8: 查w -1
+00000AEA: 查w -1
+00000AEC: 查w &H82
+00000AEE: 查w 'Mas Informacion'
+00000B0C: 查w 0
+00000B0E: 查w 0
+00000B10: 柑lign 4
+00000B10: 查efine $dialog1_end 8388880    柚omment &H00800110 = 柚urpos + $ImageBase + $RVABase
+00000B10: 查efine $rsrc_end 8388880    柚omment &H00800110 = 柚urpos + $ImageBase + $RVABase
+00000B10: 柑lign &H200
+00000C00: 查efine $rsrc_end_aligned 8389120    柚omment &H00800200 = 柚urpos + $ImageBase + $RVABase
+00000C00: 查efine $RVABase 5239808    柚omment &H004FF400 = $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+00000C00: 查efine $image_end 9437184    柚omment &H00900000 = 柚urpos + $ImageBase + $RVABase
+
+查efine $ImageBase 4194304
+查efine $RVABase 5239808
+查efine $image_start 4194304
+查efine PE_Stub 4194432
+查efine $header_end 4195328
+查efine $code_file_start 1024
+查efine $code_start 5242880
+查efine $EntryPoint 5242880
+查efine $temp2 5242921
+查efine $temp1 5242926
+查efine $temp3 5242942
+查efine Prueba2 5242951
+查efine $DialogProc 5242956
+查efine $code_end 5242968
+查efine $code_end_aligned 5243392
+查efine $data_file_start 1536
+查efine $data_start 6291456
+查efine $bytes_count 6291456
+查efine $Info 6291876
+查efine $Header 6291880
+查efine $data_end 6291889
+查efine $data_end_aligned 6291968
+查efine $idata_file_start 2048
+查efine $idata_start 7340032
+查efine $DLLNameKERNEL32 7340092
+查efine $OriginalFirstThunkKERNEL32 7340106
+查efine $FirstThunkKERNEL32 7340118
+查efine $GetModuleHandleA 7340118
+查efine $ExitProcess 7340122
+查efine $FN_GetModuleHandleA 7340130
+查efine $FN_ExitProcess 7340149
+查efine $DLLNameUSER32 7340163
+查efine $OriginalFirstThunkUSER32 7340175
+查efine $FirstThunkUSER32 7340191
+查efine $DialogBoxParamA 7340191
+查efine $MessageBoxA 7340195
+查efine $EndDialog 7340199
+查efine $FN_DialogBoxParamA 7340207
+查efine $FN_MessageBoxA 7340225
+查efine $FN_EndDialog 7340239
+查efine $idata_end 7340251
+查efine $idata_end_aligned 7340544
+查efine $rsrc_file_start 2560
+查efine $rsrc_start 8388608
+查efine $direntry1 8388632
+查efine $direntry2 8388656
+查efine $dialogs 8388680
+查efine $dialog1 8388696
+查efine $static1 8388780
+查efine $static2 8388824
+查efine $dialog1_end 8388880
+查efine $rsrc_end 8388880
+查efine $rsrc_end_aligned 8389120
+查efine $image_end 9437184
+
+柝inedef *;*
+\01
+
+
+柝inedef *:*
+查efine \01 柚urpos + $ImageBase + $RVABase
+\02
+
+
+柝inedef align *
+柑lign \01
+
+
+柝inedef begin section .code
+查efine $RVABase $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+filepos $code_file_start
+$code_start:
+
+
+柝inedef end section .code
+$code_end:
+align &H200
+$code_end_aligned:
+
+
+柝inedef begin section .data
+查efine $RVABase $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+filepos $data_file_start
+$data_start:
+
+
+柝inedef end section .data
+$data_end:
+align &H200
+$data_end_aligned:
+
+
+柝inedef begin section .idata
+查efine $RVABase $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+filepos $idata_file_start
+$idata_start:
+
+
+柝inedef end section .idata
+$idata_end:
+align &H200
+$idata_end_aligned:
+
+
+柝inedef begin section .rsrc
+查efine $RVABase $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+filepos $rsrc_file_start
+$rsrc_start:
+
+
+柝inedef end section .rsrc
+$rsrc_end:
+align &H200
+$rsrc_end_aligned:
+
+
+柝inedef begin file
+define $ImageBase &H400000
+define $RVABase 0
+
+$image_start:
+db "MZ"
+dw &H80 ;Stub size
+dw 1  ;no relocations
+dw 0
+dw 4  ; 4-para header
+dw &H10 ; 16 extra para for stack
+dw -1 ; maximum extra paras: LOTS
+dw 0,&H140 ; SS:SP = 0000:0140
+dw 0  ; no checksum
+dw 0,0 ; CS:IP = 0:0, start at beginning
+dw &H40 ; reloc table beyond hdr
+dw 0  ; overlay number
+dw 0,0,0,0 ; reserved
+dw 0,0 ; OEM id and OEM info
+dw 0,0,0,0,0,0,0,0,0,0 ; reserved
+dd &H80 ; offset PE header
+db &H0E,&H1F,&HBA,&HE,0,&HB4,&H09,&HCD,&H21,&HB8,1,&H4C,&HCD,&H21
+;db 'This program cannot be run in DOS mode.',0Dh,0Ah,24h
+db 'Este programa no funciona desde modo DOS.',&H0D,&H0A,&H24
+
+align &H80
+
+PE_Stub:
+db "PE",0,0
+dw &H014C ; 386-compatible
+dw 4 ; number of sections
+dd &H11223344 ; Time and date when the file was created
+dd 0 ; PointerToSymbolTable
+dd 0 ; NumberOfSymbols
+dw &HE0 ; SizeOfOptionalHeader
+dw &H10E ;Characteristics
+; IMAGE_FILE_RELOCS_STRIPPED   0x0001 // Relocation info stripped from file.
+; IMAGE_FILE_EXECUTABLE_IMAGE  0x0002 // File is executable (i.e. no unresolved externel references).
+; IMAGE_FILE_LINE_NUMS_STRIPPED  0x0004 // Line nunbers stripped from file.
+; IMAGE_FILE_LOCAL_SYMS_STRIPPED  0x0008 // Local symbols stripped from file.
+; IMAGE_FILE_32BIT_MACHINE   0x0100 // 32 bit word machine.
+
+dw &H10B ;Magic for a normal executable/DLL.
+db 1 ;MajorLinkerVersion;
+db &H43 ;MinorLinkerVersion;
+dd 0 ;SizeOfCode;
+dd 0 ;SizeOfInitializedData;
+dd 0 ;SizeOfUninitializedData;
+dd $EntryPoint - $ImageBase ;RVA AddressOfEntryPoint;
+dd $code_start - $ImageBase ;BaseOfCode;
+dd $data_start - $ImageBase ;BaseOfData;
+dd $ImageBase ;ImageBase;
+dd &H100000 ;SectionAlignment;
+dd &H200 ;FileAlignment;
+dw 1 ;MajorOperatingSystemVersion;
+dw 0 ;MinorOperatingSystemVersion;
+dw 0 ;MajorImageVersion;
+dw 0 ;MinorImageVersion;
+dw 4 ;MajorSubsystemVersion;
+dw 0 ;MinorSubsystemVersion;
+dd 0 ;Win32VersionValue;
+dd $image_end - $ImageBase ;SizeOfImage;
+dd $header_end - $image_start ;SizeOfHeaders;
+dd &H12345678 ;CheckSum;
+dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
+dw 0 ;DllCharacteristics;
+dd &H1000 ;SizeOfStackReserve;
+dd &H1000 ;SizeOfStackCommit;
+dd &H10000 ;SizeOfHeapReserve;
+dd 0 ;SizeOfHeapCommit;
+dd 0 ;LoaderFlags;
+dd 16  ;NumberOfRvaAndSizes;
+dd 0,0  ;Directory1 edata RVa, Size
+dd $idata_start - $ImageBase,$idata_end - $idata_start ;Directory2 idata RVa, Size
+dd $rsrc_start - $ImageBase,$rsrc_end - $rsrc_start ; Directory 3 .rsrc
+dd 0,0 ; Directory 4
+dd 0,0 ; Directory 5
+dd 0,0 ; Directory 6
+dd 0,0 ; Directory 7
+dd 0,0 ; Directory 8
+dd 0,0 ; Directory 9
+dd 0,0 ; Directory 10
+dd 0,0 ; Directory 11
+dd 0,0 ; Directory 12
+dd 0,0 ; Directory 13
+dd 0,0 ; Directory 14
+dd 0,0 ; Directory 15
+dd 0,0 ; Directory 16
+
+db '.text',0,0,0
+dd $code_end - $code_start
+dd $code_start - $ImageBase ; VirtualAddress;
+dd $code_end_aligned - $code_start ; SizeOfRawData; Size aligned to FileAlign
+dd $code_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &H60000020 ; Characteristics;
+;IMAGE_SCN_CNT_CODE    0x00000020 // Section contains code.
+;IMAGE_SCN_MEM_EXECUTE   0x20000000 // Section is executable.
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+
+;.data section
+db '.data',0,0,0
+dd $data_end - $data_start ; VirtualSize;
+dd $data_start - $ImageBase ; VirtualAddress;
+dd $data_end_aligned - $data_start ; SizeOfRawData; Size aligned to FileAlign
+dd $data_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &HC0000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+db '.idata',0,0
+dd $idata_end - $idata_start
+dd $idata_start - $ImageBase ; VirtualAddress;
+dd $idata_end_aligned - $idata_start ; SizeOfRawData; Size aligned to FileAlign
+dd $idata_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &HC0000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+db '.rsrc',0,0,0
+dd $rsrc_end - $rsrc_start
+dd $rsrc_start - $ImageBase ; VirtualAddress;
+dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
+dd $rsrc_file_start ; PointerToRawData;
+dd 0  ; PointerToRelocations;
+dd 0  ; PointerToLinenumbers;
+dw 0  ; NumberOfRelocations;
+dw 0  ; NumberOfLinenumbers;
+dd &H40000040 ; Characteristics;
+;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+
+align &H200
+$header_end:
+
+
+柝inedef end file
+查efine $RVABase $RVABase + 柚urpos - 1 / &H100000 + 1 * &H100000 - 柚urpos
+$image_end:
+
+
+柝inedef db *
+查b \01
+
+
+柝inedef dw *
+查w \01
+
+
+柝inedef dd *
+查d \01
+
+
+柝inedef push eax
+查b &H50
+
+
+柝inedef push 0
+查b &H6A,0
+
+
+柝inedef push dword 0
+查b &H6A,0
+
+
+柝inedef push dword [*]
+查b &HFF,&H35
+查d \01
+
+
+柝inedef push dword *
+查b &H68
+查d \01
+
+
+柝inedef push *
+查b &H68
+查d \01
+
+
+柝inedef pushstr *
+柝ocal $temp
+call $temp
+查b \01,0
+$temp:
+
+
+柝inedef pop eax
+查b &H58
+
+
+柝inedef define * *
+查efine \01 \02
+
+
+柝inedef filepos *
+查efine \01 柚urpos
+
+
+柝inedef call [*]
+查b &HFF,&H15
+查d \01
+
+
+柝inedef call *
+柝ocal $temp
+查b &HE8
+$temp:
+查d \01 - $temp - 4
+
+
+柝inedef xor eax,eax
+查b &H31,&HC0
+
+
+柝inedef mov eax,[ebp*]
+查b &H8B,&H45
+查b \01
+
+
+柝inedef mov eax,[*]
+查b &HA1
+查d \01
+
+
+柝inedef mov eax,*
+查b &HB8
+查d \01
+
+
+柝inedef proc *
+\01:
+查b &H55 柚omment push ebp
+查b &H89,&HE5  柚omment mov ebp,esp
+
+
+柝inedef endproc *
+查b &HC9 柚omment leave
+查b &HC2 柚omment retn <val>
+查w \01
+
+
+
