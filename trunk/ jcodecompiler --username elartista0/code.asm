@@ -114,45 +114,31 @@ begin section .rsrc
       dd $dialogs - $rsrc_start 
 
    $dialogs:
-      dd $dialog1 - $ImageBase ;DataPtr
-      dd $dialog1_end - $dialog1 ;Size
+      dd FormMiPrimerDialogo  ;DataPtr
+      dd FormMiPrimerDialogo_Size ;Size
       dd 0,0
 
-   $dialog1:
-      dd &H80C800C0 ;WS_CAPTION+WS_POPUP+WS_SYSMENU+DS_MODALFRAME+DS_SETFONT 
-;WS_CAPTION          0x00C00000L     /* WS_BORDER | WS_DLGFRAME  */
-;WS_POPUP            0x80000000L
-;WS_SYSMENU          0x00080000L
-;DS_MODALFRAME       0x80L   /* Can be combined with WS_CAPTION  */
-;DS_SETFONT          0x40L   /* User specified font for Dlg controls */
-      dd 0  ;ExsStyle
-      dw 2  ;items,
-      dw 70,70,190,175 ; x,y,cx,cy
-      dw 0,0,"Primer dialogo",0
-      dw 8,'MS Sans Serif',0      ;Fontsize, FontName
-      align 4
-      
-   $static1:
-      dd &H50000000 ;WS_CHILD+WS_VISIBLE          
-      dd 0  ;ExsStyle
-      dw 10,10,70,8 ; x,y,cx,cy
-      dw -1 ;ID
-      dw -1, &H82 ;STATIC
-      dw "&Caption",0
-      dw 0
-      align 4
-
-   $static2:
-      dd &H50000000 ;WS_CHILD+WS_VISIBLE          
-      dd 0  ;ExsStyle
-      dw 10,20,70,8 ; x,y,cx,cy
-      dw -1 ;ID
-      dw -1, &H82 ;STATIC
-      dw "Mas Informacion",0
-      dw 0
-      align 4
-
-    $dialog1_end:
+Begin VB.Form FormMiPrimerDialogo
+   Caption         =   "Mi primer diálogo parametrizado"
+   ClientLeft      =   120
+   ClientTop       =   120
+   ClientWidth     =   2512
+   ClientHeight    =   2512
+   Begin VB.Label LAEtiqueta
+      Caption         =   "Etiqueta"
+      Left            =   120
+      Top             =   120
+      Width           =   480
+      Height          =   195
+   End
+   Begin VB.Label LACodContexto
+      Caption         =   "Contexto"
+      Left            =   120
+      Top             =   320
+      Width           =   480
+      Height          =   195
+   End
+EndDialog
 
 ;WS_CHILD            0x40000000L
 ;WS_VISIBLE          0x10000000L

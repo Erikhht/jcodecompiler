@@ -3,7 +3,7 @@
 ¬comment () = block
 ¬comment \ = escape char, \01, \02... forward reference
 ¬comment ¬linedef cmp dword [ebp*],*
-¬comment ¬db &H81,&H7D  ¬comment cmp [ebp+x],y
+¬comment ¬db &H81,&H7D ¬comment cmp [ebp+x],y
 ¬comment ¬db \01
 ¬comment ¬dd \02
 ¬comment ¬
@@ -19,12 +19,12 @@
 ¬comment dw &H80 ;Stub size
 ¬comment dw &H80
 00000002: ¬dw &H80
-¬comment dw 1  ;no relocations
+¬comment dw 1 ;no relocations
 ¬comment dw 1
 00000004: ¬dw 1
 ¬comment dw 0
 00000006: ¬dw 0
-¬comment dw 4  ; 4-para header
+¬comment dw 4 ; 4-para header
 ¬comment dw 4
 00000008: ¬dw 4
 ¬comment dw &H10 ; 16 extra para for stack
@@ -37,7 +37,7 @@
 ¬comment dw 0,&H140
 0000000E: ¬dw 0
 00000010: ¬dw &H140
-¬comment dw 0  ; no checksum
+¬comment dw 0 ; no checksum
 ¬comment dw 0
 00000012: ¬dw 0
 ¬comment dw 0,0 ; CS:IP = 0:0, start at beginning
@@ -47,7 +47,7 @@
 ¬comment dw &H40 ; reloc table beyond hdr
 ¬comment dw &H40
 00000018: ¬dw &H40
-¬comment dw 0  ; overlay number
+¬comment dw 0 ; overlay number
 ¬comment dw 0
 0000001A: ¬dw 0
 ¬comment dw 0,0,0,0 ; reserved
@@ -110,9 +110,9 @@
 ¬comment dw 4 ; number of sections
 ¬comment dw 4
 00000086: ¬dw 4
-¬comment dd &H11223344 ; Time and date when the file was created
-¬comment dd &H11223344
-00000088: ¬dd &H11223344
+¬comment dd ¬timestamp ; Time and date when the file was created
+¬comment dd ¬timestamp
+00000088: ¬dd 1192808564
 ¬comment dd 0 ; PointerToSymbolTable
 ¬comment dd 0
 0000008C: ¬dd 0
@@ -125,11 +125,11 @@
 ¬comment dw &H10E ;Characteristics
 ¬comment dw &H10E
 00000096: ¬dw &H10E
-¬comment ; IMAGE_FILE_RELOCS_STRIPPED   0x0001 // Relocation info stripped from file.
-¬comment ; IMAGE_FILE_EXECUTABLE_IMAGE  0x0002 // File is executable (i.e. no unresolved externel references).
-¬comment ; IMAGE_FILE_LINE_NUMS_STRIPPED  0x0004 // Line nunbers stripped from file.
-¬comment ; IMAGE_FILE_LOCAL_SYMS_STRIPPED  0x0008 // Local symbols stripped from file.
-¬comment ; IMAGE_FILE_32BIT_MACHINE   0x0100 // 32 bit word machine.
+¬comment ; IMAGE_FILE_RELOCS_STRIPPED 0x0001 // Relocation info stripped from file.
+¬comment ; IMAGE_FILE_EXECUTABLE_IMAGE 0x0002 // File is executable (i.e. no unresolved externel references).
+¬comment ; IMAGE_FILE_LINE_NUMS_STRIPPED 0x0004 // Line nunbers stripped from file.
+¬comment ; IMAGE_FILE_LOCAL_SYMS_STRIPPED 0x0008 // Local symbols stripped from file.
+¬comment ; IMAGE_FILE_32BIT_MACHINE 0x0100 // 32 bit word machine.
 ¬comment dw &H10B ;Magic for a normal executable/DLL.
 ¬comment dw &H10B
 00000098: ¬dw &H10B
@@ -198,9 +198,9 @@
 ¬comment dd $header_end - $image_start
 000000D4: ¬comment recall 212 $header_end - 4194304
 000000D4: ¬dd $header_end - 4194304
-¬comment dd &H12345678 ;CheckSum;
-¬comment dd &H12345678
-000000D8: ¬dd &H12345678
+¬comment dd 0 ;CheckSum;
+¬comment dd 0
+000000D8: ¬dd 0
 ¬comment dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
 ¬comment dw 2
 000000DC: ¬dw 2
@@ -222,10 +222,10 @@
 ¬comment dd 0 ;LoaderFlags;
 ¬comment dd 0
 000000F0: ¬dd 0
-¬comment dd 16  ;NumberOfRvaAndSizes;
+¬comment dd 16 ;NumberOfRvaAndSizes;
 ¬comment dd 16
 000000F4: ¬dd 16
-¬comment dd 0,0  ;Directory1 edata RVa, Size
+¬comment dd 0,0 ;Directory1 edata RVa, Size
 ¬comment dd 0,0
 000000F8: ¬dd 0
 000000FC: ¬dd 0
@@ -312,24 +312,24 @@
 ¬comment dd $idata_file_start
 0000018C: ¬comment recall 396 $idata_file_start
 0000018C: ¬dd $idata_file_start
-¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0 ; PointerToRelocations;
 ¬comment dd 0
 00000190: ¬dd 0
-¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0 ; PointerToLinenumbers;
 ¬comment dd 0
 00000194: ¬dd 0
-¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0 ; NumberOfRelocations;
 ¬comment dw 0
 00000198: ¬dw 0
-¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0 ; NumberOfLinenumbers;
 ¬comment dw 0
 0000019A: ¬dw 0
 ¬comment dd &HC0000040 ; Characteristics;
 ¬comment dd &HC0000040
 0000019C: ¬dd &HC0000040
-¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-¬comment ;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
-¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment ;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_MEM_WRITE 0x80000000 // Section is writeable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 ¬comment db '.text',0,0,0
 000001A0: ¬db '.text'
 000001A5: ¬db 0
@@ -350,24 +350,24 @@
 ¬comment dd $code_file_start
 000001B4: ¬comment recall 436 $code_file_start
 000001B4: ¬dd $code_file_start
-¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0 ; PointerToRelocations;
 ¬comment dd 0
 000001B8: ¬dd 0
-¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0 ; PointerToLinenumbers;
 ¬comment dd 0
 000001BC: ¬dd 0
-¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0 ; NumberOfRelocations;
 ¬comment dw 0
 000001C0: ¬dw 0
-¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0 ; NumberOfLinenumbers;
 ¬comment dw 0
 000001C2: ¬dw 0
 ¬comment dd &H60000020 ; Characteristics;
 ¬comment dd &H60000020
 000001C4: ¬dd &H60000020
-¬comment ;IMAGE_SCN_CNT_CODE    0x00000020 // Section contains code.
-¬comment ;IMAGE_SCN_MEM_EXECUTE   0x20000000 // Section is executable.
-¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_CNT_CODE 0x00000020 // Section contains code.
+¬comment ;IMAGE_SCN_MEM_EXECUTE 0x20000000 // Section is executable.
+¬comment ;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
 ¬comment ;.data section
 ¬comment db '.data',0,0,0
 000001C8: ¬db '.data'
@@ -390,24 +390,24 @@
 ¬comment dd $data_file_start
 000001DC: ¬comment recall 476 $data_file_start
 000001DC: ¬dd $data_file_start
-¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0 ; PointerToRelocations;
 ¬comment dd 0
 000001E0: ¬dd 0
-¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0 ; PointerToLinenumbers;
 ¬comment dd 0
 000001E4: ¬dd 0
-¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0 ; NumberOfRelocations;
 ¬comment dw 0
 000001E8: ¬dw 0
-¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0 ; NumberOfLinenumbers;
 ¬comment dw 0
 000001EA: ¬dw 0
 ¬comment dd &HC0000040 ; Characteristics;
 ¬comment dd &HC0000040
 000001EC: ¬dd &HC0000040
-¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-¬comment ;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
-¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment ;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_MEM_WRITE 0x80000000 // Section is writeable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 ¬comment db '.rsrc',0,0,0
 000001F0: ¬db '.rsrc'
 000001F5: ¬db 0
@@ -428,23 +428,23 @@
 ¬comment dd $rsrc_file_start
 00000204: ¬comment recall 516 $rsrc_file_start
 00000204: ¬dd $rsrc_file_start
-¬comment dd 0  ; PointerToRelocations;
+¬comment dd 0 ; PointerToRelocations;
 ¬comment dd 0
 00000208: ¬dd 0
-¬comment dd 0  ; PointerToLinenumbers;
+¬comment dd 0 ; PointerToLinenumbers;
 ¬comment dd 0
 0000020C: ¬dd 0
-¬comment dw 0  ; NumberOfRelocations;
+¬comment dw 0 ; NumberOfRelocations;
 ¬comment dw 0
 00000210: ¬dw 0
-¬comment dw 0  ; NumberOfLinenumbers;
+¬comment dw 0 ; NumberOfLinenumbers;
 ¬comment dw 0
 00000212: ¬dw 0
 ¬comment dd &H40000040 ; Characteristics;
 ¬comment dd &H40000040
 00000214: ¬dd &H40000040
-¬comment ;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+¬comment ;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+¬comment ;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 ¬comment align &H200
 00000218: ¬align &H200
 ¬comment $header_end:
@@ -1121,147 +1121,154 @@
 00000A44: ¬dd $dialogs - 8388608
 ¬comment $dialogs:
 00000A48: ¬define $dialogs 8388680    ¬comment &H00800048 = ¬curpos + $ImageBase + $RVABase
-¬comment dd $dialog1 - $ImageBase ;DataPtr
-¬comment dd $dialog1 - $ImageBase
-00000A48: ¬comment recall 2632 $dialog1 - 4194304
-00000A48: ¬dd $dialog1 - 4194304
-¬comment dd $dialog1_end - $dialog1 ;Size
-¬comment dd $dialog1_end - $dialog1
-00000A4C: ¬comment recall 2636 $dialog1_end - $dialog1
-00000A4C: ¬dd $dialog1_end - $dialog1
+¬comment dd FormMiPrimerDialogo ;DataPtr
+¬comment dd FormMiPrimerDialogo
+00000A48: ¬comment recall 2632 FormMiPrimerDialogo
+00000A48: ¬dd FormMiPrimerDialogo
+¬comment dd FormMiPrimerDialogo_Size ;Size
+¬comment dd FormMiPrimerDialogo_Size
+00000A4C: ¬comment recall 2636 FormMiPrimerDialogo_Size
+00000A4C: ¬dd FormMiPrimerDialogo_Size
 ¬comment dd 0,0
 00000A50: ¬dd 0
 00000A54: ¬dd 0
-¬comment $dialog1:
-00000A58: ¬define $dialog1 8388696    ¬comment &H00800058 = ¬curpos + $ImageBase + $RVABase
-¬comment dd &H80C800C0 ;WS_CAPTION+WS_POPUP+WS_SYSMENU+DS_MODALFRAME+DS_SETFONT
-¬comment dd &H80C800C0
+¬comment Begin VB.Form FormMiPrimerDialogo
+00000A58: ¬define FormMiPrimerDialogo 4194392    ¬comment &H00400058 = ¬curpos + $RVABase
+00000A58: ¬define $DialogItems 
+00000A58: ¬define $DialogItems 0    ¬comment &H00000000 = 0
+¬comment Caption = "Mi primer diálogo parametrizado"
+¬comment ClientLeft = 120
+00000A58: ¬define $ClientLeft31 8    ¬comment &H00000008 = 120/15
+¬comment ClientTop = 120
+00000A58: ¬define $ClientTop32 8    ¬comment &H00000008 = 120/15
+¬comment ClientWidth = 2512
+00000A58: ¬define $ClientWidth33 167    ¬comment &H000000A7 = 2512/15
+¬comment ClientHeight = 2512
+00000A58: ¬define $ClientHeight34 167    ¬comment &H000000A7 = 2512/15
+¬comment Begin VB.Label LAEtiqueta
+¬comment WS_CHILD+WS_VISIBLE
+00000A58: ¬define $Style 1342177280    ¬comment &H50000000 = &H50000000
+¬comment Caption = "Etiqueta"
+¬comment Left = 120
+00000A58: ¬define $Left36 8    ¬comment &H00000008 = 120/15
+¬comment Top = 120
+00000A58: ¬define $Top37 8    ¬comment &H00000008 = 120/15
+¬comment Width = 480
+00000A58: ¬define $Width38 32    ¬comment &H00000020 = 480/15
+¬comment Height = 195
+00000A58: ¬define $Height39 13    ¬comment &H0000000D = 195/15
+¬comment End
+00000A58: ¬define $DialogItems 1    ¬comment &H00000001 = $DialogItems + 1
+¬comment Begin VB.Label LACodContexto
+¬comment WS_CHILD+WS_VISIBLE
+00000A58: ¬define $Style 1342177280    ¬comment &H50000000 = &H50000000
+¬comment Caption = "Contexto"
+¬comment Left = 120
+00000A58: ¬define $Left41 8    ¬comment &H00000008 = 120/15
+¬comment Top = 320
+00000A58: ¬define $Top42 21    ¬comment &H00000015 = 320/15
+¬comment Width = 480
+00000A58: ¬define $Width43 32    ¬comment &H00000020 = 480/15
+¬comment Height = 195
+00000A58: ¬define $Height44 13    ¬comment &H0000000D = 195/15
+¬comment End
+00000A58: ¬define $DialogItems 2    ¬comment &H00000002 = $DialogItems + 1
+¬comment EndDialog
 00000A58: ¬dd &H80C800C0
-¬comment ;WS_CAPTION  0x00C00000L  /* WS_BORDER | WS_DLGFRAME */
-¬comment ;WS_POPUP  0x80000000L
-¬comment ;WS_SYSMENU  0x00080000L
-¬comment ;DS_MODALFRAME  0x80L /* Can be combined with WS_CAPTION */
-¬comment ;DS_SETFONT  0x40L /* User specified font for Dlg controls */
-¬comment dd 0 ;ExsStyle
-¬comment dd 0
+¬comment ExStyle
 00000A5C: ¬dd 0
-¬comment dw 2 ;items,
-¬comment dw 2
+¬comment items,
 00000A60: ¬dw 2
-¬comment dw 70,70,190,175 ; x,y,cx,cy
-¬comment dw 70,70,190,175
-00000A62: ¬dw 70
-00000A64: ¬dw 70
-00000A66: ¬dw 190
-00000A68: ¬dw 175
-¬comment dw 0,0,"Primer dialogo",0
-00000A6A: ¬dw 0
-00000A6C: ¬dw 0
-00000A6E: ¬dw 'Primer dialogo'
-00000A8A: ¬dw 0
-¬comment dw 8,'MS Sans Serif',0 ;Fontsize, FontName
-¬comment dw 8,'MS Sans Serif',0
-00000A8C: ¬dw 8
-00000A8E: ¬dw 'MS Sans Serif'
-00000AA8: ¬dw 0
+¬comment x,y,cx,cy~
+00000A62: ¬dw 8
+00000A64: ¬dw 8
+00000A66: ¬dw 167
+00000A68: ¬dw 167
+00000A6A: ¬dd 0
+¬comment $FormCaption35
+00000A6E: ¬dw 'Mi primer diálogo parametrizado'
+00000AAC: ¬dw 0
+¬comment ;Fontsize, FontName
+00000AAE: ¬dw 8
+00000AB0: ¬dw 'MS Sans Serif'
+00000ACA: ¬dw 0
 ¬comment align 4
-00000AAA: ¬align 4
-¬comment $static1:
-00000AAC: ¬define $static1 8388780    ¬comment &H008000AC = ¬curpos + $ImageBase + $RVABase
-¬comment dd &H50000000 ;WS_CHILD+WS_VISIBLE
-¬comment dd &H50000000
-00000AAC: ¬dd &H50000000
-¬comment dd 0 ;ExsStyle
-¬comment dd 0
-00000AB0: ¬dd 0
-¬comment dw 10,10,70,8 ; x,y,cx,cy
-¬comment dw 10,10,70,8
-00000AB4: ¬dw 10
-00000AB6: ¬dw 10
-00000AB8: ¬dw 70
-00000ABA: ¬dw 8
-¬comment dw -1 ;ID
-¬comment dw -1
-00000ABC: ¬dw -1
-¬comment dw -1, &H82 ;STATIC
-¬comment dw -1, &H82
-00000ABE: ¬dw -1
-00000AC0: ¬dw &H82
-¬comment dw "&Caption",0
-00000AC2: ¬dw '&Caption'
-00000AD2: ¬dw 0
-¬comment dw 0
-00000AD4: ¬dw 0
+00000ACC: ¬align 4
+¬comment $EndControls
+00000ACC: ¬dd 1342177280
+¬comment ExStyle
+00000AD0: ¬dd 0
+¬comment x,y,cx,cy
+00000AD4: ¬dw 8
+00000AD6: ¬dw 8
+00000AD8: ¬dw 32
+00000ADA: ¬dw 13
+00000ADC: ¬dw -1 ;ID
+¬comment STATIC
+00000ADE: ¬dw -1
+00000AE0: ¬dw &H82
+¬comment $Caption40
+00000AE2: ¬dw 'Etiqueta'
+00000AF2: ¬dw 0
+00000AF4: ¬dw 0
 ¬comment align 4
-00000AD6: ¬align 4
-¬comment $static2:
-00000AD8: ¬define $static2 8388824    ¬comment &H008000D8 = ¬curpos + $ImageBase + $RVABase
-¬comment dd &H50000000 ;WS_CHILD+WS_VISIBLE
-¬comment dd &H50000000
-00000AD8: ¬dd &H50000000
-¬comment dd 0 ;ExsStyle
-¬comment dd 0
-00000ADC: ¬dd 0
-¬comment dw 10,20,70,8 ; x,y,cx,cy
-¬comment dw 10,20,70,8
-00000AE0: ¬dw 10
-00000AE2: ¬dw 20
-00000AE4: ¬dw 70
-00000AE6: ¬dw 8
-¬comment dw -1 ;ID
-¬comment dw -1
-00000AE8: ¬dw -1
-¬comment dw -1, &H82 ;STATIC
-¬comment dw -1, &H82
-00000AEA: ¬dw -1
-00000AEC: ¬dw &H82
-¬comment dw "Mas Informacion",0
-00000AEE: ¬dw 'Mas Informacion'
-00000B0C: ¬dw 0
-¬comment dw 0
-00000B0E: ¬dw 0
+00000AF6: ¬align 4
+00000AF8: ¬dd 1342177280
+¬comment ExStyle
+00000AFC: ¬dd 0
+¬comment x,y,cx,cy
+00000B00: ¬dw 8
+00000B02: ¬dw 21
+00000B04: ¬dw 32
+00000B06: ¬dw 13
+00000B08: ¬dw -1 ;ID
+¬comment STATIC
+00000B0A: ¬dw -1
+00000B0C: ¬dw &H82
+¬comment $Caption45
+00000B0E: ¬dw 'Contexto'
+00000B1E: ¬dw 0
+00000B20: ¬dw 0
 ¬comment align 4
-00000B10: ¬align 4
-¬comment $dialog1_end:
-00000B10: ¬define $dialog1_end 8388880    ¬comment &H00800110 = ¬curpos + $ImageBase + $RVABase
-¬comment ;WS_CHILD  0x40000000L
-¬comment ;WS_VISIBLE  0x10000000L
+00000B22: ¬align 4
+00000B24: ¬define FormMiPrimerDialogo_Size 204    ¬comment &H000000CC = ¬curpos + $RVABase - FormMiPrimerDialogo
+¬comment ;WS_CHILD 0x40000000L
+¬comment ;WS_VISIBLE 0x10000000L
 ¬comment ;Window Styles
-¬comment ; WS_OVERLAPPED  0x00000000L
-¬comment ; WS_CHILD  0x40000000L
-¬comment ; WS_MINIMIZE  0x20000000L
-¬comment ; WS_VISIBLE  0x10000000L
-¬comment ; WS_DISABLED  0x08000000L
-¬comment ; WS_CLIPSIBLINGS  0x04000000L
-¬comment ; WS_CLIPCHILDREN  0x02000000L
-¬comment ; WS_MAXIMIZE  0x01000000L
-¬comment ; WS_BORDER   0x00800000L
-¬comment ; WS_DLGFRAME  0x00400000L
-¬comment ; WS_VSCROLL  0x00200000L
-¬comment ; WS_HSCROLL  0x00100000L
-¬comment ; WS_THICKFRAME  0x00040000L
-¬comment ; WS_GROUP  0x00020000L
-¬comment ; WS_TABSTOP  0x00010000L
+¬comment ; WS_OVERLAPPED 0x00000000L
+¬comment ; WS_CHILD 0x40000000L
+¬comment ; WS_MINIMIZE 0x20000000L
+¬comment ; WS_VISIBLE 0x10000000L
+¬comment ; WS_DISABLED 0x08000000L
+¬comment ; WS_CLIPSIBLINGS 0x04000000L
+¬comment ; WS_CLIPCHILDREN 0x02000000L
+¬comment ; WS_MAXIMIZE 0x01000000L
+¬comment ; WS_BORDER 0x00800000L
+¬comment ; WS_DLGFRAME 0x00400000L
+¬comment ; WS_VSCROLL 0x00200000L
+¬comment ; WS_HSCROLL 0x00100000L
+¬comment ; WS_THICKFRAME 0x00040000L
+¬comment ; WS_GROUP 0x00020000L
+¬comment ; WS_TABSTOP 0x00010000L
 ¬comment ; WS_MINIMIZEBOX 0x00020000L
 ¬comment ; WS_MAXIMIZEBOX 0x00010000L
 ¬comment ;Dialog Styles
-¬comment ; DS_ABSALIGN  0x01L
-¬comment ; DS_SYSMODAL  0x02L
-¬comment ; DS_LOCALEDIT  0x20L /* Edit items get Local storage. */
-¬comment ; DS_SETFONT  0x40L /* User specified font for Dlg controls */
-¬comment ; DS_MODALFRAME  0x80L /* Can be combined with WS_CAPTION */
-¬comment ; DS_NOIDLEMSG  0x100L /* WM_ENTERIDLE message will not be sent */
+¬comment ; DS_ABSALIGN 0x01L
+¬comment ; DS_SYSMODAL 0x02L
+¬comment ; DS_LOCALEDIT 0x20L /* Edit items get Local storage. */
+¬comment ; DS_SETFONT 0x40L /* User specified font for Dlg controls */
+¬comment ; DS_MODALFRAME 0x80L /* Can be combined with WS_CAPTION */
+¬comment ; DS_NOIDLEMSG 0x100L /* WM_ENTERIDLE message will not be sent */
 ¬comment ; DS_SETFOREGROUND 0x200L /* not in win3.1 */
 ¬comment end section .rsrc
 ¬comment $rsrc_end:
-00000B10: ¬define $rsrc_end 8388880    ¬comment &H00800110 = ¬curpos + $ImageBase + $RVABase
+00000B24: ¬define $rsrc_end 8388900    ¬comment &H00800124 = ¬curpos + $ImageBase + $RVABase
 ¬comment align &H200
-00000B10: ¬align &H200
+00000B24: ¬align &H200
 ¬comment $rsrc_end_aligned:
 00000C00: ¬define $rsrc_end_aligned 8389120    ¬comment &H00800200 = ¬curpos + $ImageBase + $RVABase
 ¬comment end file
 00000C00: ¬define $RVABase 5239808    ¬comment &H004FF400 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
-00000C00: ¬define $CheckSum 
 ¬comment $image_end:
 00000C00: ¬define $image_end 9437184    ¬comment &H00900000 = ¬curpos + $ImageBase + $RVABase
 
@@ -1330,13 +1337,24 @@
 ¬define $direntry1 8388632
 ¬define $direntry2 8388656
 ¬define $dialogs 8388680
-¬define $dialog1 8388696
-¬define $static1 8388780
-¬define $static2 8388824
-¬define $dialog1_end 8388880
-¬define $rsrc_end 8388880
+¬define FormMiPrimerDialogo 4194392
+¬define $DialogItems 2
+¬define $ClientLeft31 8
+¬define $ClientTop32 8
+¬define $ClientWidth33 167
+¬define $ClientHeight34 167
+¬define $Style 1342177280
+¬define $Left36 8
+¬define $Top37 8
+¬define $Width38 32
+¬define $Height39 13
+¬define $Left41 8
+¬define $Top42 21
+¬define $Width43 32
+¬define $Height44 13
+¬define FormMiPrimerDialogo_Size 204
+¬define $rsrc_end 8388900
 ¬define $rsrc_end_aligned 8389120
-¬define $CheckSum 
 ¬define $image_end 9437184
 
 ¬linedef *;*
@@ -1411,16 +1429,16 @@ define $RVABase 0
 $image_start:
 db "MZ"
 dw &H80 ;Stub size
-dw 1  ;no relocations
+dw 1 ;no relocations
 dw 0
-dw 4  ; 4-para header
+dw 4 ; 4-para header
 dw &H10 ; 16 extra para for stack
 dw -1 ; maximum extra paras: LOTS
 dw 0,&H140 ; SS:SP = 0000:0140
-dw 0  ; no checksum
+dw 0 ; no checksum
 dw 0,0 ; CS:IP = 0:0, start at beginning
 dw &H40 ; reloc table beyond hdr
-dw 0  ; overlay number
+dw 0 ; overlay number
 dw 0,0,0,0 ; reserved
 dw 0,0 ; OEM id and OEM info
 dw 0,0,0,0,0,0,0,0,0,0 ; reserved
@@ -1435,16 +1453,16 @@ PE_Stub:
 db "PE",0,0
 dw &H014C ; 386-compatible
 dw 4 ; number of sections
-dd &H11223344 ; Time and date when the file was created
+dd ¬timestamp ; Time and date when the file was created
 dd 0 ; PointerToSymbolTable
 dd 0 ; NumberOfSymbols
 dw &HE0 ; SizeOfOptionalHeader
 dw &H10E ;Characteristics
-; IMAGE_FILE_RELOCS_STRIPPED   0x0001 // Relocation info stripped from file.
-; IMAGE_FILE_EXECUTABLE_IMAGE  0x0002 // File is executable (i.e. no unresolved externel references).
-; IMAGE_FILE_LINE_NUMS_STRIPPED  0x0004 // Line nunbers stripped from file.
-; IMAGE_FILE_LOCAL_SYMS_STRIPPED  0x0008 // Local symbols stripped from file.
-; IMAGE_FILE_32BIT_MACHINE   0x0100 // 32 bit word machine.
+; IMAGE_FILE_RELOCS_STRIPPED 0x0001 // Relocation info stripped from file.
+; IMAGE_FILE_EXECUTABLE_IMAGE 0x0002 // File is executable (i.e. no unresolved externel references).
+; IMAGE_FILE_LINE_NUMS_STRIPPED 0x0004 // Line nunbers stripped from file.
+; IMAGE_FILE_LOCAL_SYMS_STRIPPED 0x0008 // Local symbols stripped from file.
+; IMAGE_FILE_32BIT_MACHINE 0x0100 // 32 bit word machine.
 
 dw &H10B ;Magic for a normal executable/DLL.
 db 1 ;MajorLinkerVersion;
@@ -1467,7 +1485,7 @@ dw 0 ;MinorSubsystemVersion;
 dd 0 ;Win32VersionValue;
 dd $image_end - $ImageBase ;SizeOfImage;
 dd $header_end - $image_start ;SizeOfHeaders;
-dd &H12345678 ;CheckSum;
+dd 0 ;CheckSum;
 dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
 dw 0 ;DllCharacteristics;
 dd &H1000 ;SizeOfStackReserve;
@@ -1475,8 +1493,8 @@ dd &H1000 ;SizeOfStackCommit;
 dd &H10000 ;SizeOfHeapReserve;
 dd 0 ;SizeOfHeapCommit;
 dd 0 ;LoaderFlags;
-dd 16  ;NumberOfRvaAndSizes;
-dd 0,0  ;Directory1 edata RVa, Size
+dd 16 ;NumberOfRvaAndSizes;
+dd 0,0 ;Directory1 edata RVa, Size
 dd $idata_start - $ImageBase,$idata_end - $idata_start ;Directory2 idata RVa, Size
 dd $rsrc_start - $ImageBase,$rsrc_end - $rsrc_start ; Directory 3 .rsrc
 dd 0,0 ; Directory 4
@@ -1498,28 +1516,28 @@ dd $idata_end - $idata_start
 dd $idata_start - $ImageBase ; VirtualAddress;
 dd $idata_end_aligned - $idata_start ; SizeOfRawData; Size aligned to FileAlign
 dd $idata_file_start ; PointerToRawData;
-dd 0  ; PointerToRelocations;
-dd 0  ; PointerToLinenumbers;
-dw 0  ; NumberOfRelocations;
-dw 0  ; NumberOfLinenumbers;
+dd 0 ; PointerToRelocations;
+dd 0 ; PointerToLinenumbers;
+dw 0 ; NumberOfRelocations;
+dw 0 ; NumberOfLinenumbers;
 dd &HC0000040 ; Characteristics;
-;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
-;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE 0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 
 db '.text',0,0,0
 dd $code_end - $code_start
 dd $code_start ; VirtualAddress;
 dd $code_end_aligned - $code_start ; SizeOfRawData; Size aligned to FileAlign
 dd $code_file_start ; PointerToRawData;
-dd 0  ; PointerToRelocations;
-dd 0  ; PointerToLinenumbers;
-dw 0  ; NumberOfRelocations;
-dw 0  ; NumberOfLinenumbers;
+dd 0 ; PointerToRelocations;
+dd 0 ; PointerToLinenumbers;
+dw 0 ; NumberOfRelocations;
+dw 0 ; NumberOfLinenumbers;
 dd &H60000020 ; Characteristics;
-;IMAGE_SCN_CNT_CODE    0x00000020 // Section contains code.
-;IMAGE_SCN_MEM_EXECUTE   0x20000000 // Section is executable.
-;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
+;IMAGE_SCN_CNT_CODE 0x00000020 // Section contains code.
+;IMAGE_SCN_MEM_EXECUTE 0x20000000 // Section is executable.
+;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
 
 ;.data section
 db '.data',0,0,0
@@ -1527,27 +1545,27 @@ dd $data_end - $data_start ; VirtualSize;
 dd $data_start ; VirtualAddress;
 dd $data_end_aligned - $data_start ; SizeOfRawData; Size aligned to FileAlign
 dd $data_file_start ; PointerToRawData;
-dd 0  ; PointerToRelocations;
-dd 0  ; PointerToLinenumbers;
-dw 0  ; NumberOfRelocations;
-dw 0  ; NumberOfLinenumbers;
+dd 0 ; PointerToRelocations;
+dd 0 ; PointerToLinenumbers;
+dw 0 ; NumberOfRelocations;
+dw 0 ; NumberOfLinenumbers;
 dd &HC0000040 ; Characteristics;
-;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-;IMAGE_SCN_MEM_WRITE   0x80000000 // Section is writeable.
-;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+;IMAGE_SCN_MEM_WRITE 0x80000000 // Section is writeable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 
 db '.rsrc',0,0,0
 dd $rsrc_end - $rsrc_start
 dd $rsrc_start - $ImageBase ; VirtualAddress;
 dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
 dd $rsrc_file_start ; PointerToRawData;
-dd 0  ; PointerToRelocations;
-dd 0  ; PointerToLinenumbers;
-dw 0  ; NumberOfRelocations;
-dw 0  ; NumberOfLinenumbers;
+dd 0 ; PointerToRelocations;
+dd 0 ; PointerToLinenumbers;
+dw 0 ; NumberOfRelocations;
+dw 0 ; NumberOfLinenumbers;
 dd &H40000040 ; Characteristics;
-;IMAGE_SCN_MEM_READ    0x40000000 // Section is readable.
-;IMAGE_SCN_CNT_INITIALIZED_DATA  0x00000040 // Section contains initialized data.
+;IMAGE_SCN_MEM_READ 0x40000000 // Section is readable.
+;IMAGE_SCN_CNT_INITIALIZED_DATA 0x00000040 // Section contains initialized data.
 
 align &H200
 $header_end:
@@ -1555,7 +1573,6 @@ $header_end:
 
 ¬linedef end file
 ¬define $RVABase $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
-¬define $CheckSum ¬checksum
 $image_end:
 
 
@@ -1669,9 +1686,9 @@ $temp:
 ¬linedef function *(*)
 \01_ADDR:
 ¬define $loctotal
-¬db &H55   ¬comment push ebp
-¬db &H89,&HE5  ¬comment mov ebp,esp
-¬db &H83,&HEC  ¬comment sub esp,locals &H81EC (DWORD) (byte)
+¬db &H55 ¬comment push ebp
+¬db &H89,&HE5 ¬comment mov ebp,esp
+¬db &H83,&HEC ¬comment sub esp,locals &H81EC (DWORD) (byte)
 ¬db $loctotal
 ¬define $parnumber 4
 ¬define $locnumber 0
@@ -1743,20 +1760,20 @@ params \02
 
 ¬linedef end function
 ¬define $loctotal $locnumber
-¬db &HC9  ¬comment leave
-¬db &HC2  ¬comment retn <val>
+¬db &HC9 ¬comment leave
+¬db &HC2 ¬comment retn <val>
 ¬dw $parnumber - 4
 
 
 ¬linedef return *
 \01
-¬db &HC9  ¬comment leave
-¬db &HC2  ¬comment retn <val>
+¬db &HC9 ¬comment leave
+¬db &HC2 ¬comment retn <val>
 ¬dw $parnumber - 4
 
 
 ¬linedef dword *
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd \01
 
 
@@ -1765,47 +1782,47 @@ xor eax,eax
 
 
 ¬linedef 1*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 1\01
 
 
 ¬linedef 2*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 2\01
 
 
 ¬linedef 3*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 3\01
 
 
 ¬linedef 4*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 4\01
 
 
 ¬linedef 5*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 5\01
 
 
 ¬linedef 6*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 6\01
 
 
 ¬linedef 7*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 7\01
 
 
 ¬linedef 8*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 8\01
 
 
 ¬linedef 9*
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd 9\01
 
 
@@ -1815,36 +1832,36 @@ xor eax,eax
 ¬expand $data_definitions
 $temp: db "\01,0
 ¬
-¬db &HB8  ¬comment mov eax,x
+¬db &HB8 ¬comment mov eax,x
 ¬dd $temp
 
 
 ¬linedef = * + *
 = \02
-¬db &H89,&HC3  ¬comment mov ebx,eax
+¬db &H89,&HC3 ¬comment mov ebx,eax
 = \01
 ¬db &H01,&HD8
 
 
 ¬linedef = * - *
 = \02
-¬db &H89,&HC3  ¬comment mov ebx,eax
+¬db &H89,&HC3 ¬comment mov ebx,eax
 = \01
 ¬db &H29,&HD8
 
 
 ¬linedef = * % *
 = \01
-¬db &H89,&HC3  ¬comment mov ebx,eax
+¬db &H89,&HC3 ¬comment mov ebx,eax
 = \02
-¬db &HF7,&HEB  ¬comment imul ebx
+¬db &HF7,&HEB ¬comment imul ebx
 
 
 ¬linedef = * / *
 = \02
-¬db &H89,&HC3  ¬comment mov ebx,eax
+¬db &H89,&HC3 ¬comment mov ebx,eax
 = \01
-¬db &HF7,&HFB  ¬comment idiv ebx
+¬db &HF7,&HFB ¬comment idiv ebx
 
 
 ¬linedef = *
@@ -1853,16 +1870,16 @@ $temp: db "\01,0
 
 ¬linedef jmpexpr * = 0
 \01
-¬db &H83,&HF8,0  ¬comment cmp eax,0
-¬db &HF,&H85  ¬comment jne
+¬db &H83,&HF8,0 ¬comment cmp eax,0
+¬db &HF,&H85 ¬comment jne
 
 
 ¬linedef jmpexpr * = *
 \02
-¬db &H89,&HC3  ¬comment mov ebx,eax
+¬db &H89,&HC3 ¬comment mov ebx,eax
 \01
-¬db &H39,&HD8  ¬comment cmp eax,ebx
-¬db &HF,&H85  ¬comment jne
+¬db &H39,&HD8 ¬comment cmp eax,ebx
+¬db &HF,&H85 ¬comment jne
 
 
 ¬linedef if * then
@@ -2009,6 +2026,80 @@ library \01.DLL
 
 ¬linedef library "*.DLL"
 library \01.DLL
+
+
+¬linedef Begin VB.Form *
+¬local $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight,$FormCaption
+¬define \01 ¬curpos + $RVABase
+¬linedef Caption = *
+¬linedef $FormCaption
+¬dw \¬01,0
+¬
+¬
+¬linedef ClientLeft = *
+¬define $ClientLeft \¬01/15
+¬
+¬linedef ClientTop = *
+¬define $ClientTop \¬01/15
+¬
+¬linedef ClientWidth = *
+¬define $ClientWidth \¬01/15
+¬
+¬linedef ClientHeight = *
+¬define $ClientHeight \¬01/15
+¬
+¬define $DialogItems
+¬linedef EndDialog
+¬dd &H80C800C0
+¬dd 0 ¬comment ExStyle
+¬dw $DialogItems ¬comment items,
+¬dw $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight ¬comment x,y,cx,cy~
+¬dd 0
+$FormCaption
+¬dw 8,'MS Sans Serif',0 ¬comment ;Fontsize, FontName
+align 4
+$EndControls
+¬define \01_Size ¬curpos + $RVABase - \01
+¬
+¬define $DialogItems 0
+¬linedef $EndControls
+¬
+
+
+¬linedef Begin VB.Label *
+¬local $Left,$Top,$Width,$Height,$Caption
+¬define $Style &H50000000 ¬comment WS_CHILD+WS_VISIBLE
+¬linedef Caption = *
+¬linedef $Caption
+¬dw \¬01,0
+¬
+¬
+¬linedef Left = *
+¬define $Left \¬01/15
+¬
+¬linedef Top = *
+¬define $Top \¬01/15
+¬
+¬linedef Width = *
+¬define $Width \¬01/15
+¬
+¬linedef Height = *
+¬define $Height \¬01/15
+¬
+¬linedef End
+¬linedef $EndControls
+¬expand $EndControls
+¬dd $Style
+¬dd 0 ¬comment ExStyle
+¬dw $Left,$Top,$Width,$Height ¬comment x,y,cx,cy
+¬dw -1 ;ID
+¬dw -1, &H82 ¬comment STATIC
+$Caption
+¬dw 0
+align 4
+¬
+¬define $DialogItems $DialogItems + 1
+¬
 
 
 ¬linedef $idata_libraries
@@ -2242,6 +2333,103 @@ call [DialogProc_ADDR]
 ¬if $temp28_last <> ¬curpos
 ¬db &H8B,&H45,$temp28 ¬comment mov eax,dword [ebp-x]
 ¬
+
+
+¬linedef Caption = *
+¬linedef $Caption45
+¬dw \01,0
+¬
+
+
+¬linedef ClientLeft = *
+¬define $ClientLeft31 \01/15
+
+
+¬linedef ClientTop = *
+¬define $ClientTop32 \01/15
+
+
+¬linedef ClientWidth = *
+¬define $ClientWidth33 \01/15
+
+
+¬linedef ClientHeight = *
+¬define $ClientHeight34 \01/15
+
+
+¬linedef EndDialog
+¬dd &H80C800C0
+¬dd 0 ¬comment ExStyle
+¬dw $DialogItems ¬comment items,
+¬dw $ClientLeft31,$ClientTop32,$ClientWidth33,$ClientHeight34 ¬comment x,y,cx,cy~
+¬dd 0
+$FormCaption35
+¬dw 8,'MS Sans Serif',0 ¬comment ;Fontsize, FontName
+align 4
+$EndControls
+¬define FormMiPrimerDialogo_Size ¬curpos + $RVABase - FormMiPrimerDialogo
+
+
+¬linedef $EndControls
+¬dd $Style
+¬dd 0 ¬comment ExStyle
+¬dw $Left36,$Top37,$Width38,$Height39 ¬comment x,y,cx,cy
+¬dw -1 ;ID
+¬dw -1, &H82 ¬comment STATIC
+$Caption40
+¬dw 0
+align 4
+¬dd $Style
+¬dd 0 ¬comment ExStyle
+¬dw $Left41,$Top42,$Width43,$Height44 ¬comment x,y,cx,cy
+¬dw -1 ;ID
+¬dw -1, &H82 ¬comment STATIC
+$Caption45
+¬dw 0
+align 4
+
+
+¬linedef $FormCaption35
+¬dw "Mi primer diálogo parametrizado",0
+
+
+¬linedef Left = *
+¬define $Left41 \01/15
+
+
+¬linedef Top = *
+¬define $Top42 \01/15
+
+
+¬linedef Width = *
+¬define $Width43 \01/15
+
+
+¬linedef Height = *
+¬define $Height44 \01/15
+
+
+¬linedef End
+¬linedef $EndControls
+¬expand $EndControls
+¬dd $Style
+¬dd 0 ¬comment ExStyle
+¬dw $Left41,$Top42,$Width43,$Height44 ¬comment x,y,cx,cy
+¬dw -1 ;ID
+¬dw -1, &H82 ¬comment STATIC
+$Caption45
+¬dw 0
+align 4
+¬
+¬define $DialogItems $DialogItems + 1
+
+
+¬linedef $Caption40
+¬dw "Etiqueta",0
+
+
+¬linedef $Caption45
+¬dw "Contexto",0
 
 
 
