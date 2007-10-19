@@ -655,3 +655,83 @@
 ¬linedef library "*.DLL"
    library \01.DLL
 ¬
+
+¬linedef Begin VB.Form *
+   ¬local $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight,$FormCaption
+   ¬define \01 ¬curpos + $RVABase
+   ¬linedef Caption = *
+      ¬linedef $FormCaption
+         ¬dw \¬01,0
+      ¬
+   ¬
+   ¬linedef ClientLeft = *
+      ¬define $ClientLeft \¬01/15
+   ¬
+   ¬linedef ClientTop = *
+      ¬define $ClientTop \¬01/15
+   ¬
+   ¬linedef ClientWidth = *
+      ¬define $ClientWidth \¬01/15
+   ¬
+   ¬linedef ClientHeight = *
+      ¬define $ClientHeight \¬01/15
+   ¬
+   ¬define $DialogItems
+   ¬linedef EndDialog
+      ¬dd &H80C800C0
+         ¬comment WS_CAPTION+WS_POPUP+WS_SYSMENU+DS_MODALFRAME+DS_SETFONT 
+         ¬comment WS_CAPTION          0x00C00000L     /* WS_BORDER | WS_DLGFRAME  */
+         ¬comment WS_POPUP            0x80000000L
+         ¬comment WS_SYSMENU          0x00080000L
+         ¬comment DS_MODALFRAME       0x80L   /* Can be combined with WS_CAPTION  */
+         ¬comment DS_SETFONT          0x40L   /* User specified font for Dlg controls */
+      ¬dd 0                   ¬comment ExStyle
+      ¬dw $DialogItems        ¬comment items,
+      ¬dw $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight       ¬comment x,y,cx,cy~
+      ¬dd 0
+      $FormCaption
+      ¬dw 8,'MS Sans Serif',0      ¬comment ;Fontsize, FontName
+      align 4
+      $EndControls
+      ¬define \01_Size ¬curpos + $RVABase - \01
+   ¬
+   ¬define $DialogItems 0
+   ¬linedef $EndControls
+   ¬
+¬
+
+¬linedef Begin VB.Label *
+   ¬local $Left,$Top,$Width,$Height,$Caption
+   ¬define $Style &H50000000           ¬comment WS_CHILD+WS_VISIBLE
+   ¬linedef Caption = *
+      ¬linedef $Caption
+         ¬dw \¬01,0
+      ¬
+   ¬
+   ¬linedef Left = *
+      ¬define $Left \¬01/15
+   ¬
+   ¬linedef Top = *
+      ¬define $Top \¬01/15
+   ¬
+   ¬linedef Width = *
+      ¬define $Width \¬01/15
+   ¬
+   ¬linedef Height = *
+      ¬define $Height \¬01/15
+   ¬
+   ¬linedef End
+      ¬linedef $EndControls
+         ¬expand $EndControls
+         ¬dd $Style
+         ¬dd 0                               ¬comment ExStyle
+         ¬dw $Left,$Top,$Width,$Height       ¬comment x,y,cx,cy
+         ¬dw -1 ;ID
+         ¬dw -1, &H82                        ¬comment STATIC
+         $Caption
+         ¬dw 0
+         align 4
+      ¬
+      ¬define $DialogItems $DialogItems + 1
+   ¬
+¬

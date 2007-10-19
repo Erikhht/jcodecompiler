@@ -866,9 +866,10 @@ Private Sub Form_Load()
    lNumLineDefs = -1
    cResultado = ""
    'ChDir "U:\Mis proyectos\fasm\VBAssembler"
+   ChDrive "E:\"
    ChDir "E:\Otros\Masm32\fasmw16723\VBAssembler"
    Open "code.asm" For Binary As 1
-   cCodigo = Replace(Replace(Replace(Input$(10000000, 1), vbTab, " "), "   ", " "), "  ", " ")
+   cCodigo = Replace(Replace(Replace(Replace(Replace(Input$(10000000, 1), vbTab, " "), "     ", " "), "    ", " "), "   ", " "), "  ", " ")
    Close 1
    
    Do
@@ -896,7 +897,7 @@ Private Sub Form_Load()
             cResto = cGetSep(Mid$(cResto, 2), "'")
          End If
          Open cResto For Binary As 1
-         cResto = Replace(Replace(Replace(Input$(10000000, 1), vbTab, " "), "   ", " "), "  ", " ")
+         cResto = Replace(Replace(Replace(Replace(Replace(Input$(10000000, 1), vbTab, " "), "     ", " "), "    ", " "), "   ", " "), "  ", " ")
          Close 1
          cCodigo = cResto & vbCrLf & cCodigo
       ElseIf bComiezaPor(cLinea, "¬if ", cResto) Then
