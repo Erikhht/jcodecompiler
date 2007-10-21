@@ -656,9 +656,13 @@
    library \01.DLL
 ¬
 
+¬define $FormNumber 0
+
 ¬linedef Begin VB.Form *
    ¬local $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight,$FormCaption
    ¬define \01 ¬curpos + $RVABase
+   ¬define $FormNumber $FormNumber + 1
+   ¬linedef \01_.Show ID_\01 $FormNumber
    ¬linedef Caption = *
       ¬linedef $FormCaption
          ¬dw \¬01,0
