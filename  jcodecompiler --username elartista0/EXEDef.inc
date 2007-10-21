@@ -171,7 +171,20 @@
      ;IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
      ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.
 
-     db '.text',0,0,0
+     db '.rsrc',0,0,0
+     dd $rsrc_end - $rsrc_start
+     dd $rsrc_start - $ImageBase ; VirtualAddress;
+     dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
+     dd $rsrc_file_start  ; PointerToRawData;
+     dd 0         ; PointerToRelocations;
+     dd 0         ; PointerToLinenumbers;
+     dw 0         ; NumberOfRelocations;
+     dw 0         ; NumberOfLinenumbers;
+     dd &H40000040 ; Characteristics;
+     ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+     ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.
+
+     db '.code',0,0,0
      dd $code_end - $code_start
      dd $code_start ; VirtualAddress;
      dd $code_end_aligned - $code_start ; SizeOfRawData; Size aligned to FileAlign
@@ -198,19 +211,6 @@
      dd &HC0000040 ; Characteristics;
      ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
      ;IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
-     ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.
-
-     db '.rsrc',0,0,0
-     dd $rsrc_end - $rsrc_start
-     dd $rsrc_start - $ImageBase ; VirtualAddress;
-     dd $rsrc_end_aligned - $rsrc_start ; SizeOfRawData; Size aligned to FileAlign
-     dd $rsrc_file_start  ; PointerToRawData;
-     dd 0         ; PointerToRelocations;
-     dd 0         ; PointerToLinenumbers;
-     dw 0         ; NumberOfRelocations;
-     dw 0         ; NumberOfLinenumbers;
-     dd &H40000040 ; Characteristics;
-     ;IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
      ;IMAGE_SCN_CNT_INITIALIZED_DATA       0x00000040  // Section contains initialized data.
 
       align &H200
