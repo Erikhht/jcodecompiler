@@ -14,72 +14,6 @@ import EndDialog   ¬comment (*,*)
 
 end section .idata
 
-
-begin section .code
-
-   $EntryPoint:
-function Main()
-   local hMod as dword
-   hMod = GetModuleHandleA(0)
-   if DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0) = 0 then
-      MessageBoxA(0,"Prueba","Cabecera",0)
-   end if
-
-      ;mov eax,[$Info]
-      ;push eax ; MB_OK 
-      ;push dword $Header
-      ;pushstr ""
-      ;push eax ; HWND_DESKTOP
-      ;call [MessageBoxA]
-
-      ;push dword 0 ; HWND_DESKTOP
-      ;call [ExitProcess]
-      ExitProcess(0)
-
-end function      
-
-const WM_INITDIALOG	= &H0110
-const WM_COMMAND = &H0111
-const WM_CLOSE = &H0010
-      
-function DialogProc(hwnddlg as dword, msg as dword, wparam as dword, lparam as dword)
-   local var1 as dword
-   local var2 as dword
-   if msg = dword WM_CLOSE then
-      var1 = 10
-      var2 = 20
-      var1 = var1 - var2
-      var2 = 0 - var1
-      EndDialog(hwnddlg,var2)
-      return 1
-   else
-      return 0
-   end if
-end function
-
-end section .code    
-
-begin section .data  
-      $bytes_count: dd &H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
-      
-      $Info: dd 0
-      $Header: db "Cabecera",0
-
-end section .data
-
 begin section .rsrc
       dd 0 ;Characteristics;
       dd 0 ;TimeDateStamp;
@@ -99,7 +33,8 @@ begin section .rsrc
       dw 0 ;NumberOfNamedEntries;
       dw 1 ;NumberOfIdEntries;      
       
-      dd 37 ;ID_DIALOG1
+      ¬define ID_FormMiPrimerDialogo 20
+      dd ID_FormMiPrimerDialogo ;ID_DIALOG1
       dd $direntry2 - $rsrc_start + &H80000000 ;Type
 
    $direntry2:
@@ -173,4 +108,69 @@ EndDialog
 ; DS_SETFOREGROUND    0x200L  /* not in win3.1 */
 
 end section .rsrc
+
+begin section .code
+
+   $EntryPoint:
+function Main()
+   local hMod as dword
+   hMod = GetModuleHandleA(0)
+   if DialogBoxParamA(hMod,dword ID_FormMiPrimerDialogo,0,dword DialogProc_ADDR,0) = 0 then
+      MessageBoxA(0,"Prueba","Cabecera",0)
+   end if
+
+      ;mov eax,[$Info]
+      ;push eax ; MB_OK 
+      ;push dword $Header
+      ;pushstr ""
+      ;push eax ; HWND_DESKTOP
+      ;call [MessageBoxA]
+
+      ;push dword 0 ; HWND_DESKTOP
+      ;call [ExitProcess]
+      ExitProcess(0)
+
+end function      
+
+const WM_INITDIALOG	= &H0110
+const WM_COMMAND = &H0111
+const WM_CLOSE = &H0010
+      
+function DialogProc(hwnddlg as dword, msg as dword, wparam as dword, lparam as dword)
+   local var1 as dword
+   local var2 as dword
+   if msg = dword WM_CLOSE then
+      var1 = 10
+      var2 = 20
+      var1 = var1 - var2
+      var2 = 0 - var1
+      EndDialog(hwnddlg,var2)
+      return 1
+   else
+      return 0
+   end if
+end function
+
+end section .code    
+
+begin section .data  
+      $bytes_count: dd &H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      dd &H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678,&H12345678
+      
+      $Info: dd 0
+      $Header: db "Cabecera",0
+
+end section .data
 end file

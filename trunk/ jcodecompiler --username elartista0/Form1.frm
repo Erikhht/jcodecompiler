@@ -865,9 +865,10 @@ Private Sub Form_Load()
    lNumLabels = -1
    lNumLineDefs = -1
    cResultado = ""
-   'ChDir "U:\Mis proyectos\fasm\VBAssembler"
-   ChDrive "E:\"
-   ChDir "E:\Otros\Masm32\fasmw16723\VBAssembler"
+   ChDrive "U:\"
+   ChDir "U:\Mis proyectos\fasm\VBAssembler"
+   'ChDrive "E:\"
+   'ChDir "E:\Otros\Masm32\fasmw16723\VBAssembler"
    Open "code.asm" For Binary As 1
    cCodigo = Replace(Replace(Replace(Replace(Replace(Input$(10000000, 1), vbTab, " "), "     ", " "), "    ", " "), "   ", " "), "  ", " ")
    Close 1
