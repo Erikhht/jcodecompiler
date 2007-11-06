@@ -112,7 +112,11 @@
 00000086: ¬dw 4
 ¬comment dd ¬timestamp ; Time and date when the file was created
 ¬comment dd ¬timestamp
+<<<<<<< .mine
+00000088: ¬dd 1194371349
+=======
 00000088: ¬dd 1192987430
+>>>>>>> .r7
 ¬comment dd 0 ; PointerToSymbolTable
 ¬comment dd 0
 0000008C: ¬dd 0
@@ -207,15 +211,15 @@
 ¬comment dw 0 ;DllCharacteristics;
 ¬comment dw 0
 000000DE: ¬dw 0
-¬comment dd &H1000 ;SizeOfStackReserve;
-¬comment dd &H1000
-000000E0: ¬dd &H1000
-¬comment dd &H1000 ;SizeOfStackCommit;
-¬comment dd &H1000
-000000E4: ¬dd &H1000
-¬comment dd &H10000 ;SizeOfHeapReserve;
-¬comment dd &H10000
-000000E8: ¬dd &H10000
+¬comment dd &H100000 ;SizeOfStackReserve;
+¬comment dd &H100000
+000000E0: ¬dd &H100000
+¬comment dd &H100000 ;SizeOfStackCommit;
+¬comment dd &H100000
+000000E4: ¬dd &H100000
+¬comment dd &H100000 ;SizeOfHeapReserve;
+¬comment dd &H100000
+000000E8: ¬dd &H100000
 ¬comment dd 0 ;SizeOfHeapCommit;
 ¬comment dd 0
 000000EC: ¬dd 0
@@ -812,6 +816,7 @@
 ¬comment $EntryPoint:
 00000800: ¬define $EntryPoint 7340032    ¬comment &H00700000 = ¬curpos + $ImageBase + $RVABase
 ¬comment function Main()
+00000600: ¬align 4
 ¬comment Main_ADDR:
 00000800: ¬define Main_ADDR 7340032    ¬comment &H00700000 = ¬curpos + $ImageBase + $RVABase
 00000800: ¬define $loctotal 
@@ -829,8 +834,13 @@
 00000806: ¬define $locnumber 0    ¬comment &H00000000 = 0
 ¬comment params
 ¬comment local hMod as dword
+<<<<<<< .mine
+00000606: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+=======
 00000806: ¬define $temp33 0    ¬comment &H00000000 = -$locnumber
 00000806: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+>>>>>>> .r7
+00000606: ¬define $temp18 -4    ¬comment &HFFFFFFFC = -$locnumber
 ¬comment hMod = GetModuleHandleA(0)
 ¬comment = GetModuleHandleA(0)
 ¬comment GetModuleHandleA(0)
@@ -842,6 +852,17 @@
 00000809: ¬db &H15
 0000080A: ¬dd 5242966
 ¬comment mov dword [ebp-x],eax
+<<<<<<< .mine
+0000060E: ¬db &H89
+0000060F: ¬db &H45
+00000610: ¬db -4
+00000611: ¬define $temp18_last 1553    ¬comment &H00000611 = ¬curpos
+¬comment if DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0) = 0 then
+¬comment jmpexpr DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0) = 0
+¬comment DialogBoxParamA(hMod,37,0,dword DialogProc_ADDR,0)
+¬comment pushpar hMod,37,0,dword DialogProc_ADDR,0
+¬comment pushpar 37,0,dword DialogProc_ADDR,0
+=======
 0000080E: ¬db &H89
 0000080F: ¬db &H45
 00000810: ¬db 0
@@ -851,6 +872,7 @@
 ¬comment DialogBoxParamA(hMod,dword ID_FormMiPrimerDialogo,0,dword DialogProc_ADDR,0)
 ¬comment pushpar hMod,dword ID_FormMiPrimerDialogo,0,dword DialogProc_ADDR,0
 ¬comment pushpar dword ID_FormMiPrimerDialogo,0,dword DialogProc_ADDR,0
+>>>>>>> .r7
 ¬comment pushpar 0,dword DialogProc_ADDR,0
 ¬comment pushpar dword DialogProc_ADDR,0
 ¬comment pushpar 0
@@ -875,10 +897,17 @@
 ¬comment pushpar hMod
 ¬comment hMod
 ¬comment mov eax,dword [ebp-x]
+<<<<<<< .mine
+00000620: ¬db &H8B
+00000621: ¬db &H45
+00000622: ¬db -4
+00000623: ¬db &H50
+=======
 00000821: ¬db &H8B
 00000822: ¬db &H45
 00000823: ¬db 0
 00000824: ¬db &H50
+>>>>>>> .r7
 ¬comment call [DialogBoxParamA_ADDR]
 00000825: ¬db &HFF
 00000826: ¬db &H15
@@ -888,10 +917,17 @@
 0000082C: ¬db &HF8
 0000082D: ¬db 0
 ¬comment jne
+<<<<<<< .mine
+0000062D: ¬db &HF
+0000062E: ¬db &H85
+0000062F: ¬comment recall 1583 $elselbl19 - 1583 - 4
+0000062F: ¬dd $elselbl19 - 1583 - 4
+=======
 0000082E: ¬db &HF
 0000082F: ¬db &H85
 00000830: ¬comment recall 2096 $elselbl34 - 2096 - 4 - 4194304 - 3143680
 00000830: ¬dd $elselbl34 - 2096 - 4 - 4194304 - 3143680
+>>>>>>> .r7
 ¬comment MessageBoxA(0,"Prueba","Cabecera",0)
 ¬comment pushpar 0,"Prueba","Cabecera",0
 ¬comment pushpar "Prueba","Cabecera",0
@@ -915,7 +951,11 @@
 00000843: ¬db &H15
 00000844: ¬dd 5243043
 ¬comment end if
+<<<<<<< .mine
+00000647: ¬define $elselbl19 1607    ¬comment &H00000647 = ¬curpos
+=======
 00000848: ¬define $elselbl34 7340104    ¬comment &H00700048 = ¬curpos + $ImageBase + $RVABase
+>>>>>>> .r7
 ¬comment ;mov eax,[$Info]
 ¬comment ;push eax ; MB_OK
 ¬comment ;push dword $Header
@@ -946,181 +986,407 @@
 ¬comment const WM_CLOSE = &H0010
 00000854: ¬define WM_CLOSE 16    ¬comment &H00000010 = &H0010
 ¬comment function DialogProc(hwnddlg as dword, msg as dword, wparam as dword, lparam as dword)
+00000653: ¬align 4
 ¬comment DialogProc_ADDR:
+<<<<<<< .mine
+00000654: ¬define DialogProc_ADDR 6291540    ¬comment &H00600054 = ¬curpos + $ImageBase + $RVABase
+00000654: ¬define $loctotal 
+=======
 00000854: ¬define DialogProc_ADDR 7340116    ¬comment &H00700054 = ¬curpos + $ImageBase + $RVABase
 00000854: ¬define $loctotal 
+>>>>>>> .r7
 ¬comment push ebp
+<<<<<<< .mine
+00000654: ¬db &H55
+=======
 00000854: ¬db &H55
+>>>>>>> .r7
 ¬comment mov ebp,esp
+<<<<<<< .mine
+00000655: ¬db &H89
+00000656: ¬db &HE5
+=======
 00000855: ¬db &H89
 00000856: ¬db &HE5
+>>>>>>> .r7
 ¬comment sub esp,locals &H81EC (DWORD) (byte)
+<<<<<<< .mine
+00000657: ¬db &H83
+00000658: ¬db &HEC
+00000659: ¬comment recall 1625 $loctotal
+00000659: ¬db $loctotal
+0000065A: ¬define $parnumber 4    ¬comment &H00000004 = 4
+0000065A: ¬define $locnumber 0    ¬comment &H00000000 = 0
+=======
 00000857: ¬db &H83
 00000858: ¬db &HEC
 00000859: ¬comment recall 2137 $loctotal
 00000859: ¬db $loctotal
 0000085A: ¬define $parnumber 4    ¬comment &H00000004 = 4
 0000085A: ¬define $locnumber 0    ¬comment &H00000000 = 0
+>>>>>>> .r7
 ¬comment params hwnddlg as dword, msg as dword, wparam as dword, lparam as dword
 ¬comment params hwnddlg as dword
+<<<<<<< .mine
+0000065A: ¬define $parnumber 8    ¬comment &H00000008 = $parnumber + 4
+0000065A: ¬define $temp23 8    ¬comment &H00000008 = $parnumber
+=======
 0000085A: ¬define $parnumber 8    ¬comment &H00000008 = $parnumber + 4
 0000085A: ¬define $temp38 8    ¬comment &H00000008 = $parnumber
+>>>>>>> .r7
 ¬comment params  msg as dword, wparam as dword, lparam as dword
 ¬comment params msg as dword
+<<<<<<< .mine
+0000065A: ¬define $parnumber 12    ¬comment &H0000000C = $parnumber + 4
+0000065A: ¬define $temp24 12    ¬comment &H0000000C = $parnumber
+=======
 0000085A: ¬define $parnumber 12    ¬comment &H0000000C = $parnumber + 4
 0000085A: ¬define $temp39 12    ¬comment &H0000000C = $parnumber
+>>>>>>> .r7
 ¬comment params  wparam as dword, lparam as dword
 ¬comment params wparam as dword
+<<<<<<< .mine
+0000065A: ¬define $parnumber 16    ¬comment &H00000010 = $parnumber + 4
+0000065A: ¬define $temp25 16    ¬comment &H00000010 = $parnumber
+=======
 0000085A: ¬define $parnumber 16    ¬comment &H00000010 = $parnumber + 4
 0000085A: ¬define $temp40 16    ¬comment &H00000010 = $parnumber
+>>>>>>> .r7
 ¬comment params  lparam as dword
+<<<<<<< .mine
+0000065A: ¬define $parnumber 20    ¬comment &H00000014 = $parnumber + 4
+0000065A: ¬define $temp26 20    ¬comment &H00000014 = $parnumber
+=======
 0000085A: ¬define $parnumber 20    ¬comment &H00000014 = $parnumber + 4
 0000085A: ¬define $temp41 20    ¬comment &H00000014 = $parnumber
+>>>>>>> .r7
 ¬comment local var1 as dword
+<<<<<<< .mine
+0000065A: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+0000065A: ¬define $temp27 -4    ¬comment &HFFFFFFFC = -$locnumber
+=======
 0000085A: ¬define $temp42 0    ¬comment &H00000000 = -$locnumber
 0000085A: ¬define $locnumber 4    ¬comment &H00000004 = $locnumber + 4
+>>>>>>> .r7
 ¬comment local var2 as dword
+<<<<<<< .mine
+0000065A: ¬define $locnumber 8    ¬comment &H00000008 = $locnumber + 4
+0000065A: ¬define $temp28 -8    ¬comment &HFFFFFFF8 = -$locnumber
+=======
 0000085A: ¬define $temp43 -4    ¬comment &HFFFFFFFC = -$locnumber
 0000085A: ¬define $locnumber 8    ¬comment &H00000008 = $locnumber + 4
+>>>>>>> .r7
 ¬comment if msg = dword WM_CLOSE then
 ¬comment jmpexpr msg = dword WM_CLOSE
 ¬comment dword WM_CLOSE
 ¬comment mov eax,x
+<<<<<<< .mine
+0000065A: ¬db &HB8
+0000065B: ¬dd 16
+=======
 0000085A: ¬db &HB8
 0000085B: ¬dd 16
+>>>>>>> .r7
 ¬comment mov ebx,eax
+<<<<<<< .mine
+0000065F: ¬db &H89
+00000660: ¬db &HC3
+=======
 0000085F: ¬db &H89
 00000860: ¬db &HC3
+>>>>>>> .r7
 ¬comment msg
 ¬comment mov eax,dword [ebp-x]
+<<<<<<< .mine
+00000661: ¬db &H8B
+00000662: ¬db &H45
+00000663: ¬db 12
+=======
 00000861: ¬db &H8B
 00000862: ¬db &H45
 00000863: ¬db 12
+>>>>>>> .r7
 ¬comment cmp eax,ebx
+<<<<<<< .mine
+00000664: ¬db &H39
+00000665: ¬db &HD8
+=======
 00000864: ¬db &H39
 00000865: ¬db &HD8
+>>>>>>> .r7
 ¬comment jne
+<<<<<<< .mine
+00000666: ¬db &HF
+00000667: ¬db &H85
+00000668: ¬comment recall 1640 $elselbl29 - 1640 - 4
+00000668: ¬dd $elselbl29 - 1640 - 4
+=======
 00000866: ¬db &HF
 00000867: ¬db &H85
 00000868: ¬comment recall 2152 $elselbl44 - 2152 - 4 - 4194304 - 3143680
 00000868: ¬dd $elselbl44 - 2152 - 4 - 4194304 - 3143680
+>>>>>>> .r7
 ¬comment var1 = 10
 ¬comment = 10
 ¬comment 10
 ¬comment mov eax,x
+<<<<<<< .mine
+0000066C: ¬db &HB8
+0000066D: ¬dd 10
+=======
 0000086C: ¬db &HB8
 0000086D: ¬dd 10
+>>>>>>> .r7
 ¬comment mov dword [ebp-x],eax
+<<<<<<< .mine
+00000671: ¬db &H89
+00000672: ¬db &H45
+00000673: ¬db -4
+00000674: ¬define $temp27_last 1652    ¬comment &H00000674 = ¬curpos
+=======
 00000871: ¬db &H89
 00000872: ¬db &H45
 00000873: ¬db 0
 00000874: ¬define $temp42_last 2164    ¬comment &H00000874 = ¬curpos
+>>>>>>> .r7
 ¬comment var2 = 20
 ¬comment = 20
 ¬comment 20
 ¬comment mov eax,x
+<<<<<<< .mine
+00000674: ¬db &HB8
+00000675: ¬dd 20
+=======
 00000874: ¬db &HB8
 00000875: ¬dd 20
+>>>>>>> .r7
 ¬comment mov dword [ebp-x],eax
+<<<<<<< .mine
+00000679: ¬db &H89
+0000067A: ¬db &H45
+0000067B: ¬db -8
+0000067C: ¬define $temp28_last 1660    ¬comment &H0000067C = ¬curpos
+=======
 00000879: ¬db &H89
 0000087A: ¬db &H45
 0000087B: ¬db -4
 0000087C: ¬define $temp43_last 2172    ¬comment &H0000087C = ¬curpos
+>>>>>>> .r7
 ¬comment var1 = var1 - var2
 ¬comment = var1 - var2
 ¬comment = var2
 ¬comment var2
 ¬comment mov ebx,eax
+<<<<<<< .mine
+0000067C: ¬db &H89
+0000067D: ¬db &HC3
+=======
 0000087C: ¬db &H89
 0000087D: ¬db &HC3
+>>>>>>> .r7
 ¬comment = var1
 ¬comment var1
 ¬comment mov eax,dword [ebp-x]
+<<<<<<< .mine
+0000067E: ¬db &H8B
+0000067F: ¬db &H45
+00000680: ¬db -4
+00000681: ¬db &H29
+00000682: ¬db &HD8
+=======
 0000087E: ¬db &H8B
 0000087F: ¬db &H45
 00000880: ¬db 0
 00000881: ¬db &H29
 00000882: ¬db &HD8
+>>>>>>> .r7
 ¬comment mov dword [ebp-x],eax
+<<<<<<< .mine
+00000683: ¬db &H89
+00000684: ¬db &H45
+00000685: ¬db -4
+00000686: ¬define $temp27_last 1670    ¬comment &H00000686 = ¬curpos
+=======
 00000883: ¬db &H89
 00000884: ¬db &H45
 00000885: ¬db 0
 00000886: ¬define $temp42_last 2182    ¬comment &H00000886 = ¬curpos
+>>>>>>> .r7
 ¬comment var2 = 0 - var1
 ¬comment = 0 - var1
 ¬comment = var1
 ¬comment var1
 ¬comment mov ebx,eax
+<<<<<<< .mine
+00000686: ¬db &H89
+00000687: ¬db &HC3
+=======
 00000886: ¬db &H89
 00000887: ¬db &HC3
+>>>>>>> .r7
 ¬comment = 0
 ¬comment 0
 ¬comment xor eax,eax
+<<<<<<< .mine
+00000688: ¬db &H31
+00000689: ¬db &HC0
+0000068A: ¬db &H29
+0000068B: ¬db &HD8
+=======
 00000888: ¬db &H31
 00000889: ¬db &HC0
 0000088A: ¬db &H29
 0000088B: ¬db &HD8
+>>>>>>> .r7
 ¬comment mov dword [ebp-x],eax
+<<<<<<< .mine
+0000068C: ¬db &H89
+0000068D: ¬db &H45
+0000068E: ¬db -8
+0000068F: ¬define $temp28_last 1679    ¬comment &H0000068F = ¬curpos
+=======
 0000088C: ¬db &H89
 0000088D: ¬db &H45
 0000088E: ¬db -4
 0000088F: ¬define $temp43_last 2191    ¬comment &H0000088F = ¬curpos
+>>>>>>> .r7
 ¬comment EndDialog(hwnddlg,var2)
 ¬comment pushpar hwnddlg,var2
 ¬comment pushpar var2
 ¬comment var2
+<<<<<<< .mine
+0000068F: ¬db &H50
+=======
 0000088F: ¬db &H50
+>>>>>>> .r7
 ¬comment pushpar hwnddlg
 ¬comment hwnddlg
 ¬comment mov eax,dword [ebp-x]
+<<<<<<< .mine
+00000690: ¬db &H8B
+00000691: ¬db &H45
+00000692: ¬db 8
+00000693: ¬db &H50
+=======
 00000890: ¬db &H8B
 00000891: ¬db &H45
 00000892: ¬db 8
 00000893: ¬db &H50
+>>>>>>> .r7
 ¬comment call [EndDialog_ADDR]
+<<<<<<< .mine
+00000694: ¬db &HFF
+00000695: ¬db &H15
+00000696: ¬dd 5243047
+=======
 00000894: ¬db &HFF
 00000895: ¬db &H15
 00000896: ¬dd 5243047
+>>>>>>> .r7
 ¬comment return 1
 ¬comment 1
 ¬comment mov eax,x
+<<<<<<< .mine
+0000069A: ¬db &HB8
+0000069B: ¬dd 1
+=======
 0000089A: ¬db &HB8
 0000089B: ¬dd 1
+>>>>>>> .r7
 ¬comment leave
+<<<<<<< .mine
+0000069F: ¬db &HC9
+=======
 0000089F: ¬db &HC9
+>>>>>>> .r7
 ¬comment retn <val>
+<<<<<<< .mine
+000006A0: ¬db &HC2
+000006A1: ¬dw 16
+000006A3: ¬define $lastreturn 1699    ¬comment &H000006A3 = ¬curpos
+=======
 000008A0: ¬db &HC2
 000008A1: ¬dw 16
+>>>>>>> .r7
 ¬comment else
+<<<<<<< .mine
+000006A3: ¬define $elselbl29 1699    ¬comment &H000006A3 = ¬curpos
+=======
 ¬comment jmp
 000008A3: ¬db 233
 000008A4: ¬comment recall 2212 $endiflbl45 - 2212 - 4 - 4194304 - 3143680
 000008A4: ¬dd $endiflbl45 - 2212 - 4 - 4194304 - 3143680
 000008A8: ¬define $elselbl44 7340200    ¬comment &H007000A8 = ¬curpos + $ImageBase + $RVABase
+>>>>>>> .r7
 ¬comment return 0
 ¬comment 0
 ¬comment xor eax,eax
+<<<<<<< .mine
+000006A3: ¬db &H31
+000006A4: ¬db &HC0
+=======
 000008A8: ¬db &H31
 000008A9: ¬db &HC0
+>>>>>>> .r7
 ¬comment leave
+<<<<<<< .mine
+000006A5: ¬db &HC9
+=======
 000008AA: ¬db &HC9
+>>>>>>> .r7
 ¬comment retn <val>
+<<<<<<< .mine
+000006A6: ¬db &HC2
+000006A7: ¬dw 16
+000006A9: ¬define $lastreturn 1705    ¬comment &H000006A9 = ¬curpos
+=======
 000008AB: ¬db &HC2
 000008AC: ¬dw 16
+>>>>>>> .r7
 ¬comment end if
+<<<<<<< .mine
+000006A9: ¬define $endiflbl30 1705    ¬comment &H000006A9 = ¬curpos
+¬comment return 2
+¬comment 2
+¬comment mov eax,x
+000006A9: ¬db &HB8
+000006AA: ¬dd 2
+=======
 000008AE: ¬define $endiflbl45 7340206    ¬comment &H007000AE = ¬curpos + $ImageBase + $RVABase
 ¬comment end function
 000008AE: ¬define $loctotal 8    ¬comment &H00000008 = $locnumber
+>>>>>>> .r7
 ¬comment leave
+<<<<<<< .mine
+000006AE: ¬db &HC9
+=======
 000008AE: ¬db &HC9
+>>>>>>> .r7
 ¬comment retn <val>
+<<<<<<< .mine
+000006AF: ¬db &HC2
+000006B0: ¬dw 16
+000006B2: ¬define $lastreturn 1714    ¬comment &H000006B2 = ¬curpos
+¬comment end function
+000006B2: ¬define $loctotal 8    ¬comment &H00000008 = $locnumber
+=======
 000008AF: ¬db &HC2
 000008B0: ¬dw 16
+>>>>>>> .r7
 ¬comment end section .code
+<<<<<<< .mine
+000006B2: ¬define $code_end 2097330    ¬comment &H002000B2 = $RVABase + ¬curpos
+=======
 000008B2: ¬define $code_end 3145906    ¬comment &H003000B2 = $RVABase + ¬curpos
+>>>>>>> .r7
 ¬comment align &H200
+<<<<<<< .mine
+000006B2: ¬align &H200
+00000800: ¬define $code_end_aligned 2097664    ¬comment &H00200200 = $RVABase + ¬curpos
+=======
 000008B2: ¬align &H200
 00000A00: ¬define $code_end_aligned 3146240    ¬comment &H00300200 = $RVABase + ¬curpos
+>>>>>>> .r7
 ¬comment begin section .data
 00000A00: ¬define $RVABase 4191744    ¬comment &H003FF600 = $RVABase + ¬curpos - 1 / &H100000 + 1 * &H100000 - ¬curpos
 00000A00: ¬define $data_file_start 2560    ¬comment &H00000A00 = ¬curpos
@@ -1332,12 +1598,66 @@
 ¬define $loctotal 8
 ¬define $parnumber 20
 ¬define $locnumber 8
+<<<<<<< .mine
+¬define $temp18 -4
+¬define $temp18_last 1553
+¬define $elselbl19 1607
+=======
 ¬define $temp33 0
 ¬define $temp33_last 2065
 ¬define $elselbl34 7340104
+>>>>>>> .r7
 ¬define WM_INITDIALOG 272
 ¬define WM_COMMAND 273
 ¬define WM_CLOSE 16
+<<<<<<< .mine
+¬define DialogProc_ADDR 6291540
+¬define $temp23 8
+¬define $temp24 12
+¬define $temp25 16
+¬define $temp26 20
+¬define $temp27 -4
+¬define $temp28 -8
+¬define $temp27_last 1670
+¬define $temp28_last 1679
+¬define $lastreturn 1714
+¬define $elselbl29 1699
+¬define $endiflbl30 1705
+¬define $code_end 2097330
+¬define $code_end_aligned 2097664
+¬define $data_file_start 2048
+¬define $data_start 3145728
+¬define $bytes_count 7340032
+¬define $Info 7340452
+¬define $Header 7340456
+¬define $temp21 7340465
+¬define $temp22 7340474
+¬define $data_end 3146177
+¬define $data_end_aligned 3146240
+¬define $rsrc_file_start 2560
+¬define $rsrc_start 8388608
+¬define $direntry1 8388632
+¬define $direntry2 8388656
+¬define $dialogs 8388680
+¬define FormMiPrimerDialogo 4194392
+¬define $DialogItems 2
+¬define $ClientLeft31 8
+¬define $ClientTop32 8
+¬define $ClientWidth33 167
+¬define $ClientHeight34 167
+¬define $Style 1342177280
+¬define $Left36 8
+¬define $Top37 8
+¬define $Width38 32
+¬define $Height39 13
+¬define $Left41 8
+¬define $Top42 21
+¬define $Width43 32
+¬define $Height44 13
+¬define FormMiPrimerDialogo_Size 204
+¬define $rsrc_end 8388900
+¬define $rsrc_end_aligned 8389120
+=======
 ¬define DialogProc_ADDR 7340116
 ¬define $temp38 8
 ¬define $temp39 12
@@ -1360,6 +1680,7 @@
 ¬define $temp37 8389050
 ¬define $data_end 4194753
 ¬define $data_end_aligned 4194816
+>>>>>>> .r7
 ¬define $image_end 9437184
 
 ¬linedef *;*
@@ -1493,9 +1814,9 @@ dd $header_end - $image_start ;SizeOfHeaders;
 dd 0 ;CheckSum;
 dw 2 ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
 dw 0 ;DllCharacteristics;
-dd &H1000 ;SizeOfStackReserve;
-dd &H1000 ;SizeOfStackCommit;
-dd &H10000 ;SizeOfHeapReserve;
+dd &H100000 ;SizeOfStackReserve;
+dd &H100000 ;SizeOfStackCommit;
+dd &H100000 ;SizeOfHeapReserve;
 dd 0 ;SizeOfHeapCommit;
 dd 0 ;LoaderFlags;
 dd 16 ;NumberOfRvaAndSizes;
@@ -1689,6 +2010,7 @@ $temp:
 
 
 ¬linedef function *(*)
+¬align 4
 \01_ADDR:
 ¬define $loctotal
 ¬db &H55 ¬comment push ebp
@@ -1749,6 +2071,7 @@ params \02
 
 ¬linedef local * as dword
 ¬local $temp
+¬define $locnumber $locnumber + 4
 ¬define $temp -$locnumber
 ¬linedef \01 = *
 = \¬01
@@ -1760,14 +2083,15 @@ params \02
 ¬db &H8B,&H45,$temp ¬comment mov eax,dword [ebp-x]
 ¬
 ¬
-¬define $locnumber $locnumber + 4
 
 
 ¬linedef end function
 ¬define $loctotal $locnumber
+¬if $lastreturn <> ¬curpos
 ¬db &HC9 ¬comment leave
 ¬db &HC2 ¬comment retn <val>
 ¬dw $parnumber - 4
+¬
 
 
 ¬linedef return *
@@ -1775,6 +2099,7 @@ params \02
 ¬db &HC9 ¬comment leave
 ¬db &HC2 ¬comment retn <val>
 ¬dw $parnumber - 4
+¬define $lastreturn ¬curpos
 
 
 ¬linedef dword *
@@ -1829,6 +2154,11 @@ xor eax,eax
 ¬linedef 9*
 ¬db &HB8 ¬comment mov eax,x
 ¬dd 9\01
+
+
+¬linedef &H*
+¬db &HB8 ¬comment mov eax,x
+¬dd &H\01
 
 
 ¬linedef "*
@@ -1890,21 +2220,23 @@ $temp: db "\01,0
 ¬linedef if * then
 ¬local $elselbl, $endiflbl
 jmpexpr \01
-¬dd $elselbl - ¬curpos - 4 - $ImageBase - $RVABase
+¬dd $elselbl - ¬curpos - 4
 ¬pushdef else
-¬db Chr$(&HE9) ¬comment jmp
-¬dd $endiflbl - ¬curpos - 4 - $ImageBase - $RVABase
-¬define $elselbl ¬curpos + $ImageBase + $RVABase
+¬if $lastreturn <> ¬curpos
+¬db &HE9 ¬comment jmp
+¬dd $endiflbl - ¬curpos - 4
+¬
+¬define $elselbl ¬curpos
 ¬linedef end if
 ¬popdef else
 ¬popdef end if
-¬define $endiflbl ¬curpos + $ImageBase + $RVABase
+¬define $endiflbl ¬curpos
 ¬
 ¬
 ¬pushdef end if
 ¬popdef else
 ¬popdef end if
-¬define $elselbl ¬curpos + $ImageBase + $RVABase
+¬define $elselbl ¬curpos
 ¬
 
 
