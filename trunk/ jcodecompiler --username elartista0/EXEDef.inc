@@ -134,9 +134,9 @@
      dd 0      ;CheckSum;
      dw 2      ;Subsystem; IMAGE_SUBSYSTEM_WINDOWS_GUI
      dw 0      ;DllCharacteristics;
-     dd &H1000  ;SizeOfStackReserve;
-     dd &H1000  ;SizeOfStackCommit;
-     dd &H10000 ;SizeOfHeapReserve;
+     dd &H100000  ;SizeOfStackReserve;
+     dd &H100000  ;SizeOfStackCommit;
+     dd &H100000 ;SizeOfHeapReserve;
      dd 0      ;SizeOfHeapCommit;
      dd 0      ;LoaderFlags;
      dd 16     ;NumberOfRvaAndSizes;
@@ -331,6 +331,7 @@
 ¬
 
 ¬linedef function *(*)
+   ¬align 4
    \01_ADDR:
    ¬define $loctotal
    ¬db &H55             ¬comment push ebp
@@ -372,6 +373,10 @@
 
 ¬linedef const * = *
    ¬define \01 \02
+   ¬comment ¬linedef \01
+   ¬comment    ¬db &HB8
+   ¬comment    ¬dd \02
+   ¬comment ¬
 ¬
 
 ¬linedef global * as dword
@@ -391,6 +396,7 @@
 
 ¬linedef local * as dword
    ¬local $temp
+   ¬define $locnumber $locnumber + 4
    ¬define $temp -$locnumber
    ¬linedef \01 = *
       = \¬01
@@ -402,14 +408,15 @@
          ¬db &H8B,&H45,$temp  ¬comment mov eax,dword [ebp-x]
       ¬
    ¬
-   ¬define $locnumber $locnumber + 4
 ¬
 
 ¬linedef end function
    ¬define $loctotal $locnumber
-   ¬db &HC9         ¬comment leave
-   ¬db &HC2         ¬comment retn <val>
-   ¬dw $parnumber - 4
+   ¬if $lastreturn <> ¬curpos
+      ¬db &HC9         ¬comment leave
+      ¬db &HC2         ¬comment retn <val>
+      ¬dw $parnumber - 4
+   ¬
 ¬
 
 ¬linedef return *
@@ -417,6 +424,7 @@
    ¬db &HC9         ¬comment leave
    ¬db &HC2         ¬comment retn <val>
    ¬dw $parnumber - 4
+   ¬define $lastreturn ¬curpos
 ¬
 
 ¬linedef dword *
@@ -464,6 +472,10 @@
 ¬linedef 9*
    ¬db &HB8        ¬comment mov eax,x
    ¬dd 9\01
+¬
+¬linedef &H*
+   ¬db &HB8        ¬comment mov eax,x
+   ¬dd &H\01
 ¬
 ¬linedef "*
    ¬local $temp
@@ -527,21 +539,23 @@
 ¬linedef if * then
    ¬local $elselbl, $endiflbl
    jmpexpr \01
-   ¬dd $elselbl - ¬curpos - 4 - $ImageBase - $RVABase
+   ¬dd $elselbl - ¬curpos - 4
    ¬pushdef else
-      ¬db Chr$(&HE9)    ¬comment jmp
-      ¬dd $endiflbl - ¬curpos - 4 - $ImageBase - $RVABase
-      ¬define $elselbl ¬curpos + $ImageBase + $RVABase
+      ¬if $lastreturn <> ¬curpos
+         ¬db &HE9    ¬comment jmp
+         ¬dd $endiflbl - ¬curpos - 4
+      ¬
+      ¬define $elselbl ¬curpos
       ¬linedef end if
          ¬popdef else
          ¬popdef end if
-         ¬define $endiflbl ¬curpos + $ImageBase + $RVABase
+         ¬define $endiflbl ¬curpos
       ¬
    ¬
    ¬pushdef end if
       ¬popdef else
       ¬popdef end if
-      ¬define $elselbl ¬curpos + $ImageBase + $RVABase
+      ¬define $elselbl ¬curpos
    ¬
 ¬
 
