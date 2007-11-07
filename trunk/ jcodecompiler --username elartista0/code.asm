@@ -33,7 +33,7 @@ begin section .rsrc
       dw 0 ;NumberOfNamedEntries;
       dw 1 ;NumberOfIdEntries;      
       
-      ¬define ID_FormMiPrimerDialogo 20
+      ¬comment ¬define ID_FormMiPrimerDialogo 20
       dd ID_FormMiPrimerDialogo ;ID_DIALOG1
       dd $direntry2 - $rsrc_start + &H80000000 ;Type
 
@@ -140,10 +140,7 @@ function DialogProc(hwnddlg as dword, msg as dword, wparam as dword, lparam as d
    local var1 as dword
    local var2 as dword
    if msg = dword WM_CLOSE then
-      var1 = 10
-      var2 = 20
-      var1 = var1 - var2
-      var2 = 0 - var1
+      var2 = 0 
       EndDialog(hwnddlg,var2)
       return 1
    else
