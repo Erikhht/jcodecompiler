@@ -798,13 +798,17 @@ Private Sub ProcesarLINEDEF(ByRef cCodigo As String, ByRef cRes As String, ByVal
    iNumLindef = 1
    Do
       If Left$(cLinea, 9) = "¬linedef " Then
+         cLineDef = cLineDef & "¬comment level " & iNumLindef & vbCrLf
          iNumLindef = iNumLindef + 1
       ElseIf Left$(cLinea, 9) = "¬pushdef " Then
+         cLineDef = cLineDef & "¬comment level " & iNumLindef & vbCrLf
          iNumLindef = iNumLindef + 1
       ElseIf Left$(cLinea, 4) = "¬if " Then
+         cLineDef = cLineDef & "¬comment level " & iNumLindef & vbCrLf
          iNumLindef = iNumLindef + 1
       ElseIf cLinea = "¬" Then
          iNumLindef = iNumLindef - 1
+         cLineDef = cLineDef & "¬comment down level " & iNumLindef & vbCrLf
          If iNumLindef = 0 Then
             Exit Do
          End If
@@ -826,9 +830,9 @@ Private Sub ProcesarLINEDEF(ByRef cCodigo As String, ByRef cRes As String, ByVal
                Exit For
             End If
          Next
-      ElseIf Not bComiezaPor(cLinea, "¬comment ", cVals) Then
+      ElseIf Not bComiezaPor(cLinea, "¬comment ", cTemp) Then
          cLineDef = cLineDef & cLinea & vbCrLf
-       End If
+      End If
       cLinea = cGetSep(cCodigo, vbCrLf)
       If cCodigo = "" Then Stop
    Loop
@@ -1001,4 +1005,5 @@ Private Function bComiezaPor(cLine As String, cLineType As String, cResto As Str
       bComiezaPor = False
    End If
 End Function
+
 
