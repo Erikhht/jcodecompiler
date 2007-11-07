@@ -676,7 +676,9 @@
    ¬local $ClientLeft,$ClientTop,$ClientWidth,$ClientHeight,$FormCaption
    ¬define \01 ¬curpos + $RVABase
    ¬define $FormNumber $FormNumber + 1
-   ¬linedef \01_.Show ID_\01 $FormNumber
+   ¬define ID_\01 $FormNumber
+   ¬linedef \01.Show 
+   ¬
    ¬linedef Caption = *
       ¬linedef $FormCaption
          ¬dw \¬01,0
