@@ -130,7 +130,7 @@ function Main()
       ;call [ExitProcess]
       ExitProcess(0)
 
-end function      
+end function
 
 const WM_INITDIALOG	= &H0110
 const WM_COMMAND = &H0111
